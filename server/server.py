@@ -64,7 +64,9 @@ async def main():
     # Start the data generation task
     fpga_connection = FPGA()
     fpga_connection.setup()
-    data_task = asyncio.create_task(send_data(fpga_connection))
+    loop = asyncio.get_event_loop()
+    data_task = loop.create_task(send_data(fpga_connection))
+
 
     try:
         # Run forever
@@ -89,4 +91,5 @@ if __name__ == "__main__":
         exit(1)
 
     # Run the server
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

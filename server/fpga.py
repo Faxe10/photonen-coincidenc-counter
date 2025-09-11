@@ -2,7 +2,7 @@ from pynq import Overlay, overlay
 from pynq.lib import AxiGPIO
 import time
 import sys
-path_overlay = "./counter.bit"
+path_overlay = "./fpga/counter.bit"
 
 class FPGA:
     def __init__(self):
