@@ -4,7 +4,7 @@ import time
 import sys
 path_overlay = "./counter.bit"
 
-class fpga:
+class FPGA:
     def __init__(self):
         self.overlay = Overlay(path_overlay)
         # setup Data
@@ -45,19 +45,3 @@ class fpga:
         time_ch1 = self.ps_time_ch1.read()
         time_ch2 = self.ps_time_ch2.read()
         return time_ch1, time_ch2
-if __name__ == "__main__":
-    fpga = fpga()
-    fpga.time_window = 12
-    fpga.dead_time = 10
-    fpga.setup()
-    while True:
-        count_ch1,count_ch2,count_coincidence = fpga.read_data()
-        print(
-            f"Count Ch1:  {count_ch1} | "
-            f"Count Ch2:  {count_ch2} | "
-            f"Count coincidence: {count_coincidence} ",
-        end="\r"
-        )
-        sys.stdout.flush()
-        time.sleep(5)
-

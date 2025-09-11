@@ -5,7 +5,7 @@ import websockets
 import time
 import random
 import json
-import read_data
+from fpga import FPGA
 
 # Store connected clients
 connected_clients = set()
@@ -62,9 +62,9 @@ async def main():
     server = await websockets.serve(handle_client, "localhost", 8080)
 
     # Start the data generation task
-    fpga = read_data.fpga()
-    fpga.setup()
-    data_task = asyncio.create_task(send_data(fpga))
+    fpga_connection = FPGA()
+    fpga_connection.setup()
+    data_task = asyncio.create_task(send_data(fpga_connection))
 
     try:
         # Run forever
