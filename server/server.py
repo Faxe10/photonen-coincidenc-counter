@@ -11,7 +11,7 @@ from fpga import FPGA
 connected_clients = set()
 
 
-async def handle_client(websocket):
+async def handle_client(websocket, path = None):
     """Handle a new WebSocket client connection"""
     connected_clients.add(websocket)
     print(f"Client connected. Total clients: {len(connected_clients)}")
