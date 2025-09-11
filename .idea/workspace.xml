@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="altest repo wurde zu gross lol">
-      <change afterPath="$PROJECT_DIR$/fpga/counter.bit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpga/counter.hwh" afterDir="false" />
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="fix website server con">
+      <change afterPath="$PROJECT_DIR$/html/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/js/plotting.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/fpga.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/fpga.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/plotter.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/plotter.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +20,7 @@
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -68,6 +68,7 @@
       <recent name="$PROJECT_DIR$/fpga" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/html/css" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -86,7 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757628259018</updated>
-      <workItem from="1757628260063" duration="2225000" />
+      <workItem from="1757628260063" duration="5617000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -96,7 +97,23 @@
       <option name="project" value="LOCAL" />
       <updated>1757628598057</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="kleine Aenderungen, eventuel geht es schon ?">
+      <option name="closed" value="true" />
+      <created>1757631287395</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757631287395</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix website server con">
+      <option name="closed" value="true" />
+      <created>1757632377174</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757632377174</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +121,20 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="altest repo wurde zu gross lol" />
-    <option name="LAST_COMMIT_MESSAGE" value="altest repo wurde zu gross lol" />
+    <MESSAGE value="kleine Aenderungen, eventuel geht es schon ?" />
+    <MESSAGE value="fix website server con" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix website server con" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/html/js/plotting.js</url>
+          <line>257</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
