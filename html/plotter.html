@@ -372,7 +372,8 @@
                 status.className = 'status';
 
                 try {
-                    this.websocket = new WebSocket('ws://localhost:8080');
+                    const proto = location.protocol === 'https:' ? 'wss://' : 'ws://';
+                    this.websocket = new WebSocket(`${proto}${location.hostname}:8080`);
 
                     this.websocket.onopen = () => {
                         status.textContent = 'Connected to Python script';

@@ -59,7 +59,7 @@ async def main():
     print("Your HTML page can now connect to ws://localhost:8080")
 
     # Start the WebSocket server
-    server = await websockets.serve(handle_client, "localhost", 8080)
+    server = await websockets.serve(handle_client, "0.0.0.0", 8080)
 
     # Start the data generation task
     fpga_connection = FPGA()
