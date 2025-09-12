@@ -46,15 +46,6 @@
                     this.draw();
                 });
 
-                document.getElementById('updateRate').addEventListener('change', (e) => {
-                    this.updateRate = parseInt(e.target.value);
-                    if (this.isSimulating) {
-                        this.stopSimulation();
-                        this.startSimulation();
-                    } else {
-                        this.change_updaterate()
-                    }
-                });
 
                 document.getElementById('connectBtn').addEventListener('click', () => {
                     this.connectToPython();
