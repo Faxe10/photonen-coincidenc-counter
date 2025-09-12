@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="css/settings.css">
+    <script> window.API_BASE = `${location.protocol}//${location.hostname}:8082`; // http(s)://<host>:8081</script>
+    <script defer src="js/settings.js"></script>
+
+</head>
+<body>
+    <div class="settings-col">
+        <div class="settings col left">
+            <label>Delay Channel 1: </label>
+            <br>
+            <input type="number" id="input_delay_ch1" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch1')" ><img src="img/icons8-häkchen.svg" class="img"></button>
+            <br>
+            <br>
+            <label>Delay Channel 2:</label>
+            <br>
+            <input type="number" id="input_delay_ch2" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch2')"><img src="img/icons8-häkchen.svg" ></button>
+            <br>
+        </div>
+        <div class="settings col right">
+            <label> Time Window: </label>
+            <br>
+            <input type="number" id="input_time_window" value="8" step ="4">
+            <button class="save-btn"  onclick="savebtn('time_window')"><img src="img/icons8-häkchen.svg"></button>
+            <br>
+            <br>
+            <label>Dead Time: </label>
+            <br>
+            <input type="number" id="input_dead_time" value="10" step = "4">
+            <button class="save-btn" onclick="savebtn('dead_time')"><img src="img/icons8-häkchen.svg"></button>
+            <br>
+        </div>
+    </div>
+</body>
+</html>

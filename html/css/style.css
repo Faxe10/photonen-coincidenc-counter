@@ -7,15 +7,26 @@ body {
     color: white;
     min-height: 100vh;
 }
+.settings_icon {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
 
+}
+.settings.iframe{
+    width: 100%;
+    height: 30vh;
+    border: 0;
+
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
 }
 
 .header {

@@ -1,0 +1,21 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: lightgray;
+    color: black;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.settings-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.save-btn img{
+    background: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+
+}

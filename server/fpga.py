@@ -45,3 +45,32 @@ class FPGA:
         time_ch1 = self.ps_time_ch1.read()
         time_ch2 = self.ps_time_ch2.read()
         return time_ch1, time_ch2
+
+    def set_delay(self,ch_num,delay):
+        try:
+            print("write Channel: ",ch_num, "Delay: ",delay)
+            if ch_num == 1:
+                self.ps_delay_ch1.write(0,delay)
+                return (True)
+            elif ch_num == 2:
+                self.ps_delay_ch2.write(0,delay)
+                return (True)
+            else:
+                return (False)
+        except:
+            return (False)
+    def set_dead_time(self,dead_time):
+        try:
+            self.ps_dead_time.write(0,dead_time)
+            print("Write Dead Time:",dead_time)
+            return (True)
+        except:
+            return (False)
+
+    def set_time_window(self,time_window):
+        try:
+            self.ps_time_window.write(0,time_window)
+            print("Write Time Window:",time_window)
+            return (True)
+        except:
+            return (False)

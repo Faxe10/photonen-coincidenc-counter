@@ -6,8 +6,10 @@ import time
 import random
 import json
 from fpga import FPGA
+from APIServer import APIServer
 
 # Store connected clients
+
 connected_clients = set()
 
 
@@ -26,7 +28,7 @@ async def handle_client(websocket, path = None):
         print(f"Client disconnected. Total clients: {len(connected_clients)}")
 
 
-async def send_data(fpga):
+async def send_data(fpga,api_server):
     """Generate and send data to all connected clients"""
     while True:
         if connected_clients:
@@ -50,7 +52,7 @@ async def send_data(fpga):
             connected_clients.difference_update(disconnected)
 
         # Wait 0.1 seconds like your original script
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(api_server.update_rate)
 
 
 async def main():
@@ -60,12 +62,12 @@ async def main():
 
     # Start the WebSocket server
     server = await websockets.serve(handle_client, "0.0.0.0", 8080)
-
     # Start the data generation task
     fpga_connection = FPGA()
     fpga_connection.setup()
+    api_server = APIServer(fpga_connection,0.01)
     loop = asyncio.get_event_loop()
-    data_task = loop.create_task(send_data(fpga_connection))
+    data_task = loop.create_task(send_data(fpga_connection,api_server))
 
 
     try:

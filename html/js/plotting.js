@@ -74,6 +74,10 @@
                     this.exportData();
                 });
 
+                settingsbtn.onclick = ()=> overlay.hidden = false;
+                closeOverlay.onclick  = ()=> overlay.hidden = true;
+
+
                 window.addEventListener('resize', () => {
                     this.setupCanvas();
                     this.draw();
@@ -409,6 +413,7 @@
                 ctx.textAlign = 'center';
                 ctx.fillText('Real-time Multi-trace Plot', width / 2, 25);
             }
+
         }
 
         // Initialize the plotter when the page loads
