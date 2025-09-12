@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="Setings hinzugefuegt">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="now the api server gets started">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/APIServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/APIServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/settings.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757628259018</updated>
-      <workItem from="1757628260063" duration="17260000" />
+      <workItem from="1757628260063" duration="18106000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -140,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757644905122</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="now the api server gets started">
+      <option name="closed" value="true" />
+      <created>1757646335664</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1757646335664</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +160,8 @@
     <MESSAGE value="fix website server con" />
     <MESSAGE value="Code strukturiert" />
     <MESSAGE value="Setings hinzugefuegt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setings hinzugefuegt" />
+    <MESSAGE value="now the api server gets started" />
+    <option name="LAST_COMMIT_MESSAGE" value="now the api server gets started" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

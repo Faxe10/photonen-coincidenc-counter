@@ -68,7 +68,7 @@ async def main():
     fpga_connection = FPGA()
     fpga_connection.setup()
     api = APIServer(fpga_connection, update_rate=0.01, host='0.0.0.0', port=8082)
-    t = threading.Thread(target=run_flask(api_server=api), daemon=True)
+    t = threading.Thread(target=run_flask, args=(api,), daemon=True)
     t.start()
     loop = asyncio.get_event_loop()
     data_task = loop.create_task(send_data(fpga_connection,api))
