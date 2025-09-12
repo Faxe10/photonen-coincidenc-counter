@@ -70,13 +70,13 @@ class APIServer:
         @app.route('/api/calibrate', methods=['POST'])
         def calibrate():
             self.fpga.trigger()
-            time_ch1, time_ch2 = self.fpga.calibrate()
+            time_ch1, time_ch2 = self.fpga.read_time()
             if (time_ch1 > time_ch2):
                     delay = time_ch1 - time_ch2
-                    self.fpga.set_dead_time(2,delay)
+                    self.fpga.set_delay(1,delay)
             else:
                     delay = time_ch2 - time_ch1
-                    self.fpga.set_delay(1,delay)
+                    self.fpga.set_delay(2,delay)
             return Response('OK')
 
         @app.route('/api/read_time', methods=['GET'])
