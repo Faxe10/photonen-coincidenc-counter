@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById('updateRate').addEventListener('change', (e) => {
+    update_rate = parseInt(e.target.value);
+    send_api(update_rate,"set_update_rate")
+    })
     let save_field = 0;
     window.savebtn = (input_field) => {
     save_field = input_field;
@@ -29,39 +34,36 @@ document.addEventListener("DOMContentLoaded", () => {
         let input_value
         if(save_field == "delay_ch1") {
             value = document.getElementById("input_delay_ch1").value;
-            let res = await fetch(`${API_BASE}/set_delay/1`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ value })
-            });
-            if (!res) throw new Error("Fehler");
+            await send_api(value,"set_delay/1")
         }else if (save_field == "delay_ch2"){
             value = document.getElementById("input_delay_ch2").value;
-            const res = await fetch(`${API_BASE}/set_delay/2`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ value })
-             });
-             if (!res) throw new Error("Fehler");
+            await send_api(value,"set_delay/2");
         }else if (save_field == "dead_time"){
             value = document.getElementById("input_dead_time").value;
-            let res = await fetch(`${API_BASE}/set_dead_time`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ value })
-            });
-            if (!res) throw new Error("Fehler");
+            await send_api(value,"input_dead_time");
         }else if (save_field == "time_window"){
             value = document.getElementById("input_time_window").value;
-            let res = await fetch(`${API_BASE}/set_time_window`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ value })
-            });
-            if (!res) throw new Error("Fehler");
+            await send_api(value,"set_time_window");
         }
-
 }
+    async function change_update_rate() {
+        let value = this.updateRate;
+        let res = await fetch(`${API_BASE}/set_update_rate`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify({ value })
+        });
+        if (!res) throw new Error("Fehler");
+            }
+    async function send_api(value,path){
+        let res = await fetch(`${API_BASE}/${path}`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify({ value })
+        });
+        if (!res) throw new Error("Fehler");
+            }
+
  // ----- Zeiten (CH1/CH2) jede Sekunde abrufen -----
     async function fetchTimes(){
       try{

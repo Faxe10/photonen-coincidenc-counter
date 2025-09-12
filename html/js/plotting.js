@@ -16,7 +16,7 @@
                 this.setupEventListeners();
                 this.startAnimation();
             }
-            const API_BASE = (window.API_BASE || '/api').replace(/\/+$/,'');
+
             setupCanvas() {
                 this.canvas.width = this.canvas.offsetWidth * window.devicePixelRatio;
                 this.canvas.height = this.canvas.offsetHeight * window.devicePixelRatio;
@@ -85,15 +85,7 @@
                     this.draw();
                 });
             }
-            async change_updaterate() {
-                let value = this.updateRate;
-                let res = await fetch(`${API_BASE}/set_update_rate`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ value })
-            });
-            if (!res) throw new Error("Fehler");
-            }
+
             connectToPython() {
                 const status = document.getElementById('status');
 
