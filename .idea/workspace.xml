@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="Update Rate can be change">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="small fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/js/plotting.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/js/plotting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/js/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/js/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/plotter.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/plotter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757628259018</updated>
-      <workItem from="1757628260063" duration="26520000" />
+      <workItem from="1757628260063" duration="27811000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -190,7 +187,23 @@
       <option name="project" value="LOCAL" />
       <updated>1757656769744</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="code aufgehuebscht, working at change update rate">
+      <option name="closed" value="true" />
+      <created>1757658211697</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1757658211697</updated>
+    </task>
+    <task id="LOCAL-00013" summary="small fix">
+      <option name="closed" value="true" />
+      <created>1757658558101</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1757658558101</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,18 +220,8 @@
     <MESSAGE value="time, reset, calibrate added" />
     <MESSAGE value="neues fpga zeugs" />
     <MESSAGE value="Update Rate can be change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Rate can be change" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/html/js/plotting.js</url>
-          <line>263</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="code aufgehuebscht, working at change update rate" />
+    <MESSAGE value="small fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="small fix" />
   </component>
 </project>
