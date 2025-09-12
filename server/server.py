@@ -52,7 +52,7 @@ async def send_data(fpga,api_server):
             connected_clients.difference_update(disconnected)
 
         # Wait 0.1 seconds like your original script
-        update_rate_ms = api_server.update_rate() / 1000
+        update_rate_ms = api_server.update_rate / 1000
         await asyncio.sleep(update_rate_ms)
 
 def run_flask(api_server):
