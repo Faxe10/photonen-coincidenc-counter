@@ -54,7 +54,6 @@ async def send_data(fpga,api_server):
         # Wait 0.1 seconds like your original script
         fpga.reset()
         update_rate_ms = api_server.update_rate / 1000
-        fpga.reset()
         await asyncio.sleep(update_rate_ms)
 
 def run_flask(api_server):

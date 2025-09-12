@@ -62,11 +62,6 @@ class APIServer:
             else:
                 return Response('Error')
 
-        @app.route('/api/set_update_rate', methods=['POST'])
-        def set_update_rate():
-            self.update_rate = self.read_value()
-            return Response('OK')
-
         @app.route('/api/calibrate', methods=['POST'])
         def calibrate():
             self.fpga.trigger()
