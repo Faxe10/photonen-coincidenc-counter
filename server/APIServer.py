@@ -81,5 +81,6 @@ class APIServer:
 
         @app.route('/api/read_time', methods=['GET'])
         def read_time():
+            print()
             t1, t2 = self.fpga.read_time()
             return jsonify({"ch1": int(t1), "ch2": int(t2)})
