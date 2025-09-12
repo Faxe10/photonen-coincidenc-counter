@@ -13,6 +13,7 @@ class FPGA:
         self.time_window = 0
         self.dead_time = 0
         # setup ps connections
+        self.ps_trigger = self.overlay.AFGtrigger
         self.ps_count_ch1 = self.overlay.count.channel1
         self.ps_count_ch2 = self.overlay.count.channel2
         self.ps_delay_ch1 = self.overlay.delay_ch1
@@ -74,3 +75,6 @@ class FPGA:
             return (True)
         except:
             return (False)
+    def trigger(self):
+        self.ps_trigger.write(0,1)
+        self.ps_trigger.write(0,0)

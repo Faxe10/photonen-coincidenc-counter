@@ -67,3 +67,19 @@ class APIServer:
             self.update_rate = self.read_value()
             return Response('OK')
 
+        @app.route('/api/calibrate', methods=['POST'])
+        def calibrate():
+            self.fpga.trigger()
+            time_ch1, time_ch2 = self.fpga.calibrate()
+            if (time_ch1 > time_ch2):
+                    delay = time_ch1 - time_ch2
+                    self.fpga.set_dead_time(2,delay)
+            else:
+                    delay = time_ch2 - time_ch1
+                    self.fpga.set_delay(1,delay)
+            return Response('OK')
+
+        @app.route('/api/read_time', methods=['GET'])
+        def read_time():
+            t1, t2 = self.fpga.read_time()
+            return jsonify({"ch1": int(t1), "ch2": int(t2)})

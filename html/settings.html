@@ -15,27 +15,36 @@
             <label>Delay Channel 1: </label>
             <br>
             <input type="number" id="input_delay_ch1" value="0" step = "4">
-            <button class="save-btn"  onclick="savebtn('delay_ch1')" ><img src="img/icons8-häkchen.svg" class="img"></button>
+            <button class="save-btn"  onclick="savebtn('delay_ch1')" >save</button>
             <br>
             <br>
             <label>Delay Channel 2:</label>
             <br>
             <input type="number" id="input_delay_ch2" value="0" step = "4">
-            <button class="save-btn"  onclick="savebtn('delay_ch2')"><img src="img/icons8-häkchen.svg" ></button>
+            <button class="save-btn"  onclick="savebtn('delay_ch2')">save</button>
             <br>
+            <br>
+            <b>Time Channel 1: <time_ch1> </b>
+            <br>
+            <b>Time Channel 2: <time_ch2> </b>
         </div>
         <div class="settings col right">
             <label> Time Window: </label>
             <br>
             <input type="number" id="input_time_window" value="8" step ="4">
-            <button class="save-btn"  onclick="savebtn('time_window')"><img src="img/icons8-häkchen.svg"></button>
+            <button class="save-btn"  onclick="savebtn('time_window')">save</button>
             <br>
             <br>
             <label>Dead Time: </label>
             <br>
             <input type="number" id="input_dead_time" value="10" step = "4">
-            <button class="save-btn" onclick="savebtn('dead_time')"><img src="img/icons8-häkchen.svg"></button>
+            <button class="save-btn" onclick="savebtn('dead_time')">save</button>
             <br>
+            <br>
+            <button class="reset" onclick="reset()">Reset Counts</button>
+            <br>
+            <br>
+            <button class="calibrate" onclick="calibrate()">calibrate</button>            
         </div>
     </div>
 </body>

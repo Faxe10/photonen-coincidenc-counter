@@ -1,21 +1,99 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: lightgray;
-    color: black;
-    min-height: 100vh;
-    overflow: hidden;
+/* ===== Base / Seite im Overlay-iframe ===== */
+:root{
+  --panel:#111827;    /* Kartenhintergrund */
+  --border:#1f2937;   /* Rahmen */
+  --text:#e5e7eb;     /* Text hell */
+  --muted:#94a3b8;    /* Labels */
+  --input:#0b1024;    /* Input-Hintergrund */
+  --accent:#22d3ee;   /* Fokus-/Akzentfarbe */
 }
-.settings-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+
+html, body {
+  margin: 0;
+  padding: 16px;
+  background: transparent;     /* fügt sich ins Overlay ein */
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+  overflow: hidden;             /* keine Scrollbar im iframe */
+}
+
+/* ===== Layout: zwei Spalten ===== */
+.settings-col{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+@media (max-width: 900px){
+  .settings-col{ grid-template-columns: 1fr; }
+}
+
+/* Karten-Look für beide Spalten */
+.settings.col{
+  background: rgba(17,24,39,.78);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+
+/* ===== Inputs & Labels ===== */
+.settings label{
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 2px 0 6px;
+}
+.settings input[type=number]{
+  width: 210px;                /* kompakt, passt neben den Button */
+  max-width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--input);
+  color: var(--text);
+  outline: none;
+  vertical-align: middle;
+}
+.settings input[type=number]:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(34,211,238,.15);
+}
+
+/* Abstände zwischen Feldern (ersetzt <br>) */
+.settings .field{ margin-bottom: 18px; }
+
+/* ===== Save-Buttons (Icon-only, transparent) ===== */
+.save-btn{
+  background: transparent;
+  border: none;
+  padding: 6px;
+  margin-left: 8px;            /* direkt neben dem Input */
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 10px;
+  vertical-align: middle;
+  transition: background .15s ease, transform .1s ease;
+}
+.save-btn:hover{
+  background: rgba(255,255,255,.06);
+  transform: translateY(-1px);
+}
+.save-btn:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 .save-btn img{
-    background: transparent;
-    border: none;
-    padding: 6px;
-    cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: block;
+  pointer-events: none;        /* Klick trifft den Button */
+}
 
+/* Optional: kleines Erfolgsfeedback (per JS .ok setzen) */
+.save-btn.ok{
+  box-shadow: 0 0 0 4px rgba(22,163,74,.25);
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
 }
