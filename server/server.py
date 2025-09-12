@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import asyncio
-import websockets
 import time
 import random
 import json
+import threading
 from fpga import FPGA
 from APIServer import APIServer
 
@@ -54,7 +54,9 @@ async def send_data(fpga,api_server):
         # Wait 0.1 seconds like your original script
         await asyncio.sleep(api_server.update_rate)
 
-
+def run_flask(api_server):
+    """Run the server"""
+    api_server.app.run(host=api_server.host, port=api_server.port, threaded=True, use_reloader=False)
 async def main():
     """Main server function"""
     print("Starting WebSocket server on localhost:8080")
@@ -65,9 +67,11 @@ async def main():
     # Start the data generation task
     fpga_connection = FPGA()
     fpga_connection.setup()
-    api_server = APIServer(fpga_connection,0.01)
+    api = APIServer(fpga_connection, update_rate=0.01, host='0.0.0.0', port=8082)
+    t = threading.Thread(target=run_flask(api_server=api), daemon=True)
+    t.start()
     loop = asyncio.get_event_loop()
-    data_task = loop.create_task(send_data(fpga_connection,api_server))
+    data_task = loop.create_task(send_data(fpga_connection,api))
 
 
     try:

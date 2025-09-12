@@ -13,6 +13,23 @@ class APIServer:
         self.fpga = fpga
         self.update_rate = update_rate
 
+    def read_value(self):
+        """Erwartet JSON-Body {"value": <int>} oder eine rohe Zahl als Body."""
+        data = request.get_json(silent=True)
+        if isinstance(data, dict) and "value" in data:
+            try:
+                return int(data["value"])
+            except Exception:
+                return None
+        # Fallback: roher Body nur Zahl, z.B. body: "123"
+        raw = (request.data or b"").strip()
+        if raw:
+            try:
+                return int(raw)
+            except Exception:
+                return None
+        return None
+
     def load_routes(self):
         app = self.app
 
@@ -23,7 +40,7 @@ class APIServer:
 
         @app.route('/api/set_delay/<ch_num>',methods=['POST'])
         def set_ch(ch_num):
-            delay = int(request.data)
+            delay = self.read_value()
             if(self.fpga.set_delay(ch_num,delay)):
                 return Response('OK')
             else:
@@ -31,7 +48,7 @@ class APIServer:
 
         @app.route('/api/set_dead_time', methods=['POST'])
         def set_dead_time():
-            dead_time = int(request.data)
+            dead_time = self.read_value()
             if(self.fpga.set_dead_time(dead_time)):
                 return Response('OK')
             else:
@@ -39,7 +56,7 @@ class APIServer:
 
         @app.route('/api/set_time_window', methods=['POST'])
         def set_time_window():
-            time_window = int(request.data)
+            time_window = self.read_value()
             if(self.fpga.set_time_window(time_window)):
                 return Response('OK')
             else:
@@ -47,5 +64,6 @@ class APIServer:
 
         @app.route('/api/set_update_rate', methods=['POST'])
         def set_update_rate():
-            self.update_rate = int(request.data)
+            self.update_rate = self.read_value()
             return Response('OK')
+
