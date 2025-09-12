@@ -52,7 +52,9 @@ async def send_data(fpga,api_server):
             connected_clients.difference_update(disconnected)
 
         # Wait 0.1 seconds like your original script
+        fpga.reset()
         update_rate_ms = api_server.update_rate / 1000
+        fpga.reset()
         await asyncio.sleep(update_rate_ms)
 
 def run_flask(api_server):
@@ -68,7 +70,7 @@ async def main():
     # Start the data generation task
     fpga_connection = FPGA()
     fpga_connection.setup()
-    api = APIServer(fpga_connection, update_rate=100, host='0.0.0.0', port=8082)
+    api = APIServer(fpga_connection, update_rate=1000, host='0.0.0.0', port=8082)
     t = threading.Thread(target=run_flask, args=(api,), daemon=True)
     t.start()
     loop = asyncio.get_event_loop()

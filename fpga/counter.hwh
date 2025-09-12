@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Sep 12 10:50:05 2025" VIVADOVERSION="2025.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Sep 12 21:50:56 2025" VIVADOVERSION="2025.1">
 
   <SYSTEMINFO ARCH="zynq" BOARD="miner.ebang.com.cn:ebaz4205:part0:1.0" DEVICE="7z010" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -2551,7 +2551,7 @@
             <REGISTER NAME="GPIO_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
-              <PROPERTY NAME="SIZE" VALUE="10"/>
+              <PROPERTY NAME="SIZE" VALUE="20"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -2564,14 +2564,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="20"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
-              <PROPERTY NAME="SIZE" VALUE="10"/>
+              <PROPERTY NAME="SIZE" VALUE="20"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -2584,14 +2584,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="20"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO2_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x8"/>
-              <PROPERTY NAME="SIZE" VALUE="10"/>
+              <PROPERTY NAME="SIZE" VALUE="20"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -2604,14 +2604,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="20"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO2_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0xC"/>
-              <PROPERTY NAME="SIZE" VALUE="10"/>
+              <PROPERTY NAME="SIZE" VALUE="20"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -2624,7 +2624,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="20"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -2719,8 +2719,8 @@
         <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
-        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="10"/>
-        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="10"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="20"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="20"/>
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_IS_DUAL" VALUE="1"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
@@ -2736,12 +2736,12 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4121FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="9" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch2">
+        <PORT DIR="I" LEFT="19" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="start_0" PORT="count_ch2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="9" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch1">
+        <PORT DIR="I" LEFT="19" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="start_0" PORT="count_ch1"/>
           </CONNECTIONS>
@@ -2917,7 +2917,7 @@
             <REGISTER NAME="GPIO_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
-              <PROPERTY NAME="SIZE" VALUE="10"/>
+              <PROPERTY NAME="SIZE" VALUE="20"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -2930,14 +2930,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="20"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
-              <PROPERTY NAME="SIZE" VALUE="10"/>
+              <PROPERTY NAME="SIZE" VALUE="20"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -2950,7 +2950,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="20"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -3086,7 +3086,7 @@
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
         <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="21"/>
-        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="10"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="20"/>
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_IS_DUAL" VALUE="0"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
@@ -3102,7 +3102,7 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4125FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="9" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_coincidenc">
+        <PORT DIR="I" LEFT="19" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_coincidenc">
           <CONNECTIONS>
             <CONNECTION INSTANCE="start_0" PORT="count_coincidenc"/>
           </CONNECTIONS>
@@ -6992,17 +6992,17 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="9" NAME="count_ch1" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch1">
+        <PORT DIR="O" LEFT="19" NAME="count_ch1" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="count" PORT="gpio_io_i"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="9" NAME="count_ch2" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch2">
+        <PORT DIR="O" LEFT="19" NAME="count_ch2" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_ch2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="count" PORT="gpio2_io_i"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="9" NAME="count_coincidenc" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_coincidenc">
+        <PORT DIR="O" LEFT="19" NAME="count_coincidenc" RIGHT="0" SIGIS="undef" SIGNAME="start_0_count_coincidenc">
           <CONNECTIONS>
             <CONNECTION INSTANCE="count_coincidenc" PORT="gpio_io_i"/>
           </CONNECTIONS>
@@ -7052,12 +7052,12 @@
             <CONNECTION INSTANCE="resetcount" PORT="gpio_io_o"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="21" NAME="time_ch1_out" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch1_out">
+        <PORT DIR="O" LEFT="31" NAME="time_ch1_out" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch1_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="time_ch_1_2" PORT="gpio_io_i"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="21" NAME="time_ch2_out" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch2_out">
+        <PORT DIR="O" LEFT="31" NAME="time_ch2_out" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch2_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="time_ch_1_2" PORT="gpio2_io_i"/>
           </CONNECTIONS>
@@ -7085,7 +7085,7 @@
             <REGISTER NAME="GPIO_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
-              <PROPERTY NAME="SIZE" VALUE="22"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -7098,14 +7098,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="22"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
-              <PROPERTY NAME="SIZE" VALUE="22"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -7118,14 +7118,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="22"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO2_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x8"/>
-              <PROPERTY NAME="SIZE" VALUE="22"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -7138,14 +7138,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="22"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO2_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0xC"/>
-              <PROPERTY NAME="SIZE" VALUE="22"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -7158,7 +7158,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="22"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -7253,8 +7253,8 @@
         <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
-        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="22"/>
-        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="22"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_IS_DUAL" VALUE="1"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
@@ -7270,12 +7270,12 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4123FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="21" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch2_out">
+        <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch2_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="start_0" PORT="time_ch2_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="21" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch1_out">
+        <PORT DIR="I" LEFT="31" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="start_0_time_ch1_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="start_0" PORT="time_ch1_out"/>
           </CONNECTIONS>
