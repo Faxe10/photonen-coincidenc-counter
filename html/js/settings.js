@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchTimes(){
       try{
         // Erwartetes Format vom Server: { ch1: <int>, ch2: <int> }
-        const r = await fetch(`${BASE}/read_time`, { cache:'no-store' });
+        const r = await fetch(`${API_BASE}/read_time`, { cache:'no-store' });
         if(!r.ok) throw new Error(`${r.status} ${r.statusText}`);
         const j = await r.json();
         document.getElementById('time_ch1').textContent = j.ch1 ?? '–';
