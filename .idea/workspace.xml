@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="time, reset, calibrate added">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="neues fpga zeugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/counter.bit" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/counter.bit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/js/plotting.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/js/plotting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/plotter.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/plotter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/APIServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/APIServer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757628259018</updated>
-      <workItem from="1757628260063" duration="23240000" />
+      <workItem from="1757628260063" duration="25063000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -172,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757650203541</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="neues fpga zeugs">
+      <option name="closed" value="true" />
+      <created>1757654571697</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1757654571697</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,14 +196,15 @@
     <MESSAGE value="now the api server gets started" />
     <MESSAGE value="maby now?" />
     <MESSAGE value="time, reset, calibrate added" />
-    <option name="LAST_COMMIT_MESSAGE" value="time, reset, calibrate added" />
+    <MESSAGE value="neues fpga zeugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="neues fpga zeugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/html/js/plotting.js</url>
-          <line>261</line>
+          <line>271</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="10" />
         </line-breakpoint>

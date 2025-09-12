@@ -84,3 +84,8 @@ class APIServer:
             print()
             t1, t2 = self.fpga.read_time()
             return jsonify({"ch1": int(t1), "ch2": int(t2)})
+
+        @app.route('/api/set_update_rate', methods=['POST'])
+        def set_update_rate():
+            self.update_rate = self.read_value()
+            return Response('OK')
