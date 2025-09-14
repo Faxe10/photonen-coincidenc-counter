@@ -23,7 +23,7 @@ class FPGA:
        # self.ps_time_ch2 = self.overlay.time_ch_1_2.channel2
         self.ps_reset = self.overlay.resetcount
         self.ps_count_coincidence = self.overlay.count_coincidenc
-        self.ps_dead_time = self.overlay.dead_time
+        #self.ps_dead_time = self.overlay.dead_time
 
     def read_data(self):
         count_ch1 = self.ps_count_ch1.read()
@@ -35,7 +35,7 @@ class FPGA:
         self.ps_delay_ch1.write(0,self.delay_ch1)
         self.ps_delay_ch2.write(0,self.delay_ch2)
         self.ps_time_window.write(0,self.time_window)
-        self.ps_dead_time.write(0,self.dead_time)
+       # self.ps_dead_time.write(0,self.dead_time)
 
     def reset(self):
         self.ps_reset.write(0,1)
@@ -64,7 +64,7 @@ class FPGA:
             return (False)
     def set_dead_time(self,dead_time):
         try:
-            self.ps_dead_time.write(0,dead_time)
+            #self.ps_dead_time.write(0,dead_time)
             print("Write Dead Time:",dead_time)
             return (True)
         except:
