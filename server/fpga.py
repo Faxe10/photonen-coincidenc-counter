@@ -19,8 +19,8 @@ class FPGA:
         self.ps_delay_ch1 = self.overlay.delay_ch1
         self.ps_delay_ch2 = self.overlay.delay_ch2
         self.ps_time_window = self.overlay.time_window
-        self.ps_time_ch1 = self.overlay.time_ch_1_2.channel1
-        self.ps_time_ch2 = self.overlay.time_ch_1_2.channel2
+       # self.ps_time_ch1 = self.overlay.time_ch_1_2.channel1
+       # self.ps_time_ch2 = self.overlay.time_ch_1_2.channel2
         self.ps_reset = self.overlay.resetcount
         self.ps_count_coincidence = self.overlay.count_coincidenc
         self.ps_dead_time = self.overlay.dead_time
@@ -43,8 +43,10 @@ class FPGA:
         self.ps_reset.write(0,0)
 
     def read_time(self):
-        time_ch1 = self.ps_time_ch1.read()
-        time_ch2 = self.ps_time_ch2.read()
+        #time_ch1 = self.ps_time_ch1.read()
+        #time_ch2 = self.ps_time_ch2.read()
+        time_ch1 = 1
+        time_ch2 = 1
         return time_ch1, time_ch2
 
     def set_delay(self,ch_num,delay):
