@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="small fix">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="fix update rate">
+      <change afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/bd/design_1/design_1.bd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,9 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -39,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -64,7 +68,6 @@
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.tektronixAFG31252.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;tests&quot;,
@@ -132,11 +135,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757628259018</updated>
-      <workItem from="1757628260063" duration="31265000" />
-      <workItem from="1757668209345" duration="425000" />
-      <workItem from="1757694962164" duration="10893000" />
-      <workItem from="1757866109470" duration="704000" />
-      <workItem from="1757879105640" duration="166000" />
+      <workItem from="1757628260063" duration="30876000" />
+      <workItem from="1758289581555" duration="1195000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -266,31 +266,7 @@
       <option name="project" value="LOCAL" />
       <updated>1757660163225</updated>
     </task>
-    <task id="LOCAL-00017" summary="fpga gefixt">
-      <option name="closed" value="true" />
-      <created>1757667832738</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1757667832738</updated>
-    </task>
-    <task id="LOCAL-00018" summary="counter in fpga rezized, startet coding test">
-      <option name="closed" value="true" />
-      <created>1757707348696</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1757707348696</updated>
-    </task>
-    <task id="LOCAL-00019" summary="small fix">
-      <option name="closed" value="true" />
-      <created>1757708590077</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1757708590077</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,13 +295,8 @@
     <MESSAGE value="neues fpga zeugs" />
     <MESSAGE value="Update Rate can be change" />
     <MESSAGE value="code aufgehuebscht, working at change update rate" />
-    <MESSAGE value="fix update rate" />
-    <MESSAGE value="fpga gefixt" />
-    <MESSAGE value="counter in fpga rezized, startet coding test" />
     <MESSAGE value="small fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="small fix" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/photonen_coincidence_counter$tektronixAFG31252.coverage" NAME="tektronixAFG31252 Coverage Results" MODIFIED="1757866145478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <MESSAGE value="fix update rate" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix update rate" />
   </component>
 </project>

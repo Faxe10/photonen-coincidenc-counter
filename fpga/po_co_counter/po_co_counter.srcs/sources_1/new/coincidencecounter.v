@@ -69,6 +69,11 @@ module coincidencecounter(
     reg new_time_ch7_r;
     reg new_time_ch8_r;
     
+    reg inc1_5,inc1_6,inc1_7,inc1_8;
+    reg inc2_5,inc2_6,inc2_7,inc2_8;
+    reg inc3_5,inc3_6,inc3_7,inc3_8;
+    reg inc4_5,inc4_6,inc4_7,inc4_8;
+    
     reg signed [60:0] diff1_5,diff1_6,diff1_7,diff1_8;
     reg signed [60:0] diff2_5,diff2_6,diff2_7,diff2_8;
     reg signed [60:0] diff3_5,diff3_6,diff3_7,diff3_8;
@@ -741,6 +746,7 @@ module coincidencecounter(
             end
         end
       end
+      
       always @(posedge clk_250mhz)begin
         count4_8_out <= count4_8;
         if (new_small_diff4_8) begin
@@ -749,7 +755,104 @@ module coincidencecounter(
                 count4_8 <= count4_8 + 1;
             end
         end
-      end 
+      end
+      
+    always @(posedge clk_250mhz)begin
+        if (inc1_5)begin
+            count1_5 <= count1_5 + 1;
+            
+        end
+    end
+     
+    always @(posedge clk_250mhz)begin
+        if (inc1_6)begin
+            count1_6 <= count1_6 +1;
+        end
+    end
+    
+    always @(posedge clk_250mhz)begin
+        if (inc1_7)begin
+            count1_7 <= count1_7 +1;
+        end
+    end
+  
+    always @(posedge clk_250mhz)begin
+        if (inc1_8)begin
+            count1_8 <= count1_8 + 1;
+        end
+    end
+    
+    always @(posedge clk_250mhz)begin
+        if(inc2_5)begin
+            count2_5 <= count2_5 +1;
+        end
+    end  
+    
+    always @(posedge  clk_250mhz) begin
+        if(inc2_6)begin
+            count2_6 <= count2_6 +1;
+        end
+    end
+    
+    always @(posedge clk_250mhz) begin 
+        if(inc2_7) begin
+            count2_7 <= count2_7 + 1;
+        end
+    end
+    
+    always @(posedge clk_250mhz)begin
+        if(inc2_8)begin
+            count2_8 <= count2_8 + 1;
+        end
+    end
+    always @(posedge clk_250mhz)begin
+            if(inc3_5)begin
+            count3_5 <= count3_5 +1;
+        end
+    end  
+    
+    always @(posedge  clk_250mhz) begin
+        if(inc3_6)begin
+            count3_6 <= count3_6 +1;
+        end
+    end
+    
+    always @(posedge clk_250mhz) begin 
+        if(inc3_7) begin
+            count3_7 <= count3_7 + 1;
+        end
+    end
+    
+    always @(posedge clk_250mhz)begin
+        if(inc3_8)begin
+            count3_8 <= count3_8 + 1;
+        end
+    end
+    
+    always @(posedge clk_250mhz) begin
+            if(inc4_5)begin
+            count4_5 <= count4_5 +1;
+        end
+    end  
+    
+    always @(posedge  clk_250mhz) begin
+        if(inc4_6)begin
+            count4_6 <= count4_6 +1;
+        end
+    end
+    
+    always @(posedge clk_250mhz) begin 
+        if(inc4_7) begin
+            count4_7 <= count4_7 + 1;
+        end
+    end
+    
+    always @(posedge clk_250mhz)begin
+        if(inc4_8)begin
+            count4_8 <= count4_8 + 1;
+        end
+    end
+    
 endmodule
 
 
