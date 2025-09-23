@@ -144,7 +144,33 @@ module coincidencecounter(
     always @(posedge clk_250mhz) new_time_ch5_r <= new_time_ch5;         
     always @(posedge clk_250mhz) new_time_ch6_r <= new_time_ch6;         
     always @(posedge clk_250mhz) new_time_ch7_r <= new_time_ch7;         
-    always @(posedge clk_250mhz) new_time_ch8_r <= new_time_ch8;                   
+    always @(posedge clk_250mhz) new_time_ch8_r <= new_time_ch8; 
+    
+    always @(posedge clk_250mhz) begin
+            count1_5_out <= count1_5;
+            count1_6_out <= count1_6;
+            count1_7_out <= count1_7;
+            count1_8_out <= count1_8;
+    end
+    always @(posedge clk_250mhz) begin
+            count2_5_out <= count2_5;
+            count2_6_out <= count2_6;
+            count2_7_out <= count2_7;
+            count2_8_out <= count2_8;
+    end
+    always @(posedge clk_250mhz) begin
+            count3_5_out <= count3_5;
+            count3_6_out <= count3_6;
+            count3_7_out <= count3_7;
+            count3_8_out <= count3_8;
+    end                  
+    
+    always @(posedge clk_250mhz) begin
+            count4_5_out <= count4_5;
+            count4_6_out <= count4_6;
+            count4_7_out <= count4_7;
+            count4_8_out <= count4_8;
+    end
     // cal diff 
     always @(posedge clk_250mhz) begin
         if (new_time_ch1_r | new_time_ch5_r) begin
@@ -609,151 +635,201 @@ module coincidencecounter(
      // check if coincidence ***********************************************************************
      //ch1
      always @(posedge clk_250mhz)begin
-         count1_5_out <= count1_5;
         if (new_small_diff1_5) begin
             if (small_diff1_5 < time_window_r) begin
              //       count <= count + 1;
-                count1_5 <= count1_5 + 1;
+                inc1_5 <=  1;
+            end else begin
+                inc1_5 <= 0;
             end
+        end else begin
+            inc1_5 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        time_window1_6 <= time_window;
         if (new_small_diff1_6) begin
             if (small_diff1_6 < time_window_r) begin
              //       count <= count + 1;
-                count1_6 <= count1_6 + 1;
+                inc1_6 <=  1;
+            end else begin
+                inc1_6 <= 0;
             end
+        end else begin 
+            inc1_6 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        count1_7_out <= count1_7;
         if (new_small_diff1_7) begin
             if (small_diff1_7 < time_window_r) begin
              //       count <= count + 1;
-                count1_7 <= count1_7 + 1;
+                inc1_7 <=  1;
+            end else begin
+                inc1_7 <= 0;
             end
+        end else begin 
+            inc1_7 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        count1_8_out <= count1_8;
         if (new_small_diff1_8) begin
             if (small_diff1_8 < time_window_r) begin
              //       count <= count + 1;
-                count1_8 <= count1_8 + 1;
+                inc1_8 <=  1;
+            end else begin
+                inc1_8 <= 0;
             end
+        end else begin 
+            inc1_8 <= 0;
         end
       end
       //ch2
       always @(posedge clk_250mhz)begin
-         count2_5_out <= count2_5;
         if (new_small_diff2_5) begin
             if (small_diff2_5 < time_window_r) begin
              //       count <= count + 1;
-                count2_5 <= count2_5 + 1;
+                inc2_5 <=  1;
+            end else begin
+                inc2_5 <= 0;
             end
+        end else begin 
+            inc2_5 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-         count2_6_out <= count2_6;
         if (new_small_diff2_6) begin
             if (small_diff2_6 < time_window_r) begin
              //       count <= count + 1;
-                count2_6 <= count2_6 + 1;
+                inc2_6 <=  1;
+            end else begin
+                inc2_6 <= 0;
             end
+        end else begin 
+            inc2_6 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        count2_7_out <= count2_7;
         if (new_small_diff2_7) begin
             if (small_diff2_7 < time_window_r) begin
              //       count <= count + 1;
-                count2_7 <= count2_7 + 1;
+                inc2_7 <=  1;
+            end else begin
+                inc2_7 <= 0;
             end
+        end else begin 
+            inc2_7 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        count2_8_out <= count2_8;
         if (new_small_diff2_8) begin
             if (small_diff2_8 < time_window_r) begin
-             //       count <= count + 1;
-                count2_8 <= count2_8 + 1;
-            end
+                inc2_8 <= 1;
+            end else begin
+                inc2_8 <= 0;
+            end 
+        end else begin 
+            inc2_8 <= 0;
         end
       end
+             //       count <= count + 1;
+
      //ch3
       always @(posedge clk_250mhz)begin
-        count3_5_out <= count3_5;
         if (new_small_diff3_5) begin
             if (small_diff3_5 < time_window_r) begin
              //       count <= count + 1;
-                count3_5 <= count3_5 + 1;
-            end
+                inc3_5 <= 1;
+            end else begin
+                inc3_5 <= 0;
+            end 
+        end else begin 
+            inc3_5 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        count3_6_out <= count3_6;
         if (new_small_diff3_6) begin
             if (small_diff3_6 < time_window_r) begin
              //       count <= count + 1;
-                count3_6 <= count3_6 + 1;
-            end
+                       inc3_6 <= 1;
+            end else begin
+                inc3_6 <= 0;
+            end 
+        end else begin 
+            inc3_6 <= 0;
         end
       end
       always @(posedge clk_250mhz)begin
-        count3_7_out <= count3_7;
         if (new_small_diff3_7) begin
             if (small_diff3_7 < time_window_r) begin
              //       count <= count + 1;
-                count3_7 <= count3_7 + 1;
-            end
-        end
-      end
-      always @(posedge clk_250mhz)begin
-        count3_8_out <= count3_8;
-        if (new_small_diff3_8) begin
-            if (small_diff3_8 < time_window_r) begin
-             //       count <= count + 1;
-                count3_8 <= count3_8 + 1;
-            end
-        end
-      end
-      //ch4
-      always @(posedge clk_250mhz)begin
-        count4_5_out <= count4_5;
-        if (new_small_diff4_5) begin
-            if (small_diff4_5 < time_window_r) begin
-             //       count <= count + 1;
-                count4_5 <= count4_5 + 1;
-            end
-        end
-      end
-      always @(posedge clk_250mhz)begin
-        count4_6_out <= count4_6;
-        if (new_small_diff4_6) begin
-            if (small_diff4_6 < time_window_r) begin
-             //       count <= count + 1;
-                count4_6 <= count4_6 + 1;
-            end
-        end
-      end
-      always @(posedge clk_250mhz)begin
-        count4_7_out <= count4_7;
-        if (new_small_diff4_7) begin
-            if (small_diff4_7 < time_window_r) begin
-             //       count <= count + 1;
-                count4_7 <= count4_7 + 1;
-            end
+                         inc3_7 <= 1;
+            end else begin
+                inc3_7 <= 0;
+            end 
+        end else begin 
+            inc3_7 <= 0;
         end
       end
       
       always @(posedge clk_250mhz)begin
-        count4_8_out <= count4_8;
+        if (new_small_diff3_8) begin
+            if (small_diff3_8 < time_window_r) begin
+             //       count <= count + 1;
+                         inc3_8 <= 1;
+            end else begin
+                inc3_8 <= 0;
+            end 
+        end else begin 
+            inc3_8 <= 0;
+        end
+      end
+      //ch4
+      always @(posedge clk_250mhz)begin
+        if (new_small_diff4_5) begin
+            if (small_diff4_5 < time_window_r) begin
+             //       count <= count + 1;
+                        inc4_5 <= 1;
+            end else begin
+                inc4_5 <= 0;
+            end 
+        end else begin 
+            inc4_5 <= 0;
+        end
+      end
+      always @(posedge clk_250mhz)begin
+        if (new_small_diff4_6) begin
+            if (small_diff4_6 < time_window_r) begin
+             //       count <= count + 1;
+                                inc4_6 <= 1;
+            end else begin
+                inc4_6 <= 0;
+            end 
+        end else begin 
+            inc4_6 <= 0;
+        end
+      end
+      always @(posedge clk_250mhz)begin
+        if (new_small_diff4_7) begin
+            if (small_diff4_7 < time_window_r) begin
+             //       count <= count + 1;
+                                inc4_7 <= 1;
+            end else begin
+                inc4_7 <= 0;
+            end 
+        end else begin 
+            inc4_7 <= 0;
+        end
+      end
+      
+      always @(posedge clk_250mhz)begin
         if (new_small_diff4_8) begin
             if (small_diff4_8 < time_window_r) begin
              //       count <= count + 1;
-                count4_8 <= count4_8 + 1;
-            end
+                                inc4_8 <= 1;
+            end else begin
+                inc4_8 <= 0;
+            end 
+        end else begin 
+            inc4_8 <= 0;
         end
       end
       
