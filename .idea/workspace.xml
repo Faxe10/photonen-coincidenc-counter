@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="fucked up something">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="before changing the pos diff / small diff">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" afterDir="false" />
@@ -136,6 +137,7 @@
       <updated>1757628259018</updated>
       <workItem from="1757628260063" duration="30876000" />
       <workItem from="1758289581555" duration="1195000" />
+      <workItem from="1758656643571" duration="1244000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -265,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757660163225</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="before changing the pos diff / small diff">
+      <option name="closed" value="true" />
+      <created>1758656679688</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1758656679688</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +306,7 @@
     <MESSAGE value="code aufgehuebscht, working at change update rate" />
     <MESSAGE value="small fix" />
     <MESSAGE value="fix update rate" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix update rate" />
+    <MESSAGE value="before changing the pos diff / small diff" />
+    <option name="LAST_COMMIT_MESSAGE" value="before changing the pos diff / small diff" />
   </component>
 </project>
