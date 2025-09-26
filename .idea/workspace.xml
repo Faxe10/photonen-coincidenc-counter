@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="before changing the pos diff / small diff">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="got wns from -0.4 to -0.2 ns">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +134,8 @@
       <updated>1757628259018</updated>
       <workItem from="1757628260063" duration="30876000" />
       <workItem from="1758289581555" duration="1195000" />
-      <workItem from="1758656643571" duration="1244000" />
+      <workItem from="1758656643571" duration="2352000" />
+      <workItem from="1758724030917" duration="601000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -275,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758656679688</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="got wns from -0.4 to -0.2 ns">
+      <option name="closed" value="true" />
+      <created>1758660909042</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1758660909042</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +313,7 @@
     <MESSAGE value="small fix" />
     <MESSAGE value="fix update rate" />
     <MESSAGE value="before changing the pos diff / small diff" />
-    <option name="LAST_COMMIT_MESSAGE" value="before changing the pos diff / small diff" />
+    <MESSAGE value="got wns from -0.4 to -0.2 ns" />
+    <option name="LAST_COMMIT_MESSAGE" value="got wns from -0.4 to -0.2 ns" />
   </component>
 </project>

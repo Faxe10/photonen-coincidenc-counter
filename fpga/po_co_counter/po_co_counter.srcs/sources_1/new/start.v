@@ -134,6 +134,7 @@ reg [9:0]qs;
 reg [9:0]ms;
 reg [6:0]s;
 
+reg [30:0]integration_time_r;
 
 reg new_input_ch1;
 reg new_input_ch2;
@@ -194,7 +195,7 @@ wire ch5_rise = ch5_clk1 & ~ch5_clk2;
 wire ch6_rise = ch6_clk1 & ~ch6_clk2;
 wire ch7_rise = ch7_clk1 & ~ch7_clk2;
 wire ch8_rise = ch8_clk1 & ~ch8_clk2;
-
+always @(posedge clk_250mhz)integration_time_r <= integration_time;
 
 
 
@@ -227,7 +228,7 @@ end
 always @(posedge clk_250mhz) begin
     if(reset)begin
         reset_int <= 0;
-        reset_timer <= integration_time;
+        reset_timer <= integration_time_r;
     end else if (reset_timer == 0)begin
         reset_int <= 1;
     end else
