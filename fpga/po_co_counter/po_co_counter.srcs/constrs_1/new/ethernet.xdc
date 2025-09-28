@@ -41,10 +41,10 @@ set_property -dict {PACKAGE_PIN T20 IOSTANDARD LVCMOS33} [get_ports ch3]
 set_property -dict {PACKAGE_PIN R19 IOSTANDARD LVCMOS33} [get_ports ch4]
 
 #ch 5 - 8
-set_property -dict {PACKAGE_PIN A20 IOSTANDARD LVCMOS33} [get_ports ch5] 
-set_property -dict {PACKAGE_PIN B19 IOSTANDARD LVCMOS33} [get_ports ch6]
-set_property -dict {PACKAGE_PIN C20 IOSTANDARD LVCMOS33} [get_ports ch7] 
-set_property -dict {PACKAGE_PIN H17 IOSTANDARD LVCMOS33} [get_ports ch8]
+set_property -dict {PACKAGE_PIN J19 IOSTANDARD LVCMOS33} [get_ports ch5] 
+set_property -dict {PACKAGE_PIN K18 IOSTANDARD LVCMOS33} [get_ports ch6]
+set_property -dict {PACKAGE_PIN K19 IOSTANDARD LVCMOS33} [get_ports ch7] 
+set_property -dict {PACKAGE_PIN L16 IOSTANDARD LVCMOS33} [get_ports ch8]
 
 set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports AFGtrigger] 
 # Scope

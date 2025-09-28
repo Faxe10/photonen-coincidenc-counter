@@ -89,6 +89,11 @@ module coincidencecounter(
     reg [47:0] pos_diff3_5, pos_diff3_6,pos_diff3_7,pos_diff3_8;
     reg [47:0] pos_diff4_5, pos_diff4_6,pos_diff4_7,pos_diff4_8;
     
+    reg [47:0] pos_diff1_5_r, pos_diff1_6_r,pos_diff1_7_r,pos_diff1_8_r;
+    reg [47:0] pos_diff2_5_r, pos_diff2_6_r,pos_diff2_7_r,pos_diff2_8_r;
+    reg [47:0] pos_diff3_5_r, pos_diff3_6_r,pos_diff3_7_r,pos_diff3_8_r;
+    reg [47:0] pos_diff4_5_r, pos_diff4_6_r,pos_diff4_7_r,pos_diff4_8_r;
+    
     reg [47:0] pos_neg_diff1_5,pos_neg_diff1_6,pos_neg_diff1_7,pos_neg_diff1_8;
     reg [47:0] pos_neg_diff2_5,pos_neg_diff2_6,pos_neg_diff2_7,pos_neg_diff2_8;
     reg [47:0] pos_neg_diff3_5,pos_neg_diff3_6,pos_neg_diff3_7,pos_neg_diff3_8;
@@ -109,6 +114,11 @@ module coincidencecounter(
     reg new_pos_diff3_5,new_pos_diff3_6,new_pos_diff3_7,new_pos_diff3_8;
     reg new_pos_diff4_5,new_pos_diff4_6,new_pos_diff4_7,new_pos_diff4_8;
     
+    reg new_pos_diff1_5_r,new_pos_diff1_6_r,new_pos_diff1_7_r,new_pos_diff1_8_r;
+    reg new_pos_diff2_5_r,new_pos_diff2_6_r,new_pos_diff2_7_r,new_pos_diff2_8_r;
+    reg new_pos_diff3_5_r,new_pos_diff3_6_r,new_pos_diff3_7_r,new_pos_diff3_8_r;
+    reg new_pos_diff4_5_r,new_pos_diff4_6_r,new_pos_diff4_7_r,new_pos_diff4_8_r;
+    
     reg new_small_diff1_5,new_small_diff1_6,new_small_diff1_7,new_small_diff1_8;
     reg new_small_diff2_5,new_small_diff2_6,new_small_diff2_7,new_small_diff2_8;
     reg new_small_diff3_5,new_small_diff3_6,new_small_diff3_7,new_small_diff3_8;
@@ -124,10 +134,7 @@ module coincidencecounter(
     reg diff3_5_pos,diff3_6_pos,diff3_7_pos,diff3_8_pos;
     reg diff4_5_pos,diff4_6_pos,diff4_7_pos,diff4_8_pos;
     
-    reg inc1_5,inc1_6,inc1_7,inc1_8;
-    reg inc2_5,inc1_6,inc2_7,inc2_8;
-    reg inc3_5,inc1_6,inc3_7,inc3_8;
-    reg inc4_5,inc1_6,inc4_7,inc4_8;
+ 
     reg[21:0]count1_5,count1_6,count1_7,count1_8;
     reg[21:0]count2_5,count2_6,count2_7,count2_8;
     reg[21:0]count3_5,count3_6,count3_7,count3_8;
@@ -204,117 +211,116 @@ module coincidencecounter(
     end
     // cal diff 
     always @(posedge clk_250mhz) begin
-        if (new_time_ch1_r | new_time_ch5_r) begin
-            diff1_5 <= time_ch1_r - time_ch5_r;   
+        diff1_5 <= time_ch1_r - time_ch5_r;
+        if (new_time_ch1_r | new_time_ch5_r) begin   
             new_diff1_5 <= 1;
         end else
             new_diff1_5 <= 0;
     end
     
     always @(posedge clk_250mhz) begin
+        diff1_6 <= time_ch1_r - time_ch6_r;
         if (new_time_ch1_r | new_time_ch6_r) begin
-            diff1_6 <= time_ch1_r - time_ch6_r;   
             new_diff1_6 <= 1;
         end else
             new_diff1_6 <= 0;
     end
      always @(posedge clk_250mhz) begin
-        if (new_time_ch1_r | new_time_ch7_r) begin
-            diff1_7 <= time_ch1_r - time_ch7_r;   
+        diff1_7 <= time_ch1_r - time_ch7_r;
+        if (new_time_ch1_r | new_time_ch7_r) begin   
             new_diff1_7 <= 1;
         end else
             new_diff1_7 <= 0;
     end
      always @(posedge clk_250mhz) begin
-        if (new_time_ch1_r | new_time_ch8_r) begin
-            diff1_8 <= time_ch1_r - time_ch8_r;   
+        diff1_8 <= time_ch1_r - time_ch8_r;
+        if (new_time_ch1_r | new_time_ch8_r) begin 
             new_diff1_8 <= 1;
         end else
             new_diff1_8 <= 0;
     end
     always @(posedge clk_250mhz) begin
+        diff2_5 <= time_ch2_r - time_ch5_r;
         if (new_time_ch2_r | new_time_ch5_r) begin
-            diff2_5 <= time_ch2_r - time_ch5_r;   
             new_diff2_5 <= 1;
         end else
             new_diff2_5 <= 0;
     end
     
     always @(posedge clk_250mhz) begin
-        if (new_time_ch2_r | new_time_ch6_r) begin
-            diff2_6 <= time_ch2_r - time_ch6_r;   
+        diff2_6 <= time_ch2_r - time_ch6_r;  
+        if (new_time_ch2_r | new_time_ch6_r) begin 
             new_diff2_6 <= 1;
         end else
             new_diff2_6 <= 0;
     end
      always @(posedge clk_250mhz) begin
+        diff2_7 <= time_ch2_r - time_ch7_r;   
         if (new_time_ch2_r | new_time_ch7_r) begin
-            diff2_7 <= time_ch2_r - time_ch7_r;   
             new_diff2_7 <= 1;
         end else
             new_diff2_7 <= 0;
     end
      always @(posedge clk_250mhz) begin
-        if (new_time_ch2_r | new_time_ch8_r) begin
-            diff2_8 <= time_ch2_r - time_ch8_r;   
+        diff2_8 <= time_ch2_r - time_ch8_r; 
+        if (new_time_ch2_r | new_time_ch8_r) begin  
             new_diff2_8 <= 1;
         end else
             new_diff2_8 <= 0;
     end
     always @(posedge clk_250mhz) begin
-        if (new_time_ch3_r | new_time_ch5_r) begin
-            diff3_5 <= time_ch3_r - time_ch5_r;   
+        diff3_5 <= time_ch3_r - time_ch5_r;
+        if (new_time_ch3_r | new_time_ch5_r) begin   
             new_diff3_5 <= 1;
         end else
             new_diff3_5 <= 0;
     end
-    
     always @(posedge clk_250mhz) begin
-        if (new_time_ch3_r | new_time_ch6_r) begin
-            diff3_6 <= time_ch3_r - time_ch6_r;   
+        diff3_6 <= time_ch3_r - time_ch6_r;
+        if (new_time_ch3_r | new_time_ch6_r) begin   
             new_diff3_6 <= 1;
         end else
             new_diff3_6 <= 0;
     end
     always @(posedge clk_250mhz) begin
-        if (new_time_ch3_r | new_time_ch7_r) begin
-            diff3_7 <= time_ch3_r - time_ch7_r;   
+        diff3_7 <= time_ch3_r - time_ch7_r; 
+        if (new_time_ch3_r | new_time_ch7_r) begin  
             new_diff3_7 <= 1;
         end else
             new_diff3_7 <= 0;
     end
     always @(posedge clk_250mhz) begin
-        if (new_time_ch3_r | new_time_ch8_r) begin
-            diff3_8 <= time_ch3_r - time_ch8_r;   
+        diff3_8 <= time_ch3_r - time_ch8_r;
+        if (new_time_ch3_r | new_time_ch8_r) begin   
             new_diff3_8 <= 1;
         end else
             new_diff3_8 <= 0;
     end
         always @(posedge clk_250mhz) begin
-        if (new_time_ch4_r | new_time_ch5_r) begin
-            diff4_5 <= time_ch4_r - time_ch5_r;   
+        diff4_5 <= time_ch4_r - time_ch5_r;
+        if (new_time_ch4_r | new_time_ch5_r) begin    
             new_diff4_5 <= 1;
         end else
             new_diff4_5 <= 0;
     end
     
     always @(posedge clk_250mhz) begin
-        if (new_time_ch4_r | new_time_ch6_r) begin
-            diff4_6 <= time_ch4_r - time_ch6_r;   
+        diff4_6 <= time_ch4_r - time_ch6_r; 
+        if (new_time_ch4_r | new_time_ch6_r) begin 
             new_diff4_6 <= 1;
         end else
             new_diff4_6 <= 0;
     end
     always @(posedge clk_250mhz) begin
-        if (new_time_ch4_r | new_time_ch7_r) begin
-            diff4_7 <= time_ch4_r - time_ch7_r;   
+        diff4_7 <= time_ch4_r - time_ch7_r;   
+        if (new_time_ch4_r | new_time_ch7_r) begin 
             new_diff4_7 <= 1;
         end else
             new_diff4_7 <= 0;
     end
     always @(posedge clk_250mhz) begin
-        if (new_time_ch4_r | new_time_ch8_r) begin
-            diff4_8 <= time_ch4_r - time_ch8_r;   
+        diff4_8 <= time_ch4_r - time_ch8_r;  
+        if (new_time_ch4_r | new_time_ch8_r) begin  
             new_diff4_8 <= 1;
         end else
             new_diff4_8 <= 0;
@@ -326,7 +332,7 @@ module coincidencecounter(
         new_diff1_5_r <= new_diff1_5;
         diff1_5_r <= diff1_5;
         if (new_diff1_5_r)begin
-            if (diff1_5_r[60] == 0)begin
+            if (diff1_5_r[48] == 0)begin
                 pos_diff1_5 <= diff1_5_r;
             end else
                 pos_diff1_5 <= pos_neg_diff1_5;
@@ -339,7 +345,7 @@ module coincidencecounter(
         new_diff1_6_r <= new_diff1_6;
         diff1_6_r <= diff1_6;
         if (new_diff1_6_r)begin
-            if (diff1_6_r[60] == 0)begin
+            if (diff1_6_r[48] == 0)begin
                 pos_diff1_6 <= diff1_6_r;
             end else
                 pos_diff1_6 <= pos_neg_diff1_6;
@@ -352,7 +358,7 @@ module coincidencecounter(
         new_diff1_7_r <= new_diff1_7;
         diff1_7_r <= diff1_7;
         if (new_diff1_7_r)begin
-            if (diff1_7_r[60] == 0)begin
+            if (diff1_7_r[48] == 0)begin
                 pos_diff1_7 <= diff1_7_r;
             end else
                 pos_diff1_7 <= pos_neg_diff1_7;
@@ -365,7 +371,7 @@ module coincidencecounter(
         new_diff1_8_r <= new_diff1_8;
         diff1_8_r <= diff1_8;
         if (new_diff1_8_r)begin
-            if (diff1_8_r[60] == 0)begin
+            if (diff1_8_r[48] == 0)begin
                 pos_diff1_8 <= diff1_8_r;
             end else
                 pos_diff1_8 <= pos_neg_diff1_8;
@@ -378,7 +384,7 @@ module coincidencecounter(
         new_diff2_5_r <= new_diff2_5;
         diff2_5_r <= diff2_5;
         if (new_diff2_5_r)begin
-            if (diff2_5_r[60] == 0)begin
+            if (diff2_5_r[48] == 0)begin
                 pos_diff2_5 <= diff2_5_r;
             end else
                 pos_diff2_5 <= pos_neg_diff2_5;
@@ -391,7 +397,7 @@ module coincidencecounter(
         new_diff2_6_r <= new_diff2_6;
         diff2_6_r <= diff2_6;
         if (new_diff2_6_r)begin
-            if (diff2_6_r[60] == 0)begin
+            if (diff2_6_r[48] == 0)begin
                 pos_diff2_6 <= diff2_6_r;
             end else
                 pos_diff2_6 <= pos_neg_diff2_6;
@@ -404,7 +410,7 @@ module coincidencecounter(
         new_diff2_7_r <= new_diff2_7;
         diff2_7_r <= diff2_7;
         if (new_diff2_7_r)begin
-            if (diff2_7_r[60] == 0)begin
+            if (diff2_7_r[48] == 0)begin
                 pos_diff2_7 <= diff2_7_r;
             end else
                 pos_diff2_7 <= pos_neg_diff2_7;
@@ -417,7 +423,7 @@ module coincidencecounter(
         new_diff2_8_r <= new_diff2_8;
         diff2_8_r <= diff2_8;
         if (new_diff2_8_r)begin
-            if (diff2_8_r[60] == 0)begin
+            if (diff2_8_r[48] == 0)begin
                 pos_diff2_8 <= diff2_8_r;
             end else
                 pos_diff2_8 <= pos_neg_diff2_8;
@@ -430,10 +436,10 @@ module coincidencecounter(
         new_diff3_5_r <= new_diff3_5;
         diff3_5_r <= diff3_5;
         if (new_diff3_5_r)begin
-            if (diff3_5_r[60] == 0)begin
+            if (diff3_5_r[48] == 0)begin
                 pos_diff3_5 <= diff3_5_r;
             end else
-                pos_diff3_5 <= pos_neg_diff2_8;
+                pos_diff3_5 <= pos_neg_diff3_5;
             new_pos_diff3_5 <= 1;
         end else
             new_pos_diff3_5 <= 0;
@@ -443,7 +449,7 @@ module coincidencecounter(
         new_diff3_6_r <= new_diff3_6;
         diff3_6_r <= diff3_6;
         if (new_diff3_6_r)begin
-            if (diff3_6_r[60] == 0)begin
+            if (diff3_6_r[48] == 0)begin
                 pos_diff3_6 <= diff3_6_r;
             end else
                 pos_diff3_6 <= pos_neg_diff3_6;
@@ -456,7 +462,7 @@ module coincidencecounter(
         new_diff3_7_r <= new_diff3_7;
         diff3_7_r <= diff3_7;
         if (new_diff3_7_r)begin
-            if (diff3_7_r[60] == 0)begin
+            if (diff3_7_r[48] == 0)begin
                 pos_diff3_7 <= diff3_7_r;
             end else
                 pos_diff3_7 <= pos_neg_diff3_7;
@@ -469,7 +475,7 @@ module coincidencecounter(
         new_diff3_8_r <= new_diff3_8;
         diff3_8_r <= diff3_8;
         if (new_diff3_8_r)begin
-            if (diff3_8_r[60] == 0)begin
+            if (diff3_8_r[48] == 0)begin
                 pos_diff3_8 <= diff3_8_r;
             end else
                 pos_diff3_8 <= pos_neg_diff3_8;
@@ -482,7 +488,7 @@ module coincidencecounter(
         new_diff4_5_r <= new_diff4_5;
         diff4_5_r <= diff4_5;
         if (new_diff4_5_r)begin
-            if (diff4_5_r[60] == 0)begin
+            if (diff4_5_r[48] == 0)begin
                 pos_diff4_5 <= diff4_5_r;
             end else
                 pos_diff4_5 <= pos_neg_diff4_5;
@@ -495,7 +501,7 @@ module coincidencecounter(
         new_diff4_6_r <= new_diff4_6;
         diff4_6_r <= diff4_6; 
         if (new_diff4_6_r)begin
-            if (diff4_6_r[60] == 0)begin
+            if (diff4_6_r[48] == 0)begin
                 pos_diff4_6 <= diff4_6_r;
             end else
                 pos_diff4_6 <= pos_neg_diff4_6;
@@ -508,20 +514,21 @@ module coincidencecounter(
         new_diff4_7_r <= new_diff4_7;
         diff4_7_r <= diff4_7;
         if (new_diff4_7_r)begin
-            if (diff4_7_r[60] == 0)begin
+            if (diff4_7_r[48] == 0)begin
                 pos_diff4_7 <= diff4_7_r;
             end else
                 pos_diff4_7 <= pos_neg_diff4_7;
             new_pos_diff4_7 <= 1;
         end else
             new_pos_diff4_7 <= 0;
+            new_pos_diff4_7 <= 0;
      end
      
      always @(posedge clk_250mhz)begin
-        new_diff4_8_r <= new_diff4_5;
+        new_diff4_8_r <= new_diff4_8;
         diff4_8_r <= diff4_8; 
         if (new_diff4_8_r)begin
-            if (diff4_8_r[60] == 0)begin
+            if (diff4_8_r[48] == 0)begin
                 pos_diff4_8 <= diff4_8_r;
             end else
                 pos_diff4_8 <= pos_neg_diff4_8;
@@ -533,81 +540,97 @@ module coincidencecounter(
 // check small diff
 //ch1     
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff1_5) begin
-            if (pos_diff1_5[47:20] == 0)begin
+        pos_diff1_5_r <= pos_diff1_5;
+        new_pos_diff1_5_r <= new_pos_diff1_5;
+        if (new_pos_diff1_5_r) begin
+            if (pos_diff1_5_r[47:20] == 0)begin
                 new_small_diff1_5 <= 1;
-                small_diff1_5 <= pos_diff1_5[20:0];
+                small_diff1_5 <= pos_diff1_5_r[20:0];
             end else
                 new_small_diff1_5 <= 0;
         end else
             new_small_diff1_5 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff1_6) begin
-            if (pos_diff1_6[47:20] == 0)begin
+        new_pos_diff1_6_r <= new_pos_diff1_6;
+        pos_diff1_6_r <= pos_diff1_6;
+        small_diff1_6 <= pos_diff1_6_r[20:0];       
+        if (new_pos_diff1_6_r) begin
+            if (pos_diff1_6_r[47:20] == 0)begin
                 new_small_diff1_6 <= 1;
-                small_diff1_6 <= pos_diff1_6[20:0];
             end else
                 new_small_diff1_6 <= 0;
         end else
             new_small_diff1_6 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff1_7) begin
-            if (pos_diff1_7[47:20] == 0)begin
+        new_pos_diff1_7_r <= new_pos_diff1_7;
+        pos_diff1_7_r <= pos_diff1_7;
+        small_diff1_7 <= pos_diff1_7_r[20:0];
+        if (new_pos_diff1_7_r) begin
+            if (pos_diff1_7_r[47:20] == 0)begin
                 new_small_diff1_7 <= 1;
-                small_diff1_7 <= pos_diff1_7[20:0];
             end else
                 new_small_diff1_7 <= 0;
         end else
             new_small_diff1_7 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff1_8) begin
-            if (pos_diff1_8[47:20] == 0)begin
+        new_pos_diff1_8_r <= new_pos_diff1_8;
+        pos_diff1_8_r <= pos_diff1_8;
+        small_diff1_8 <= pos_diff1_8_r[20:0];
+        if (new_pos_diff1_8_r) begin
+            if (pos_diff1_8_r[47:20] == 0)begin
                 new_small_diff1_8 <= 1;
-                small_diff1_8 <= pos_diff1_8[20:0];
             end else
                 new_small_diff1_8 <= 0;
         end else
             new_small_diff1_8 <= 0;
      end
-     //ch2
-          always @(posedge clk_250mhz)begin
-        if (new_pos_diff2_5) begin
-            if (pos_diff2_5[47:20] == 0)begin
+     //ch2 
+     always @(posedge clk_250mhz)begin
+        new_pos_diff2_5_r <= new_pos_diff2_5;
+        pos_diff2_5_r <= pos_diff2_5;  
+        small_diff2_5 <= pos_diff2_5_r[20:0];   
+        if (new_pos_diff2_5_r) begin
+            if (pos_diff2_5_r[47:20] == 0)begin
                 new_small_diff2_5 <= 1;
-                small_diff2_5 <= pos_diff2_5[20:0];
             end else
                 new_small_diff2_5 <= 0;
         end else
             new_small_diff2_5 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff2_6) begin
-            if (pos_diff2_6[47:20] == 0)begin
+        new_pos_diff2_6_r <= new_pos_diff2_6;
+        pos_diff2_6_r <= pos_diff2_6;
+        small_diff2_6 <= pos_diff2_6_r[20:0];
+        if (new_pos_diff2_6_r) begin
+            if (pos_diff2_6_r[47:20] == 0)begin
                 new_small_diff2_6 <= 1;
-                small_diff2_6 <= pos_diff2_6[20:0];
             end else
                 new_small_diff2_6 <= 0;
         end else
             new_small_diff2_6 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff2_7) begin
-            if (pos_diff2_7[47:20] == 0)begin
+        new_pos_diff2_7_r <= new_pos_diff2_7;
+        pos_diff2_7_r <= pos_diff2_7;
+        small_diff2_7 <= pos_diff2_7_r[20:0];
+        if (new_pos_diff2_7_r) begin
+            if (pos_diff2_7_r[47:20] == 0)begin
                 new_small_diff2_7 <= 1;
-                small_diff2_7 <= pos_diff2_7[20:0];
             end else
                 new_small_diff2_7 <= 0;
         end else
             new_small_diff2_7 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff2_8) begin
-            if (pos_diff2_8[47:20] == 0)begin
-                new_small_diff2_8 <= 1;
-                small_diff2_8 <= pos_diff2_8[20:0];
+        new_pos_diff2_8_r <= new_pos_diff2_8;
+        pos_diff2_8_r <= pos_diff2_8;
+        small_diff2_8 <= pos_diff2_8_r[20:0];
+        if (new_pos_diff2_8_r) begin
+            if (pos_diff2_8_r[47:20] == 0)begin
+                new_small_diff2_8 <= 1; 
             end else
                 new_small_diff2_8 <= 0;
         end else
@@ -615,40 +638,48 @@ module coincidencecounter(
      end
      //ch3
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff3_5) begin
-            if (pos_diff3_5[47:20] == 0)begin
+        new_pos_diff3_5_r <= new_pos_diff3_5;
+        pos_diff3_5_r <= pos_diff3_5;
+        small_diff3_5 <= pos_diff3_5_r[20:0];
+        if (new_pos_diff3_5_r) begin
+            if (pos_diff3_5_r[47:20] == 0)begin
                 new_small_diff3_5 <= 1;
-                small_diff3_5 <= pos_diff3_5[20:0];
             end else
                 new_small_diff3_5 <= 0;
         end else
             new_small_diff3_5 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff3_6) begin
-            if (pos_diff3_6[47:20] == 0)begin
+        new_pos_diff3_6_r <= new_pos_diff3_6;
+        pos_diff3_6_r <= pos_diff3_6;
+        small_diff3_6 <= pos_diff3_6_r[20:0];
+        if (new_pos_diff3_6_r) begin
+            if (pos_diff3_6_r[47:20] == 0)begin
                 new_small_diff3_6 <= 1;
-                small_diff3_6 <= pos_diff3_6[20:0];
             end else
                 new_small_diff3_6 <= 0;
         end else
             new_small_diff3_6 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff3_7) begin
-            if (pos_diff3_7[47:20] == 0)begin
+        new_pos_diff3_7_r <= new_pos_diff3_7;
+        pos_diff3_7_r <= pos_diff3_7_r;
+        small_diff3_7 <= pos_diff3_7_r[20:0];
+        if (new_pos_diff3_7_r) begin
+            if (pos_diff3_7_r[47:20] == 0)begin
                 new_small_diff3_7 <= 1;
-                small_diff3_7 <= pos_diff3_7[20:0];
             end else
                 new_small_diff3_7 <= 0;
         end else
             new_small_diff3_7 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff3_8) begin
-            if (pos_diff3_8[47:20] == 0)begin
+        new_pos_diff3_8_r <= new_pos_diff3_8;
+        pos_diff3_8_r <= pos_diff3_8;
+        small_diff3_8 <= pos_diff3_8_r[20:0];
+        if (new_pos_diff3_8_r) begin
+            if (pos_diff3_8_r[47:20] == 0)begin
                 new_small_diff3_8 <= 1;
-                small_diff3_8 <= pos_diff3_8[20:0];
             end else
                 new_small_diff3_8 <= 0;
         end else
@@ -656,40 +687,48 @@ module coincidencecounter(
      end
      //ch4
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff4_5) begin
-            if (pos_diff4_5[47:20] == 0)begin
+        new_pos_diff4_5_r <= new_pos_diff4_5;
+        pos_diff4_5_r <= pos_diff4_5; 
+        small_diff4_5 <= pos_diff4_5_r[20:0];
+        if (new_pos_diff4_5_r) begin
+            if (pos_diff4_5_r[47:20] == 0)begin
                 new_small_diff4_5 <= 1;
-                small_diff4_5 <= pos_diff4_5[20:0];
             end else
                 new_small_diff4_5 <= 0;
         end else
             new_small_diff4_5 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff4_6) begin
-            if (pos_diff4_6[47:20] == 0)begin
+        new_pos_diff4_6_r <= new_pos_diff4_6;
+        pos_diff4_6_r <= pos_diff4_6;
+        
+        if (new_pos_diff4_6_r) begin
+            if (pos_diff4_6_r[47:20] == 0)begin
                 new_small_diff4_6 <= 1;
-                small_diff4_6 <= pos_diff4_6[20:0];
             end else
                 new_small_diff4_6 <= 0;
         end else
             new_small_diff4_6 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff4_7) begin
-            if (pos_diff4_7[47:20] == 0)begin
+        new_pos_diff4_7_r <= new_pos_diff4_7;
+        pos_diff4_7_r <= pos_diff4_7;
+        small_diff4_7 <= pos_diff4_7_r[20:0];
+        if (new_pos_diff4_7_r) begin
+            if (pos_diff4_7_r[47:20] == 0)begin
                 new_small_diff4_7 <= 1;
-                small_diff4_7 <= pos_diff4_7[20:0];
             end else
                 new_small_diff4_7 <= 0;
         end else
             new_small_diff4_7 <= 0;
      end
      always @(posedge clk_250mhz)begin
-        if (new_pos_diff4_8) begin
-            if (pos_diff4_8[47:20] == 0)begin
+        new_pos_diff4_8_r <= new_pos_diff4_8;
+        pos_diff4_8 <= new_pos_diff4_8;
+        small_diff4_8 <= pos_diff4_8_r[20:0];
+        if (new_pos_diff4_8_r) begin
+            if (pos_diff4_8_r[47:20] == 0)begin
                 new_small_diff4_8 <= 1;
-                small_diff4_8 <= pos_diff4_8[20:0];
             end else
                 new_small_diff4_8 <= 0;
         end else

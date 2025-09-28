@@ -85,42 +85,20 @@ output  [20:0]delay_ch1_out,
 output  [20:0]delay_ch2_out,
 //output  [20:0]dead_time_out,
 
-output reg[63:0]time_ch1_dma,
-output reg[63:0]time_ch2_dma,
-output reg[63:0]time_ch3_dma,
-output reg[63:0]time_ch4_dma,
-output reg[63:0]time_ch5_dma,
-output reg[63:0]time_ch6_dma,
-output reg[63:0]time_ch7_dma,
-output reg[63:0]time_ch8_dma,
+output reg[31:0]time_ch1_axi,
+output reg[31:0]time_ch2_axi,
+output reg[31:0]time_ch3_axi,
+output reg[31:0]time_ch4_axi,
+output reg[31:0]time_ch5_axi,
+output reg[31:0]time_ch6_axi,
+output reg[31:0]time_ch7_axi,
+output reg[31:0]time_ch8_axi,
 
-output reg ch1_data_valid,
-output reg ch2_data_valid,
-output reg ch3_data_valid,
-output reg ch4_data_valid,
-output reg ch5_data_valid,
-output reg ch6_data_valid,
-output reg ch7_data_valid,
-output reg ch8_data_valid,
 
-output reg ch1_t_last,
-output reg ch2_t_last,
-output reg ch3_t_last,
-output reg ch4_t_last,
-output reg ch5_t_last,
-output reg ch6_t_last,
-output reg ch7_t_last,
-output reg ch8_t_last,
 
-input ch1_ready,
-input ch2_ready,
-input ch3_ready,
-input ch4_ready,
-input ch5_ready,
-input ch6_ready,
-input ch7_ready,
-input ch8_ready,
 
+
+ 
 //input [20:0]time_window_input,
 input reset_ext,
 //input [20:0]dead_time_input,
@@ -144,7 +122,7 @@ reg ch2_to_old;
 
 reg  reset_int;
 reg [32:0]reset_timer;
-wire reset = reset_int | reset_ext;
+wire reset = 0;
 assign reset_out = reset;
 
 reg [41:0] time_ch1_old;
@@ -196,8 +174,14 @@ wire ch6_rise = ch6_clk1 & ~ch6_clk2;
 wire ch7_rise = ch7_clk1 & ~ch7_clk2;
 wire ch8_rise = ch8_clk1 & ~ch8_clk2;
 always @(posedge clk_250mhz)integration_time_r <= integration_time;
-
-
+always @(posedge clk_250mhz) time_ch1_axi <= time_ch1[31:0];
+always @(posedge clk_250mhz) time_ch2_axi <= time_ch2[31:0];
+always @(posedge clk_250mhz) time_ch3_axi <= time_ch3[31:0];
+always @(posedge clk_250mhz) time_ch4_axi <= time_ch4[31:0];
+always @(posedge clk_250mhz) time_ch5_axi <= time_ch5[31:0];
+always @(posedge clk_250mhz) time_ch6_axi <= time_ch6[31:0];
+always @(posedge clk_250mhz) time_ch7_axi <= time_ch7[31:0];
+always @(posedge clk_250mhz) time_ch8_axi <= time_ch8[31:0];
 
 
 
@@ -327,135 +311,61 @@ end
 always @(posedge clk_250mhz) begin
     if (reset) begin
         count_ch1 <= 0;
-        count_ch2 <= 0;
-        count_ch3 <= 0;
-        count_ch4 <= 0;
-    end
-    if(new_time_ch2) begin
-        count_ch2 <= count_ch2 + 1;
-    end
-    if(new_time_ch1)begin
+    end else if(new_time_ch1)begin
        count_ch1 <= count_ch1 + 1;
     end
-    if(new_time_ch3)begin
-        count_ch3 <= count_ch3 + 1;
+end
+always @(posedge clk_250mhz) begin
+    if (reset) begin
+        count_ch2 <= 0;
+    end else if(new_time_ch2)begin
+       count_ch2 <= count_ch2 + 1;
     end
-    if(new_time_ch4)begin
-        count_ch4 <= count_ch4 + 1;
+end
+always @(posedge clk_250mhz) begin
+    if (reset) begin
+        count_ch3 <= 0;
+    end else if(new_time_ch3)begin
+       count_ch3 <= count_ch3 + 1;
+    end
+end
+always @(posedge clk_250mhz) begin
+    if (reset) begin
+        count_ch4 <= 0;
+    end else if(new_time_ch4)begin
+       count_ch4 <= count_ch4 + 1;
     end
 end
 always @(posedge clk_250mhz) begin
     if (reset) begin
         count_ch5 <= 0;
+    end else if(new_time_ch5)begin
+       count_ch5 <= count_ch5 + 1;
+    end
+end
+always @(posedge clk_250mhz) begin
+    if (reset) begin
         count_ch6 <= 0;
-        count_ch7 <= 0;
-        count_ch8 <= 0;
-    end
-    if(new_time_ch5) begin
-        count_ch5 <= count_ch5 + 1;
-    end
-    if(new_time_ch6)begin
+    end else if(new_time_ch6)begin
        count_ch6 <= count_ch6 + 1;
     end
-    if(new_time_ch7)begin
-        count_ch7 <= count_ch7 + 1;
+end
+always @(posedge clk_250mhz) begin
+    if (reset) begin
+        count_ch7 <= 0;
+    end else if(new_time_ch7)begin
+       count_ch7 <= count_ch7 + 1;
     end
-    if(new_time_ch8)begin
-        count_ch8 <= count_ch8 + 1;
+end
+always @(posedge clk_250mhz) begin
+    if (reset) begin
+        count_ch8 <= 0;
+    end else if(new_time_ch8)begin
+       count_ch8 <= count_ch8 + 1;
     end
 end
 
 // dma write thinks
-always @(posedge clk_250mhz)begin
-    if (new_time_ch1 ) begin
-        time_ch1_dma[63:60] <= 4'b0001;
-        time_ch1_dma[59:0] <= time_ch1;
-        ch1_data_valid <= 1;
-        ch1_t_last <=1;  
-        if (!ch1_ready) 
-            ch1_overflow <= 1; 
-    end else begin
-        ch1_data_valid <= 0;
-        ch1_t_last <= 0;
-    end
-end
 
-always @(posedge clk_250mhz)begin
-    if(new_time_ch2)begin
-        time_ch2_dma[63:60] <= 4'b0010;
-        time_ch2_dma[59:0] <= time_ch2;
-        ch2_data_valid <= 1;
-        ch2_t_last <= 1;
-     end else begin 
-        ch2_data_valid <= 0;
-        ch2_t_last <= 0;
-     end
-end
-always @(posedge clk_250mhz)begin
-    if(new_time_ch3)begin
-        time_ch3_dma[63:60] <= 4'b0011;
-        time_ch3_dma[59:0] <= time_ch3;
-        ch3_data_valid <= 1;
-        ch3_t_last <= 1;
-     end else begin 
-        ch3_data_valid <= 0;
-        ch3_t_last <= 0;
-     end
-end
-always @(posedge clk_250mhz)begin
-    if(new_time_ch4)begin
-        time_ch4_dma[63:60] <= 4'b0100;
-        time_ch4_dma[59:0] <= time_ch4;
-        ch4_data_valid <= 1;
-        ch4_t_last <= 1;
-     end else begin 
-        ch4_data_valid <= 0;
-        ch4_t_last <= 0;
-     end
-end
-always @(posedge clk_250mhz)begin
-    if(new_time_ch5)begin
-        time_ch5_dma[63:60] <= 4'b0101;
-        time_ch5_dma[59:0] <= time_ch5;
-        ch5_data_valid <= 1;
-        ch5_t_last <= 1;
-     end else begin 
-        ch5_data_valid <= 0;
-        ch5_t_last <= 0;
-     end
-end
-always @(posedge clk_250mhz)begin
-    if(new_time_ch6)begin
-        time_ch6_dma[63:60] <= 4'b0110;
-        time_ch6_dma[59:0] <= time_ch6;
-        ch6_data_valid <= 1;
-        ch6_t_last <= 1;
-     end else begin 
-        ch6_data_valid <= 0;
-        ch6_t_last <= 0;
-     end
-end
-always @(posedge clk_250mhz)begin
-    if(new_time_ch7)begin
-        time_ch7_dma[63:60] <= 4'b0111;
-        time_ch7_dma[59:0] <= time_ch7;
-        ch7_data_valid <= 1;
-        ch7_t_last <= 1;
-     end else begin 
-        ch7_data_valid <= 0;
-        ch7_t_last <= 0;
-     end
-end
-always @(posedge clk_250mhz)begin
-    if(new_time_ch8)begin
-        time_ch8_dma[63:60] <= 4'b1000;
-        time_ch8_dma[59:0] <= time_ch8;
-        ch8_data_valid <= 1;
-        ch8_t_last <= 1;
-     end else begin 
-        ch8_data_valid <= 0;
-        ch8_t_last <= 0;
-     end
-end
 
 endmodule
