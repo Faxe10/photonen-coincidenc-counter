@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="got wns from -0.4 to -0.2 ns">
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="timing works (55ps left)">
+      <change afterPath="$PROJECT_DIR$/html/img/2QA_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/img/BMFTR_de_DTP_CMYK_gef_durch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/img/LUH_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/img/lm_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bell_calc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/constrs_1/new/ethernet.xdc" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/constrs_1/new/ethernet.xdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/bd/design_1/design_1.bd" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/bd/design_1/design_1.bd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/start.v" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/start.v" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/js/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/js/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/APIServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/APIServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/fpga.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/fpga.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="gpt_try" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,7 +83,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/lam/Desktop/photonen_coincidence_counter/fpga&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/lam/Documents/uni/bachelore-arbei6t/2QA_ED_software_Fabian&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -83,6 +98,8 @@
       <recent name="$PROJECT_DIR$/html/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/html/img" />
       <recent name="$PROJECT_DIR$/html/css" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -114,6 +131,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.tektronixAFG31252" />
+        <item itemvalue="Python.tektronixAFG31252" />
       </list>
     </recent_temporary>
   </component>
@@ -136,6 +154,16 @@
       <workItem from="1758289581555" duration="1195000" />
       <workItem from="1758656643571" duration="2352000" />
       <workItem from="1758724030917" duration="601000" />
+      <workItem from="1758899128847" duration="1009000" />
+      <workItem from="1758900167611" duration="7000" />
+      <workItem from="1758903789176" duration="110000" />
+      <workItem from="1758903978917" duration="58000" />
+      <workItem from="1759006742530" duration="13000" />
+      <workItem from="1759165823982" duration="5328000" />
+      <workItem from="1759171165024" duration="3793000" />
+      <workItem from="1759220222853" duration="8000" />
+      <workItem from="1759231011533" duration="617000" />
+      <workItem from="1759245326046" duration="649000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -281,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758660909042</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="timing works (55ps left)">
+      <option name="closed" value="true" />
+      <created>1758899178304</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1758899178304</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,6 +350,7 @@
     <MESSAGE value="fix update rate" />
     <MESSAGE value="before changing the pos diff / small diff" />
     <MESSAGE value="got wns from -0.4 to -0.2 ns" />
-    <option name="LAST_COMMIT_MESSAGE" value="got wns from -0.4 to -0.2 ns" />
+    <MESSAGE value="timing works (55ps left)" />
+    <option name="LAST_COMMIT_MESSAGE" value="timing works (55ps left)" />
   </component>
 </project>

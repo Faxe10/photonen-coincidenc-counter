@@ -12,23 +12,107 @@
 <body>
     <div class="settings-col">
         <div class="settings col left">
+            <div>Time Channel 1:</div><div class="v" id="time_ch1">–</div>
             <label>Delay Channel 1: </label>
             <br>
             <input type="number" id="input_delay_ch1" value="0" step = "4">
             <button class="save-btn"  onclick="savebtn('delay_ch1')" >save</button>
             <br>
+            <div>Diff Ch1 / Ch5: </div><div class="v" id="diff1_5">-</div>
+            <div>Diff Ch1 / Ch6: </div><div class="v" id="diff1_6">-</div>
+            <div>Diff Ch1 / Ch7: </div><div class="v" id="diff1_7">-</div>
+            <div>Diff Ch1 / ch8: </div><div class="v" id="diff1_8">-</div>
             <br>
+            <br>
+            <div>Time Channel 2:</div><div class="v" id="time_ch2">-</div>
             <label>Delay Channel 2:</label>
             <br>
             <input type="number" id="input_delay_ch2" value="0" step = "4">
             <button class="save-btn"  onclick="savebtn('delay_ch2')">save</button>
             <br>
+            <div>Diff Ch2 / Ch5: </div><div class="v" id="diff2_5">-</div>
+            <div>Diff Ch2 / Ch6: </div><div class="v" id="diff2_6">-</div>
+            <div>Diff Ch2 / Ch7: </div><div class="v" id="diff2_7">-</div>
+            <div>Diff Ch2 / ch8: </div><div class="v" id="diff2_8">-</div>
             <br>
-             <div>Time Channel 1:</div><div class="v" id="time_ch1">–</div>
-          <div>Time Channel 2:</div><div class="v" id="time_ch2">–</div>
+            <br>
+            <div>Time Channel 3:</div><div class="v" id="time_ch3">-</div>
+             <label>Delay Channel 3:</label>
+            <br>
+            <input type="number" id="input_delay_ch3" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch1')" >save</button>
+            <br>
+            <div>Diff Ch3 / Ch5: </div><div class="v" id="diff3_5">-</div>
+            <div>Diff Ch3 / Ch6: </div><div class="v" id="diff3_6">-</div>
+            <div>Diff Ch3 / Ch7: </div><div class="v" id="diff3_7">-</div>
+            <div>Diff Ch3 / ch8: </div><div class="v" id="diff3_8">-</div>
+            <br>
+            <br>
+            <div>Time Channel 4:</div><div class="v" id="time_ch4">-</div>
+            <label>Delay Channel 4:</label>
+            <br>
+            <input type="number" id="input_delay_ch4" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch2')">save</button>
+            <br>
+            <div>Diff Ch4 / Ch5: </div><div class="v" id="diff4_5">-</div>
+            <div>Diff Ch4 / Ch6: </div><div class="v" id="diff4_6">-</div>
+            <div>Diff Ch4 / Ch7: </div><div class="v" id="diff4_7">-</div>
+            <div>Diff Ch4 / ch8: </div><div class="v" id="diff4_8">-</div>
+
+            <br>
+
         </div>
         <div class="settings col right">
-            <label> Time Window: </label>
+            <div>Time Channel 5:</div><div class="v" id="time_ch5">-</div>
+                      <label>Delay Channel 5: </label>
+            <br>
+            <input type="number" id="input_delay_ch5" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch5')" >save</button>
+            <br>
+            <div>Diff Ch5 / Ch1: </div><div class="v" id="diff5_1">-</div>
+            <div>Diff Ch5 / Ch2: </div><div class="v" id="diff5_2">-</div>
+            <div>Diff Ch5 / Ch3: </div><div class="v" id="diff5_3">-</div>
+            <div>Diff Ch5 / ch4: </div><div class="v" id="diff5_4">-</div>
+            <br>
+            <br>
+            <div>Time Channel 6:</div><div class="v" id="time_ch6">-</div>
+            <label>Delay Channel 6:</label>
+            <br>
+            <input type="number" id="input_delay_ch6" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch6')">save</button>
+            <br>
+            <div>Diff Ch6 / Ch1: </div><div class="v" id="diff6_1">-</div>
+            <div>Diff Ch6 / Ch2: </div><div class="v" id="diff6_2">-</div>
+            <div>Diff Ch6 / Ch3: </div><div class="v" id="diff6_3">-</div>
+            <div>Diff Ch6 / ch4: </div><div class="v" id="diff6_4">-</div>
+            <br>
+            <br>
+            <div>Time Channel 7:</div><div class="v" id="time_ch7">-</div>
+             <label>Delay Channel 7:</label>
+            <br>
+            <input type="number" id="input_delay_ch7" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch7')" >save</button>
+            <br>
+            <div>Diff Ch7 / Ch1: </div><div class="v" id="diff7_1">-</div>
+            <div>Diff Ch7 / Ch2: </div><div class="v" id="diff7_2">-</div>
+            <div>Diff Ch7 / Ch3: </div><div class="v" id="diff7_3">-</div>
+            <div>Diff Ch7 / ch4: </div><div class="v" id="diff7_4">-</div>
+            <br>
+            <br>
+            <div>Time Channel 8:</div><div class="v" id="time_ch8">-</div>
+            <label>Delay Channel 8:</label>
+            <br>
+            <input type="number" id="input_delay_ch8" value="0" step = "4">
+            <button class="save-btn"  onclick="savebtn('delay_ch8')">save</button>
+            <br>
+            <div>Diff Ch8 / Ch1: </div><div class="v" id="diff8_1">-</div>
+            <div>Diff Ch8 / Ch2: </div><div class="v" id="diff8_2">-</div>
+            <div>Diff Ch8 / Ch3: </div><div class="v" id="diff8_3">-</div>
+            <div>Diff Ch8 / ch4: </div><div class="v" id="diff8_4">-</div>
+
+            <br>
+        </div>
+         <label> Time Window: </label>
             <br>
             <input type="number" id="input_time_window" value="8" step ="4">
             <button class="save-btn"  onclick="savebtn('time_window')">save</button>
@@ -47,8 +131,9 @@
             <button class="reset" onclick="reset()">Reset Counts</button>
             <br>
             <br>
-            <button class="calibrate" onclick="calibrate()">calibrate</button>            
-        </div>
+            <button class="calibrate" onclick="calibrate()">calibrate</button>
+
+
     </div>
 </body>
 </html>

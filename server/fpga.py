@@ -13,15 +13,23 @@ class FPGA:
         # setup Data
         self.delay_ch1 = 0
         self.delay_ch2 = 0
-        self.time_window = 0
-        self.dead_time = 0
+        self.delay_ch3 = 0
+        self.delay_ch4 = 0
+        self.delay_ch5 = 0
+        self.delay_ch6 = 0
+        self.delay_ch7 = 0
+        self.delay_ch8 = 0
+        self.time_window = 20    #time window for coincidence in ps (only 4 ps steps)
+        self.integatrion_time = 1 #count reset after x in seconds
         # setup ps connections
         self.setup_ps_singel_counter()
+        self.setup_ps_coincidence_counter()
+        self.setup_ps_channel_times()
         self.setup_ps_delays()
+
         self.ps_trigger = self.overlay.AFGtrigger
-
-
         self.ps_time_window = self.overlay.time_window
+        self.ps_integration_time = self.overlay.integration_time
        # self.ps_time_ch1 = self.overlay.time_ch_1_2.channel1
        # self.ps_time_ch2 = self.overlay.time_ch_1_2.channel2
         self.ps_reset = self.overlay.resetcount
@@ -56,6 +64,16 @@ class FPGA:
         self.ps_co_count4_7 = self.overlay.co_count4_7_8.channel1
         self.ps_co_count4_8 = self.overlay.co_count4_7_8.channel2
 
+    def setup_ps_channel_times(self):
+        self.ps_time_ch1 = self.overlay.time_ch1
+        self.ps_time_ch2 = self.overlay.time_ch2
+        self.ps_time_ch3 = self.overlay.time_ch3
+        self.ps_time_ch4 = self.overlay.time_ch4
+        self.ps_time_ch5 = self.overlay.time_ch5
+        self.ps_time_ch6 = self.overlay.time_ch6
+        self.ps_time_ch7 = self.overlay.time_ch7
+        self.ps_time_ch8 = self.overlay.time_ch8
+
     def setup_ps_delays(self):
         self.ps_delay_ch1 = self.overlay.delay_ch1
         self.ps_delay_ch2 = self.overlay.delay_ch2
@@ -72,11 +90,19 @@ class FPGA:
         count_coincidence = self.ps_count_coincidence.read()
         return count_ch1, count_ch2, count_coincidence
 
-    def setup(self):
+    def setup_values(self):
         self.ps_delay_ch1.write(0,self.delay_ch1)
         self.ps_delay_ch2.write(0,self.delay_ch2)
+        self.ps_delay_ch3.write(0,self.delay_ch3)
+        self.ps_delay_ch4.write(0,self.delay_ch4)
+        self.ps_delay_ch5.write(0,self.delay_ch5)
+        self.ps_delay_ch6.write(0,self.delay_ch6)
+        self.ps_delay_ch7.write(0,self.delay_ch7)
+        self.ps_delay_ch8.write(0,self.delay_ch8)
+
         self.ps_time_window.write(0,self.time_window)
-       # self.ps_dead_time.write(0,self.dead_time)
+        self.ps_integration_time.write(self.integatrion_time)
+        # self.ps_dead_time.write(0,self.dead_time)
 
     def reset(self):
         self.ps_reset.write(0,1)
@@ -123,13 +149,6 @@ class FPGA:
         else:
             return False
 
-    def set_dead_time(self,dead_time):
-        try:
-            #self.ps_dead_time.write(0,dead_time)
-            print("Write Dead Time:",dead_time)
-            return (True)
-        except:
-            return (False)
 
     def set_time_window(self,time_window):
         try:
@@ -141,6 +160,8 @@ class FPGA:
     def trigger(self):
         self.ps_trigger.write(0,1)
         self.ps_trigger.write(0,0)
+
+# get counts *******************************************************************
     def get_co_count_ch1(self):
         co_count1_5 = self.ps_co_count1_5.read()
         co_count1_6 = self.ps_co_count1_6.read()
@@ -169,4 +190,28 @@ class FPGA:
         co_count4_8 = self.ps_co_count4_8.read()
         return co_count4_5, co_count4_6, co_count4_7, co_count4_8
 
-    def read_dma(self):
+    def get_single_counts(self):
+        count1 = self.ps_count_ch1.read()
+        count2 = self.ps_count_ch2.read()
+        count3 = self.ps_count_ch3.read()
+        count4 = self.ps_count_ch4.read()
+        count5 = self.ps_count_ch5.read()
+        count6 = self.ps_count_ch6.read()
+        count7 = self.ps_count_ch7.read()
+        count8 = self.ps_count_ch8.read()
+        return count1, count2, count3, count4, count5, count6, count7, count8
+
+    def get_times(self):
+        time_ch1 = self.ps_time_ch1.read()
+        time_ch2 = self.ps_time_ch2.read()
+        time_ch3 = self.ps_time_ch3.read()
+        time_ch4 = self.ps_time_ch4.read()
+        time_ch5 = self.ps_time_ch5.read()
+        time_ch6 = self.ps_time_ch6.read()
+        time_ch7 = self.ps_time_ch7.read()
+        time_ch8 = self.ps_time_ch8.read()
+        return time_ch1, time_ch2, time_ch3, time_ch4, time_ch5, time_ch6, time_ch7, time_ch8
+
+
+
+

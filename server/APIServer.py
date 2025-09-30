@@ -46,14 +46,6 @@ class APIServer:
             else:
                 return Response('Error')
 
-        @app.route('/api/set_dead_time', methods=['POST'])
-        def set_dead_time():
-            dead_time = self.read_value()
-            if(self.fpga.set_dead_time(dead_time)):
-                return Response('OK')
-            else:
-                return Response('Error')
-
         @app.route('/api/set_time_window', methods=['POST'])
         def set_time_window():
             time_window = self.read_value()
@@ -84,3 +76,22 @@ class APIServer:
         def set_update_rate():
             self.update_rate = self.read_value()
             return Response('OK')
+
+        @app.route('/api/get_delay', methods=['GET'])
+        def get_delay():
+            delay = self.fpga.get_delay()
+            return jsonify({"delay": delay})
+
+        @app.route('/api/get_times', methods=['GET'])
+        def get_times():
+            times = self.fpga.get_times()
+            jsonified_times = jsonify({"ch1": times[0],
+                                       "ch2" : times[1],
+                                       "ch3" : times[2],
+                                       "ch4" : times[3],
+                                       "ch5" : times[4],
+                                       "ch6" : times[5],
+                                       "ch7" : times[6],
+                                       "ch8" : times[7]})
+            return jsonified_times
+
