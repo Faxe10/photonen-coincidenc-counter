@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="add afg ip">
-      <change afterPath="$PROJECT_DIR$/server/run_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/APIServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/APIServer.py" afterDir="false" />
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="ebaz is to week for afg controll, only using ist for rest acces to fpga">
       <change beforePath="$PROJECT_DIR$/server/fpga.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/fpga.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tektronixAFG31252.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tektronixAFG31252.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759337312916</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="ebaz is to week for afg controll, only using ist for rest acces to fpga">
+      <option name="closed" value="true" />
+      <created>1759338954150</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1759338954150</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +380,8 @@
     <MESSAGE value="why dont fuck every thing" />
     <MESSAGE value="python 3.6 hase no case" />
     <MESSAGE value="add afg ip" />
-    <option name="LAST_COMMIT_MESSAGE" value="add afg ip" />
+    <MESSAGE value="ebaz is to week for afg controll, only using ist for rest acces to fpga" />
+    <option name="LAST_COMMIT_MESSAGE" value="ebaz is to week for afg controll, only using ist for rest acces to fpga" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/photonen_coincidence_counter$fpga_io_test.coverage" NAME="fpga_io_test Coverage Results" MODIFIED="1759329856965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

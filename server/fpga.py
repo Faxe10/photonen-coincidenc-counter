@@ -25,8 +25,8 @@ class FPGA:
        # self.ps_time_ch1 = self.overlay.time_ch_1_2.channel1
        # self.ps_time_ch2 = self.overlay.time_ch_1_2.channel2
         self.ps_reset = self.overlay.resetcount
-        self.ps_count_coincidence = self.overlay.count_coincidenc
-        self.ps_counts_combined = self.overlay.counts_combined
+        #self.ps_count_coincidence = self.overlay.count_coincidenc
+        #self.ps_counts_combined = self.overlay.counts_combined
         #self.ps_dead_time = self.overlay.dead_time
 
     def setup_ps_singel_counter(self):
@@ -68,8 +68,8 @@ class FPGA:
         self.ps_delay_ch8 = self.overlay.delay_ch8
 
     def setup_pl_counts_1s(self):
-        self.pl_count_ch1_1s = self.overlay.counts_ch1_1s
-        self.pl_count_ch2_1s = self.overlay.counts_ch2_1s
+        self.pl_counts_ch1_1s = self.overlay.counts_ch1_1s
+        self.pl_counts_ch2_1s = self.overlay.counts_ch2_1s
 
     def read_data(self):
         count_ch1 = self.ps_count_ch1.read()
