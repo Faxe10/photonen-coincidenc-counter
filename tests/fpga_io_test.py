@@ -29,6 +29,10 @@ def main():
     sequenze2(afg,freqs_mhz)
     sequenze3(afg,freqs_mhz)
     sequenze4(afg,freqs_mhz)
+    sequenze5(afg,freqs_mhz)
+    sequenze6(afg,freqs_mhz)
+    sequenze7(afg,freqs_mhz)
+    sequenze8(afg,freqs_mhz)
 
 def sequenze1(afg,freqs_mhz):
     time_start_seq = datetime.datetime.now()
@@ -117,7 +121,7 @@ def sequenze4(afg,freqs_mhz):
         for freq in freqs_mhz:
             afg.set_frequency(1,freq)
             afg.set_frequency(2,freq)
-            time.sleep(2)
+            time.sleep(1.1)
             counts_ch1 = request_counts(1)
             counts_ch2 = request_counts(2)
             save_csv(file_name_ch1, freq, counts_ch1, v_high_ch1, v_low_ch1)
@@ -127,7 +131,88 @@ def sequenze4(afg,freqs_mhz):
     log_msg = str(time_now) + "  Sequenz 4 finished in: " + str(time_passed)
     logging.info(log_msg)
 
+def sequenze5(afg,freqs_mhz):
+    time_start_seq = datetime.datetime.now()
+    file_name_ch1 = "sequenz5.csv"
+    afg.set_output(1,1)
+    afg.set_output(2,0)
+    v_high_ch1 = 3.3
+    v_low_ch1 = 0
+    while v_high_ch1 > 0:
+        v_high_ch1 = v_high_ch1 - 0.1
+        afg.set_high(1,v_high_ch1)
+        for freq in freqs_mhz:
+            afg.set_frequency(1,freq)
+            time.sleep(1.1)
+            counts_ch1 = request_counts(1)
+            save_csv(file_name_ch1, freq, counts_ch1, v_high_ch1, v_low_ch1)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 5 finished in: " + str(time_passed)
+    logging.info(log_msg)
 
+def sequenze6(afg,freqs_mhz):
+    time_start_seq = datetime.datetime.now()
+    file_name_ch1 = "sequenz6.csv"
+    afg.set_output(2, 0)
+    afg.set_output(1,1)
+    v_high_ch1 = 3.3
+    v_low_ch1 = 0
+    while v_high_ch1 > 0:
+        v_low_ch1 = v_low_ch1 + 0.1
+        afg.set_high(1,v_high_ch1)
+        afg.set_low(1,v_low_ch1)
+        for freq in freqs_mhz:
+            afg.set_frequency(1,freq)
+            time.sleep(1.1)
+            counts_ch1 = request_counts(1)
+            save_csv(file_name_ch1, freq, counts_ch1, v_high_ch1, v_low_ch1)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 6 finished in: " + str(time_passed)
+    logging.info(log_msg)
+
+def sequenze7(afg,freqs_mhz):
+    time_start_seq = datetime.datetime.now()
+    file_name_ch2 = "sequenz7.csv"
+    afg.set_output(2,1)
+    afg.set_output(1, 0)
+    v_high_ch2 = 3.3
+    v_low_ch2 = 0
+    while v_high_ch2 > 0:
+        v_low_ch2 = v_low_ch2 + 0.1
+        afg.set_high(2,v_high_ch2)
+        afg.set_low(2,v_low_ch2)
+        for freq in freqs_mhz:
+            afg.set_frequency(2,freq)
+            time.sleep(1.1)
+            counts_ch2 = request_counts(2)
+            save_csv(file_name_ch2, freq, counts_ch2, v_high_ch2, v_low_ch2)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 7 finished in: " + str(time_passed)
+    logging.info(log_msg)
+
+def sequenze8(afg,freqs_mhz):
+    time_start_seq = datetime.datetime.now()
+    file_name_ch2 = "sequenz8.csv"
+    afg.set_output(2,1)
+    afg.set_output(1, 0)
+    v_high_ch2 = 3.3
+    v_low_ch2 = 0
+    while v_high_ch2 > 0:
+        v_low_ch2 = v_low_ch2 + 0.1
+        afg.set_high(2,v_high_ch2)
+        afg.set_low(2,v_low_ch2)
+        for freq in freqs_mhz:
+            afg.set_frequency(2,freq)
+            time.sleep(1.1)
+            counts_ch2 = request_counts(2)
+            save_csv(file_name_ch2, freq, counts_ch2, v_high_ch2, v_low_ch2)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 8 finished in: " + str(time_passed)
+    logging.info(log_msg)
 
 def request_counts(ch):
     url = "http://10.140.1.124:8082/api/get_counts_1s/"+str(ch)
