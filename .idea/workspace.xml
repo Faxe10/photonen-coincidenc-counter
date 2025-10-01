@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="timing works (55ps left)">
-      <change afterPath="$PROJECT_DIR$/html/img/2QA_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/img/BMFTR_de_DTP_CMYK_gef_durch.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/img/LUH_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/img/lm_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/bell_calc.py" afterDir="false" />
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="stoped working at website startet with fpga test">
+      <change afterPath="$PROJECT_DIR$/tests/fpga_io_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/constrs_1/new/ethernet.xdc" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/constrs_1/new/ethernet.xdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/bd/design_1/design_1.bd" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/bd/design_1/design_1.bd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/coincidencecounter.v" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/start.v" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/sources_1/new/start.v" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/fpga/po_co_counter/po_co_counter.xpr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/js/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/js/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/settings.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/APIServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/APIServer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/fpga.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/fpga.py" afterDir="false" />
     </list>
@@ -30,9 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -317,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758899178304</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="stoped working at website startet with fpga test">
+      <option name="closed" value="true" />
+      <created>1759335340602</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1759335340602</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,6 +347,10 @@
     <MESSAGE value="before changing the pos diff / small diff" />
     <MESSAGE value="got wns from -0.4 to -0.2 ns" />
     <MESSAGE value="timing works (55ps left)" />
-    <option name="LAST_COMMIT_MESSAGE" value="timing works (55ps left)" />
+    <MESSAGE value="stoped working at website startet with fpga test" />
+    <option name="LAST_COMMIT_MESSAGE" value="stoped working at website startet with fpga test" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/photonen_coincidence_counter$fpga_io_test.coverage" NAME="fpga_io_test Coverage Results" MODIFIED="1759329856965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
