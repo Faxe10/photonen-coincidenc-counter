@@ -8,73 +8,130 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))  # Projekt-Root
 import requests
 import numpy as np
 import datetime
+import pandas as pd
 from tektronixAFG31252 import AFG31252
 
 logger = logging.getLogger(__name__)
 def main():
-    time_now = datetime.date.today()
+    time_now = str(datetime.date.today())
     log_filename = 'measurments' + time_now + '.log'
     logging.basicConfig(filename=log_filename,level=logging.INFO)
     logger.info('start_setup')
     afg_ip = '10.140.1.17'
     afg = AFG31252(afg_ip)
+    afg.set_waveform(1,"PULSE")
+    afg.set_waveform(2,"PULSE")
     f_min = 1
-    f_max = 1e6
+    f_max = 1e9
     N = 100
-    first = np.arange(1, 11, dtype=float)  # 1..10
-    M = N - 10
-    j = np.arange(M)  # 0..M
-    rest = 10.0 * (f_max / 10.0) * -1 * ((j + 1) / M)  # startet >10, endet exakt bei f_max
-    freqs_mhz = np.concatenate([first, rest])  # Länge N
-    data = sequenze1(afg,freqs_mhz)
-    save_csv("seq1.csv",data)
-    data = sequenze2(afg,freqs_mhz)
-    save_csv("sequenz2",data)
-    data = sequenze3(afg,freqs_mhz)
-    save_csv("seq3.csv",data)
-
+    freqs_mhz = np.logspace(np.log10(f_min), np.log10(f_max), N)
+    sequenze1(afg,freqs_mhz)
+    sequenze2(afg,freqs_mhz)
+    sequenze3(afg,freqs_mhz)
+    sequenze4(afg,freqs_mhz)
 
 def sequenze1(afg,freqs_mhz):
-    data = []
+    time_start_seq = datetime.datetime.now()
+    file_name = "sequenz1.csv"
+    v_low = 0
+    v_high = 3.3
+    new_csv(file_name)
     afg.set_output(1, 1)
     afg.set_output(2, 0)
+    afg.set_high(1,v_high)
+    afg.set_low(1,v_low)
     for freq in freqs_mhz :
-        afg.set_frequency(afg,1,freq)
-        time.sleep(2)
+        afg.set_frequency(1,freq)
+        time.sleep(1.1)
         counts = request_counts(1)
-        data.append([freq,counts])
-    logging.info("Sequenz 1 finished")
-    return data
+        save_csv(file_name,freq,counts, v_high, v_low)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now  = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 1 finished in: " + str(time_passed)
+    logging.info(log_msg)
 
 def sequenze2(afg,freqs_mhz):
-    data = []
+    time_start_seq = datetime.datetime.now()
+    file_name = "sequenz2.csv"
+    v_low = 0
+    v_high = 3.3
+    new_csv(file_name)
     afg.set_output(1, 0)
     afg.set_output(2, 1)
-    for freq in freqs_mhz :
-        afg.set_frequency(afg,2,freq)
-        time.sleep(2)
+    afg.set_high(2, v_high)
+    afg.set_low(2, v_low)
+    for freq in freqs_mhz:
+        afg.set_frequency(2, freq)
+        time.sleep(1.1)
         counts = request_counts(2)
-        data.append([freq,counts])
-    logging.info("Sequenz 2 finished")
-    return data
+        save_csv(file_name, freq, counts, v_high, v_low)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 2 finished in: " + str(time_passed)
+    logging.info(log_msg)
+
 
 def sequenze3(afg,freqs_mhz):
-    data = []
-    afg.set_output(1,1)
-    afg.set_output(2,1)
+    time_start_seq = datetime.datetime.now()
+    file_name_ch1 = "sequenz3_ch1.csv"
+    file_name_ch2 = "sequenz3_ch2.csv"
+    v_low = 0
+    v_high = 3.3
+    new_csv(file_name_ch1)
+    new_csv(file_name_ch2)
+    afg.set_output(1, 1)
+    afg.set_output(2, 1)
+    afg.set_high(1,v_high)
+    afg.set_low(1,v_low)
+    afg.set_high(2, v_high)
+    afg.set_low(2, v_low)
     for freq in freqs_mhz:
-        afg.set_frequenzy(afg,1,freq)
-        afg.set_frequenzy(afg,2,freq)
-        time.sleep(2)
+        afg.set_frequency(1,freq)
+        afg.set_frequency(2,freq)
+        time.sleep(1.1)
         counts_ch1 = request_counts(1)
         counts_ch2 = request_counts(2)
-        data.append([freq,counts_ch1,counts_ch2])
-    logging.info("Sequenz 3 finished")
-    return data
+        save_csv(file_name_ch1,freq,counts_ch1,v_high,v_low)
+        save_csv(file_name_ch2,freq,counts_ch2,v_high,v_low)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 3 finished in: " + str(time_passed)
+    logging.info(log_msg)
+
+
+def sequenze4(afg,freqs_mhz):
+    time_start_seq = datetime.datetime.now()
+    file_name_ch1 = "sequenz4_ch1.csv"
+    file_name_ch2 = "sequenz4_ch2.csv"
+    afg.set_output(1,1)
+    afg.set_output(2,1)
+    v_high_ch1 = 3.3
+    v_low_ch1 = 0
+    v_high_ch2 = 3.3
+    v_low_ch2 = 0
+    while v_high_ch1 > 0:
+        v_high_ch1 = v_high_ch1 - 0.1
+        v_low_ch2 = v_low_ch2 + 0.1
+        afg.set_high(1,v_high_ch1)
+        afg.set_low(2,v_low_ch2)
+        for freq in freqs_mhz:
+            afg.set_frequency(1,freq)
+            afg.set_frequency(2,freq)
+            time.sleep(2)
+            counts_ch1 = request_counts(1)
+            counts_ch2 = request_counts(2)
+            save_csv(file_name_ch1, freq, counts_ch1, v_high_ch1, v_low_ch1)
+            save_csv(file_name_ch2, freq, counts_ch2, v_high_ch2, v_low_ch2)
+    time_passed = datetime.datetime.now() - time_start_seq
+    time_now = datetime.datetime.now()
+    log_msg = str(time_now) + "  Sequenz 4 finished in: " + str(time_passed)
+    logging.info(log_msg)
+
+
+
 def request_counts(ch):
-    url = "http://10.140.1.124:8082/api/get_counts_1s/1"
+    url = "http://10.140.1.124:8082/api/get_counts_1s/"+str(ch)
     response = requests.get(url)
-    print(response.json())
     return response.json()
 def setup_afg():
     afg = AFG31252()
@@ -90,8 +147,26 @@ def setup_afg():
     afg.set_high(2,2.4)
     return afg()
 
-def save_csv(filename, data):
-    with open(filename, 'wb') as csvfile:
-        writer = csv.writer(csvfile)
+def save_csv(filename, frequenz,counts,v_high,v_low):
+    row = {
+        "Frequenz": frequenz,
+        "counts": counts,
+        "v_high": v_high,
+        "v_low": v_low
+    }
+    df = pd.DataFrame([row])
+    df.to_csv(filename,mode="a",header=False,index=False)
+
+def new_csv(filename):
+    row = {
+        "Frequenz": 0,
+        "counts": 0,
+        "v_hight": 0,
+        "v_low": 0
+    }
+    df = pd.DataFrame([row])
+    df.to_csv(filename,mode="a",header=True,index=False)
+
+
 if __name__ == '__main__':
     main()
