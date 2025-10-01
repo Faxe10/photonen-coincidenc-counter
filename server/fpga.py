@@ -68,8 +68,8 @@ class FPGA:
         self.ps_delay_ch8 = self.overlay.delay_ch8
 
     def setup_pl_counts_1s(self):
-        self.pl_count_ch1_1s = self.overlay.count_ch1_1s
-        self.pl_count_ch2_1s = self.overlay.count_ch2_1s
+        self.pl_count_ch1_1s = self.overlay.counts_ch1_1s
+        self.pl_count_ch2_1s = self.overlay.counts_ch2_1s
 
     def read_data(self):
         count_ch1 = self.ps_count_ch1.read()
@@ -201,6 +201,7 @@ class FPGA:
     def get_counts_ch1_1s(self):
         count_1s = self.pl_count_ch1_1s.read()
         return count_1s
+
     def get_counts_ch2_1s(self):
         count_1s = self.pl_count_ch2_1s.read()
         return count_1s
