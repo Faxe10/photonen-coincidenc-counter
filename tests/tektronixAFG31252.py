@@ -2,7 +2,8 @@ import pyvisa
 import time
 class AFG31252:
     def __init__(self, host, timeout_ms = 5000):
-                self.rm = pyvisa.ResourceManager(@py)
+                self.rm = pyvisa.ResourceManager("@py")
+
                 self.dev = self.rm.open_resource(f"TCPIP0::{host}::INSTR")
                 self.dev.timeout = timeout_ms
 
