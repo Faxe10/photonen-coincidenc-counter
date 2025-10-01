@@ -3,10 +3,11 @@ import time
 import unittest
 
 from pynq import Overlay
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))  # Projekt-Root
+
 import numpy as np
 import server.fpga
-import fpga
-from server.fpga import path_overlay
 from tektronixAFG31252 import AFG31252
 
 

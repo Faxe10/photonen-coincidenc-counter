@@ -98,32 +98,31 @@ class FPGA:
     def set_delay(self,ch_num,delay):
         if (isinstance(delay,int)):
             print("write Channel: ",ch_num, "Delay: ",delay)
-            match ch_num:
-                case 1:
+            if (ch_num == 1):
                     self.ps_delay_ch1.write(0,delay)
                     return True
-                case 2:
+            elif (ch_num == 2):
                     self.ps_delay_ch2.write(0,delay)
                     return True
-                case 3:
+            elif (ch_num == 3):
                     self.ps_delay_ch3.write(0,delay)
                     return True
-                case 4:
+            elif (ch_num ==4):
                     self.ps_delay_ch4.write(0,delay)
                     return True
-                case 5:
+            elif (ch_num == 5):
                     self.ps_delay_ch5.write(0,delay)
                     return True
-                case 6:
+            elif (ch_num == 6):
                     self.ps_delay_ch6.write(0,delay)
                     return True
-                case 7:
+            elif (ch_num == 7):
                     self.ps_delay_ch7.write(0,delay)
                     return True
-                case 8:
+            elif (ch_num == 8):
                     self.ps_delay_ch8.write(0,delay)
                     return True
-                case _:
+            else:
                     return False
         else:
             return False

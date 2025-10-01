@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="stoped working at website startet with fpga test">
-      <change afterPath="$PROJECT_DIR$/tests/fpga_io_test.py" afterDir="false" />
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="why dont fuck every thing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/APIServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/APIServer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/fpga.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/fpga.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fpga_io_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fpga_io_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759335340602</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="why dont fuck every thing">
+      <option name="closed" value="true" />
+      <created>1759335758752</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1759335758752</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +355,8 @@
     <MESSAGE value="got wns from -0.4 to -0.2 ns" />
     <MESSAGE value="timing works (55ps left)" />
     <MESSAGE value="stoped working at website startet with fpga test" />
-    <option name="LAST_COMMIT_MESSAGE" value="stoped working at website startet with fpga test" />
+    <MESSAGE value="why dont fuck every thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="why dont fuck every thing" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/photonen_coincidence_counter$fpga_io_test.coverage" NAME="fpga_io_test Coverage Results" MODIFIED="1759329856965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
