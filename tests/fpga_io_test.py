@@ -23,7 +23,7 @@ def main():
     afg.set_waveform(2,"PULSE")
     f_min = 1
     f_max = 1e9
-    N = 100
+    N = 2
     freqs_mhz = np.logspace(np.log10(f_min), np.log10(f_max), N)
     sequenze1(afg,freqs_mhz)
     sequenze2(afg,freqs_mhz)
@@ -158,7 +158,7 @@ def sequenze6(afg,freqs_mhz):
     afg.set_output(1,1)
     v_high_ch1 = 3.3
     v_low_ch1 = 0
-    while v_high_ch1 > 0:
+    while v_low_ch1 < 3.3:
         v_low_ch1 = v_low_ch1 + 0.1
         afg.set_high(1,v_high_ch1)
         afg.set_low(1,v_low_ch1)
@@ -179,7 +179,7 @@ def sequenze7(afg,freqs_mhz):
     afg.set_output(1, 0)
     v_high_ch2 = 3.3
     v_low_ch2 = 0
-    while v_high_ch2 > 0:
+    while v_low_ch2 < 3.3:
         v_low_ch2 = v_low_ch2 + 0.1
         afg.set_high(2,v_high_ch2)
         afg.set_low(2,v_low_ch2)
@@ -201,7 +201,7 @@ def sequenze8(afg,freqs_mhz):
     v_high_ch2 = 3.3
     v_low_ch2 = 0
     while v_high_ch2 > 0:
-        v_low_ch2 = v_low_ch2 + 0.1
+        v_high_ch2 = v_high_ch2 - 0.1
         afg.set_high(2,v_high_ch2)
         afg.set_low(2,v_low_ch2)
         for freq in freqs_mhz:
@@ -246,7 +246,7 @@ def new_csv(filename):
     row = {
         "Frequenz": 0,
         "counts": 0,
-        "v_hight": 0,
+        "v_high": 0,
         "v_low": 0
     }
     df = pd.DataFrame([row])

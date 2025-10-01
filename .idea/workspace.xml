@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="ebaz is to week for afg controll, only using ist for rest acces to fpga">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/photonen_coincidence_counter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/photonen_coincidence_counter.iml" afterDir="false" />
+    <list default="true" id="f7026898-dce4-49e4-b79e-5c4a7342bebe" name="Changes" comment="hopfully last est run">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/fpga.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/fpga.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/fpga_io_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fpga_io_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tektronixAFG31252.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tektronixAFG31252.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +40,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -52,12 +49,12 @@
     &quot;assignee&quot;: &quot;feuerteufelfw&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Faxe10/photonen-coincidenc-counter.git",
-    "accountId": "77899478-918e-4f35-94cb-c399ff4046e5"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Faxe10/photonen-coincidenc-counter.git&quot;,
+    &quot;accountId&quot;: &quot;77899478-918e-4f35-94cb-c399ff4046e5&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -66,24 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.fpga_io_test.executor": "Run",
-    "Python.tektronixAFG31252.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/lam/Documents/uni/bachelore-arbei6t/2QA_ED_software_Fabian",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.fpga_io_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tektronixAFG31252.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/lam/PycharmProjects/photonen-coincidenc-counter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Bookmarks" side_tool="true" />
@@ -94,7 +91,7 @@
       <window_info id="Pull Requests" />
       <window_info id="Learn" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33019245" />
-      <window_info id="Commit" order="1" weight="0.25" />
+      <window_info id="Commit" order="1" weight="0.33019245" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="TypeScript" />
@@ -108,7 +105,8 @@
       <window_info anchor="bottom" id="Services" order="4" />
       <window_info anchor="bottom" id="Python Packages" order="5" weight="0.1" />
       <window_info anchor="bottom" id="Python Console" order="6" weight="0.1" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.32990056" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.14098012" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.32990056" />
       <window_info anchor="right" id="Endpoints" />
       <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="right" id="SciView" />
@@ -127,6 +125,7 @@
       <recent name="$PROJECT_DIR$/html/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fpga" />
       <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/html/img" />
       <recent name="$PROJECT_DIR$/html/css" />
@@ -217,7 +216,9 @@
       <workItem from="1759220222853" duration="8000" />
       <workItem from="1759231011533" duration="617000" />
       <workItem from="1759245326046" duration="649000" />
-      <workItem from="1759344706121" duration="3257000" />
+      <workItem from="1759344706121" duration="4777000" />
+      <workItem from="1759351668134" duration="16000" />
+      <workItem from="1759351757766" duration="10210000" />
     </task>
     <task id="LOCAL-00001" summary="altest repo wurde zu gross lol">
       <option name="closed" value="true" />
@@ -411,7 +412,31 @@
       <option name="project" value="LOCAL" />
       <updated>1759338954150</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="pleas work">
+      <option name="closed" value="true" />
+      <created>1759348078896</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1759348078897</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fpga io test ist ready for a test run">
+      <option name="closed" value="true" />
+      <created>1759357619245</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1759357619245</updated>
+    </task>
+    <task id="LOCAL-00027" summary="hopfully last est run">
+      <option name="closed" value="true" />
+      <created>1759360291232</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1759360291232</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,10 +475,13 @@
     <MESSAGE value="python 3.6 hase no case" />
     <MESSAGE value="add afg ip" />
     <MESSAGE value="ebaz is to week for afg controll, only using ist for rest acces to fpga" />
-    <option name="LAST_COMMIT_MESSAGE" value="ebaz is to week for afg controll, only using ist for rest acces to fpga" />
+    <MESSAGE value="pleas work" />
+    <MESSAGE value="fpga io test ist ready for a test run" />
+    <MESSAGE value="hopfully last est run" />
+    <option name="LAST_COMMIT_MESSAGE" value="hopfully last est run" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/photonen_coincidenc_counter$fpga_io_test.coverage" NAME="fpga_io_test Coverage Results" MODIFIED="1759346857630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/photonen_coincidenc_counter$fpga_io_test.coverage" NAME="fpga_io_test Coverage Results" MODIFIED="1759361743704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/photonen_coincidenc_counter$tektronixAFG31252.coverage" NAME="tektronixAFG31252 Coverage Results" MODIFIED="1759345547333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/photonen_coincidence_counter$fpga_io_test.coverage" NAME="fpga_io_test Coverage Results" MODIFIED="1759329856965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
