@@ -140,12 +140,13 @@ class APIServer:
             }
             return jsonify(new_counts_json)
 
-        @api.route('/api/get_counts_1s/<ch_num>', methods=['GET'])
+        @app.route('/api/get_counts_1s/<ch_num>', methods=['GET'])
         def get_counts_1s(ch_num):
-            if (ch_num == 1):
+            counts_1s = 12
+            if (ch_num == '1'):
                 counts_1s = self.fpga.get_counts_ch1_1s()
-            elif (ch_num == 2):
+            elif (ch_num == '2'):
                 counts_1s = self.fpga.get_counts_ch2_1s()
             else :
-                counts_1 = "ERROR 404"
+                counts_1s = "ERROR 404"
             return jsonify(counts_1s)

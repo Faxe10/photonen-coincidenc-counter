@@ -32,7 +32,7 @@ def main():
 def sequenze1(afg, fpga,freqs_mhz):
     data = []
     for freq in freqs_mhz :
-        afg.set_frequency(freq)
+        afg.set_frequency(afg,freq)
         time.sleep(1.2)
         counts = fpga.get_counts_ch1_1s()
         data.append([freq, counts])

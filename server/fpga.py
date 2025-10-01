@@ -18,7 +18,7 @@ class FPGA:
         # setup ps connections
         self.setup_ps_singel_counter()
         self.setup_ps_delays()
-        self.ps_trigger = self.overlay.AFGtrigger
+        #self.ps_trigger = self.overlay.AFGtrigger
 
 
         self.ps_time_window = self.overlay.time_window
@@ -199,9 +199,15 @@ class FPGA:
     #functions used for testing the FPGA
 
     def get_counts_ch1_1s(self):
-        count_1s = self.pl_count_ch1_1s.read()
+        print("get counts ch1 1s ")
+        time.sleep(0.5)
+        count_1s = self.pl_counts_ch1_1s.read()
+        print('read done')
         return count_1s
 
     def get_counts_ch2_1s(self):
-        count_1s = self.pl_count_ch2_1s.read()
+        print("get_counts ch 2 1s")
+        time.sleep(0.5)
+        count_1s = self.pl_counts_ch2_1s.read()
+        print('read done')
         return count_1s
