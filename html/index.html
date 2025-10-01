@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2QA – ED (Web UI)</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>Expert Tab • Challenge Tab</div>
+    </header>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="section">
+        <h3>TimeTagger Device</h3>
+        <div class="row">
+          <button id="btn-init" class="btn">Initialize</button>
+          <button id="btn-disconnect" class="btn secondary">Disconnect</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Detectors</h3>
+        <div class="row" style="font-weight:600; color:var(--muted)">
+          <div> </div><div>Delay time (ns)</div><div>On</div>
+        </div>
+        <div id="detector-list"></div>
+      </div>
+
+      <div class="section">
+        <h3>Counts &amp; Coincidences</h3>
+        <label>Binwidth (ns)</label>
+        <input id="cc-binwidth" type="number" value="200" step="1"/>
+        <label>Time Frame (s)</label>
+        <input id="cc-timeframe" type="number" value="15" step="1"/>
+        <label>Coincidence TW (ns)</label>
+        <input id="cc-tw" type="number" value="3" step="1"/>
+        <label>Matrix Integr. Time (s)</label>
+        <input id="cc-inttime" type="number" value="1" step="1"/>
+      </div>
+
+      <div class="section">
+        <h3>Correlation</h3>
+        <label>Binwidth (ns)</label>
+        <input id="corr-binwidth" type="number" value="0.1" step="0.1"/>
+        <label>Time Frame (s)</label>
+        <input id="corr-timeframe" type="number" value="10" step="1"/>
+        <div class="sticky-actions">
+          <button id="btn-apply" class="btn" style="width:100%">Apply TimeTagger Settings</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Live Visualization</h3>
+        <div class="row"><input type="radio" name="viz" id="viz-live" checked><label for="viz-live">Live Data</label></div>
+        <div class="row"><input type="radio" name="viz" id="viz-smooth"><label for="viz-smooth">Smooth</label></div>
+        <div class="row"><input type="radio" name="viz" id="viz-maxmin"><label for="viz-maxmin">Show Max/Min.</label></div>
+        <div class="row"><input type="radio" name="viz" id="viz-det-y0"><label for="viz-det-y0">Start Detector Counts y-axis at 0</label></div>
+        <div class="row"><input type="radio" name="viz" id="viz-coin-y0"><label for="viz-coin-y0">Start Coin. Counts y-axis at 0</label></div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="section" style="grid-column:1 / -1">
+        <h3>Detector Counts</h3>
+        <canvas id="chart-detectors" class="chart" height="220"></canvas>
+        <div class="muted">Counts/s • <span id="legend-detectors" class="kpi">AV AH AD AA BV BH BD BA</span></div>
+      </div>
+
+      <div class="section">
+        <h3>Coincidence Counts</h3>
+        <canvas id="chart-coinc" class="chart" height="220"></canvas>
+      </div>
+
+      <div class="section">
+        <h3>Coincidence Matrix</h3>
+        <table id="matrix">
+          <thead>
+            <tr><th></th><th>BV</th><th>BH</th><th>BD</th><th>BA</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>AV</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><th>AH</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><th>AD</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><th>AA</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:8px" class="muted">
+          S1 (…E1): <span id="s1">-</span> &nbsp; S2 (…E2): <span id="s2">-</span> &nbsp; 
+          S3 (…E3): <span id="s3">-</span> &nbsp; S4 (…E4): <span id="s4">-</span>
+        </div>
+      </div>
+
+      <div class="section" style="grid-column:1 / -1">
+        <h3>Correlation (1st of Alice &amp; 1st of Bob)</h3>
+        <canvas id="chart-corr" class="chart" height="220"></canvas>
+      </div>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="rightbar">
+      <div class="section">
+        <h3>Stepmotors</h3>
+        <div class="grid-2">
+          <div>
+            <label>Calib. Polarizer A (°)</label>
+            <input id="calA" type="number" value="110" step="1" />
+          </div>
+          <div>
+            <label>Calib. Polarizer B (°)</label>
+            <input id="calB" type="number" value="29" step="1" />
+          </div>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <button id="btn-calib" class="btn" style="width:100%">Initialize and Calibrate</button>
+        </div>
+
+        <div class="grid-2" style="margin-top:14px">
+          <div class="section">
+            <h3>Polarizer A (Port 0)</h3>
+            <div class="row">
+              <input id="pa-goto" type="number" value="0"><button class="btn" data-action="pa-goto">Apply</button>
+            </div>
+            <div class="row">
+              <label>Turn by angle (°)</label><input id="pa-turn" type="number" value="90">
+            </div>
+            <div class="row">
+              <label>Sweep Speed (°/s)</label><input id="pa-sweep" type="number" value="20">
+            </div>
+          </div>
+          <div class="section">
+            <h3>Polarizer B (Port 1)</h3>
+            <div class="row">
+              <input id="pb-goto" type="number" value="45"><button class="btn" data-action="pb-goto">Apply</button>
+            </div>
+            <div class="row">
+              <label>Turn by angle (°)</label><input id="pb-turn" type="number" value="90">
+            </div>
+            <div class="row">
+              <label>Sweep Speed (°/s)</label><input id="pb-sweep" type="number" value="20">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Terminal Output</h3>
+        <textarea id="terminal" class="terminal" spellcheck="false"></textarea>
+      </div>
+
+      <div class="section">
+        <h3>Measurements</h3>
+        <label>Dauer pro Datenpunkt (s)</label>
+        <input id="measurement-duration" type="number" value="5" />
+        <div class="grid-2" style="margin-top:8px">
+          <button class="btn" id="btn-pol-corr-step">Pol. Corr. with Stepmotors</button>
+          <button class="btn" id="btn-pol-corr-quad">Pol. Corr. with Quadrant Det.</button>
+        </div>
+        <div class="grid-2" style="margin-top:8px">
+          <button class="btn" id="btn-bell-quad">Bell Measurement with Quadrant Det.</button>
+          <button class="btn" id="btn-save-matrix">Save Current Coincidence Matrix</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

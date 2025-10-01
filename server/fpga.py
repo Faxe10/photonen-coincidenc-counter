@@ -26,6 +26,7 @@ class FPGA:
        # self.ps_time_ch2 = self.overlay.time_ch_1_2.channel2
         self.ps_reset = self.overlay.resetcount
         self.ps_count_coincidence = self.overlay.count_coincidenc
+        self.ps_counts_combined = self.overlay.counts_combined
         #self.ps_dead_time = self.overlay.dead_time
 
     def setup_ps_singel_counter(self):
@@ -65,6 +66,10 @@ class FPGA:
         self.ps_delay_ch6 = self.overlay.delay_ch6
         self.ps_delay_ch7 = self.overlay.delay_ch7
         self.ps_delay_ch8 = self.overlay.delay_ch8
+
+    def setup_pl_counts_1s(self):
+        self.pl_count_ch1_1s = self.overlay.count_ch1_1s
+        self.pl_count_ch2_1s = self.overlay.count_ch2_1s
 
     def read_data(self):
         count_ch1 = self.ps_count_ch1.read()
@@ -146,27 +151,57 @@ class FPGA:
         co_count1_6 = self.ps_co_count1_6.read()
         co_count1_7 = self.ps_co_count1_7.read()
         co_count1_8 = self.ps_co_count1_8.read()
-        return co_count1_5, co_count1_6, co_count1_7, co_count1_8
+        return [ co_count1_5, co_count1_6, co_count1_7, co_count1_8]
 
     def get_co_count_ch2(self):
         co_count2_5 = self.ps_co_count2_5.read()
         co_count2_6 = self.ps_co_count2_6.read()
         co_count2_7 = self.ps_co_count2_7.read()
         co_count2_8 = self.ps_co_count2_8.read()
-        return co_count2_5, co_count2_6, co_count2_7, co_count2_8
+        return [co_count2_5, co_count2_6, co_count2_7, co_count2_8]
 
     def get_co_count_ch3(self):
         co_count3_5 = self.ps_co_count3_5.read()
         co_count3_6 = self.ps_co_count3_6.read()
         co_count3_7 = self.ps_co_count3_7.read()
         co_count3_8 = self.ps_co_count3_8.read()
-        return co_count3_5, co_count3_6, co_count3_7, co_count3_8
+        return [co_count3_5, co_count3_6, co_count3_7, co_count3_8]
 
     def get_co_count_ch4(self):
         co_count4_5 = self.ps_co_count4_5.read()
         co_count4_6 = self.ps_co_count4_6.read()
         co_count4_7 = self.ps_co_count4_7.read()
         co_count4_8 = self.ps_co_count4_8.read()
-        return co_count4_5, co_count4_6, co_count4_7, co_count4_8
+        return [co_count4_5, co_count4_6, co_count4_7, co_count4_8]
 
-    def read_dma(self):
+    def get_counts_combined(self):
+        counts_combined = self.ps_counts_combined.read()
+        return counts_combined
+
+    def get_co_count(self):
+        count = self.ps_count_coincidence.read()
+        return count
+
+    def get_counts_single(self):
+        count_ch1 = self.ps_count_ch1.read()
+        count_ch2 = self.ps_count_ch2.read()
+        count_ch3 = self.ps_count_ch3.read()
+        count_ch4 = self.ps_count_ch4.read()
+        count_ch5 = self.ps_count_ch5.read()
+        count_ch6 = self.ps_count_ch6.read()
+        count_ch7 = self.ps_count_ch7.read()
+        count_ch8 = self.ps_count_ch8.read()
+        return [count_ch1, count_ch2, count_ch3, count_ch4,count_ch5, count_ch6, count_ch7, count_ch8]
+
+    def get_counts_ch1(self):
+        count_ch1 = self.ps_count_ch1.read()
+        return count_ch1
+
+    #functions used for testing the FPGA
+
+    def get_counts_ch1_1s(self):
+        count_1s = self.pl_count_ch1_1s.read()
+        return count_1s
+    def get_counts_ch2_1s(self):
+        count_1s = self.pl_count_ch2_1s.read()
+        return count_1s

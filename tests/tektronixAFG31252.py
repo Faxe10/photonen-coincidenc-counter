@@ -65,10 +65,18 @@ class AFG31252:
 
     def get_impedance(self, ch):
         return self.dev.query(f"OUTP{ch}:LOAD?").strip()
+
+    def set_voltage(self, ch, high,low):
+        self.set_low(ch,low)
+        self.set_high(ch,high)
+    def afg_pulses(self, frequenz,ch, high,low):
+        self.set_frequency(ch, frequenz)
+        self.set_voltage(ch,high,low)
+
 if __name__ == "__main__":
     print("Testing AFG31252")
 
-    AFG_IP = "10.140.1.58"
+    AFG_IP = "10.140.1.17"
     afg = AFG31252(AFG_IP)
     #afg.channel_setup()
     afg.set_output(1,1)

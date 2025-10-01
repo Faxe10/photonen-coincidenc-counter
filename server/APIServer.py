@@ -12,6 +12,9 @@ class APIServer:
         self.load_routes()
         self.fpga = fpga
         self.update_rate = update_rate
+        self.coincidence_timeseries = []
+        self.counts_timeseries = []
+        self.timeseries_length = 100
 
     def read_value(self):
         """Erwartet JSON-Body {"value": <int>} oder eine rohe Zahl als Body."""
@@ -84,3 +87,56 @@ class APIServer:
         def set_update_rate():
             self.update_rate = self.read_value()
             return Response('OK')
+
+        @app.route('/api/get_coincidence_matrix', methods=['GET'])
+        def get_coincidence_matrix():
+            av = "AV", self.fpga.get_co_count_ch1()
+            ah = "AH", self.fpga.get_co_count_ch2()
+            ad = "AD", self.fpga.get_co_count_ch3()
+            aa = "AA", self.fpga.get_co_count_ch4()
+
+            co_matrix = {
+                "header": ["BV", "BH", "BD", "BA"],
+                "rows": [
+                    av,
+                    ah,
+                    ad,
+                    aa
+                ],
+            }
+            return jsonify(co_matrix)
+
+        @app.route('/api/get_coincidences_time_series', methods=['GET'])
+        def get_coincidences_time_series():
+            new_count = self.fpga.get_co_count()
+            self.coincidence_timeseries.append(new_count)
+            if(len(self.coincidence_timeseries)> self.coincidence_timeseries_length):
+                self.coincidence_timeseries.pop(0)
+
+            return jsonify({"timeseries": self.coincidence_timeseries})
+
+        @app.route('/api/get_detector_counts_time_series', methods=['GET'])
+        def get_detector_counts_time_series():
+            new_counts = self.fpga.get_counts_combined()
+            self.counts_timeseries.append(new_counts)
+            if(len(self.counts_timeseries)> self.timeseries_length):
+                self.counts_timeseries.pop(0)
+            return jsonify({"timeseries": self.counts_timeseries})
+
+        @app.route('/api/get_counts_single', methods=['GET'])
+        def get_counts_single():
+            new_counts = self.fpga.get_counts_single()
+            new_counts_json = {
+                "counts":[
+                    "AV", new_counts[0],
+                    "AH", new_counts[1],
+                    "AD", new_counts[2],
+                    "AA", new_counts[3],
+                    "BV", new_counts[4],
+                    "BH", new_counts[5],
+                    "BD", new_counts[6],
+                    "BA", new_counts[7],
+                ]
+            }
+            return jsonify(new_counts_json)
+
