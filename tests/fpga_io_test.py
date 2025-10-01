@@ -12,7 +12,8 @@ from tektronixAFG31252 import AFG31252
 
 
 def main():
-    afg = AFG31252()
+    afg_ip = '10.140.1.17'
+    afg = AFG31252(afg_ip)
     fpga = server.fpga.FPGA()
 
     f_min = 1
@@ -24,7 +25,6 @@ def main():
     j = np.arange(M)  # 0..M
     rest = 10.0 * (f_max / 10.0) * -1 * ((j + 1) / M)  # startet >10, endet exakt bei f_max
     freqs_mhz = np.concatenate([first, rest])  # Länge N
-    afg = setup_afg()
     fpga.setup_pl_counts_1s()
     seq1 = sequenze1(afg,fpga,freqs_mhz)
     save_csv("seq1.csv",seq1)
