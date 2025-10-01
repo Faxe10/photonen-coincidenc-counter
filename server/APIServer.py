@@ -16,6 +16,7 @@ class APIServer:
         self.counts_timeseries = []
         self.timeseries_length = 100
 
+
     def read_value(self):
         """Erwartet JSON-Body {"value": <int>} oder eine rohe Zahl als Body."""
         data = request.get_json(silent=True)

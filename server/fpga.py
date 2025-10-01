@@ -19,7 +19,7 @@ class FPGA:
         self.setup_ps_singel_counter()
         self.setup_ps_delays()
         #self.ps_trigger = self.overlay.AFGtrigger
-
+        self.setup_pl_counts_1s()
 
         self.ps_time_window = self.overlay.time_window
        # self.ps_time_ch1 = self.overlay.time_ch_1_2.channel1
