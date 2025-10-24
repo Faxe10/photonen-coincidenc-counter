@@ -106,7 +106,7 @@ Located in: `tests/`
 ### Timing Performance
 
 | Parameter | Specification |
-|-----------|--------------|
+|-----------|---------------|
 | **Channels** | 8 independent inputs |
 | **Resolution** | ~50-100 ps (typical 62.5 ps per LSB) |
 | **Timestamp Bits** | 54 bits total (48 coarse + 6 fine) |
@@ -152,17 +152,17 @@ Each LUT delay ≈ 50-100 ps in Zynq-7000 FPGAs.
 
 ## Integration Status
 
-### Completed ✓
+### Completed
 
-- [x] Verilog modules for time tagging (3 variants)
-- [x] FIFO buffer module
-- [x] Python interface class
-- [x] FPGA interface integration
-- [x] REST API endpoints
-- [x] Comprehensive tests (all passing)
-- [x] Usage examples
-- [x] Complete documentation
-- [x] Integration guide
+- Verilog modules for time tagging (3 variants)
+- FIFO buffer module
+- Python interface class
+- FPGA interface integration
+- REST API endpoints
+- Comprehensive tests (all passing)
+- Usage examples
+- Complete documentation
+- Integration guide
 
 ### Remaining Work
 
