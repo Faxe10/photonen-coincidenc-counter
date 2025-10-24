@@ -5,6 +5,15 @@ from pynq.lib import AxiGPIO
 import time
 import numpy as np
 import sys
+
+# Import time tagger module
+try:
+    from time_tagger import TimeTagger
+    TIME_TAGGER_AVAILABLE = True
+except ImportError:
+    TIME_TAGGER_AVAILABLE = False
+    print("Warning: TimeTagger module not available")
+
 path_overlay = "./fpga/counter.bit"
 
 class FPGA:
@@ -28,6 +37,15 @@ class FPGA:
         #self.ps_count_coincidence = self.overlay.count_coincidenc
         #self.ps_counts_combined = self.overlay.counts_combined
         #self.ps_dead_time = self.overlay.dead_time
+        
+        # Initialize time tagger if available
+        self.time_tagger = None
+        if TIME_TAGGER_AVAILABLE:
+            try:
+                self.time_tagger = TimeTagger(self.overlay)
+                print("Time tagger initialized successfully")
+            except Exception as e:
+                print(f"Warning: Could not initialize time tagger: {e}")
 
     def setup_ps_singel_counter(self):
         self.ps_count_ch1 = self.overlay.count1_2.channel1
@@ -211,3 +229,75 @@ class FPGA:
         count_1s = self.pl_counts_ch2_1s.read()
         print('read done')
         return count_1s
+    
+    # Time tagger methods
+    
+    def get_time_tags(self, channel, max_events=100):
+        """
+        Get time tags from specified channel using high-resolution time tagger.
+        
+        Args:
+            channel: Channel number (0-7)
+            max_events: Maximum number of events to read
+            
+        Returns:
+            List of timestamps in nanoseconds
+        """
+        if self.time_tagger is None:
+            raise RuntimeError("Time tagger not initialized")
+        return self.time_tagger.get_time_tags(channel, max_events)
+    
+    def get_coincidence_tags(self, channel1, channel2, window_ns=1.0, max_events=1000):
+        """
+        Find coincidence events between two channels.
+        
+        Args:
+            channel1: First channel number (0-7)
+            channel2: Second channel number (0-7)
+            window_ns: Coincidence window in nanoseconds
+            max_events: Maximum number of events to process
+            
+        Returns:
+            List of (time1, time2) tuples for coincident events
+        """
+        if self.time_tagger is None:
+            raise RuntimeError("Time tagger not initialized")
+        return self.time_tagger.get_coincidences(channel1, channel2, window_ns, max_events)
+    
+    def get_time_tagger_resolution(self):
+        """
+        Get timing resolution specifications.
+        
+        Returns:
+            Dictionary with resolution information
+        """
+        if self.time_tagger is None:
+            raise RuntimeError("Time tagger not initialized")
+        return self.time_tagger.get_timing_resolution()
+    
+    def get_time_tagger_status(self):
+        """
+        Get time tagger status information.
+        
+        Returns:
+            Dictionary with status information
+        """
+        if self.time_tagger is None:
+            return {'available': False, 'error': 'Time tagger not initialized'}
+        status = self.time_tagger.get_status()
+        status['available'] = True
+        return status
+    
+    def decode_time_tag(self, raw_tag):
+        """
+        Decode raw timestamp value to nanoseconds.
+        
+        Args:
+            raw_tag: 54-bit raw timestamp value
+            
+        Returns:
+            Time in nanoseconds (float)
+        """
+        if self.time_tagger is None:
+            raise RuntimeError("Time tagger not initialized")
+        return self.time_tagger.decode_timestamp(raw_tag)

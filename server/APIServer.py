@@ -151,3 +151,89 @@ class APIServer:
             else :
                 counts_1s = "ERROR 404"
             return jsonify(counts_1s)
+        
+        # Time tagger endpoints
+        
+        @app.route('/api/time_tagger/status', methods=['GET'])
+        def get_time_tagger_status():
+            """Get time tagger status and capabilities."""
+            try:
+                status = self.fpga.get_time_tagger_status()
+                return jsonify(status)
+            except Exception:
+                return jsonify({'available': False, 'error': 'Time tagger initialization failed'}), 500
+        
+        @app.route('/api/time_tagger/resolution', methods=['GET'])
+        def get_time_tagger_resolution():
+            """Get timing resolution specifications."""
+            try:
+                resolution = self.fpga.get_time_tagger_resolution()
+                return jsonify(resolution)
+            except Exception:
+                return jsonify({'error': 'Failed to retrieve timing resolution'}), 500
+        
+        @app.route('/api/time_tagger/tags/<int:channel>', methods=['GET'])
+        def get_time_tags(channel):
+            """
+            Get time tags from specified channel.
+            Query parameters:
+            - count: Maximum number of events to read (default: 100)
+            """
+            try:
+                count = request.args.get('count', default=100, type=int)
+                tags = self.fpga.get_time_tags(channel, count)
+                return jsonify({
+                    'channel': channel,
+                    'count': len(tags),
+                    'tags': tags
+                })
+            except Exception:
+                return jsonify({'error': 'Failed to retrieve time tags'}), 500
+        
+        @app.route('/api/time_tagger/coincidences', methods=['POST'])
+        def get_coincidence_tags():
+            """
+            Find coincidence events between two channels.
+            JSON body:
+            {
+                "channel1": 0,
+                "channel2": 1,
+                "window_ns": 1.0,
+                "max_events": 1000
+            }
+            """
+            try:
+                data = request.get_json()
+                ch1 = data.get('channel1', 0)
+                ch2 = data.get('channel2', 1)
+                window = data.get('window_ns', 1.0)
+                max_events = data.get('max_events', 1000)
+                
+                coincidences = self.fpga.get_coincidence_tags(ch1, ch2, window, max_events)
+                
+                # Calculate time differences
+                time_diffs = [abs(t1 - t2) for t1, t2 in coincidences]
+                avg_diff = sum(time_diffs) / len(time_diffs) if time_diffs else 0
+                
+                return jsonify({
+                    'channel1': ch1,
+                    'channel2': ch2,
+                    'window_ns': window,
+                    'count': len(coincidences),
+                    'average_time_diff_ns': avg_diff,
+                    'coincidences': coincidences[:100]  # Limit to first 100 for response size
+                })
+            except Exception:
+                return jsonify({'error': 'Failed to find coincidences'}), 500
+        
+        @app.route('/api/time_tagger/decode/<int:raw_tag>', methods=['GET'])
+        def decode_time_tag(raw_tag):
+            """Decode raw timestamp value to nanoseconds."""
+            try:
+                time_ns = self.fpga.decode_time_tag(raw_tag)
+                return jsonify({
+                    'raw_tag': raw_tag,
+                    'time_ns': time_ns
+                })
+            except Exception:
+                return jsonify({'error': 'Failed to decode timestamp'}), 500
