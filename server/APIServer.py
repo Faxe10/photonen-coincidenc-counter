@@ -160,8 +160,8 @@ class APIServer:
             try:
                 status = self.fpga.get_time_tagger_status()
                 return jsonify(status)
-            except Exception as e:
-                return jsonify({'available': False, 'error': str(e)}), 500
+            except Exception:
+                return jsonify({'available': False, 'error': 'Time tagger initialization failed'}), 500
         
         @app.route('/api/time_tagger/resolution', methods=['GET'])
         def get_time_tagger_resolution():
@@ -169,8 +169,8 @@ class APIServer:
             try:
                 resolution = self.fpga.get_time_tagger_resolution()
                 return jsonify(resolution)
-            except Exception as e:
-                return jsonify({'error': str(e)}), 500
+            except Exception:
+                return jsonify({'error': 'Failed to retrieve timing resolution'}), 500
         
         @app.route('/api/time_tagger/tags/<int:channel>', methods=['GET'])
         def get_time_tags(channel):
@@ -187,8 +187,8 @@ class APIServer:
                     'count': len(tags),
                     'tags': tags
                 })
-            except Exception as e:
-                return jsonify({'error': str(e)}), 500
+            except Exception:
+                return jsonify({'error': 'Failed to retrieve time tags'}), 500
         
         @app.route('/api/time_tagger/coincidences', methods=['POST'])
         def get_coincidence_tags():
@@ -223,8 +223,8 @@ class APIServer:
                     'average_time_diff_ns': avg_diff,
                     'coincidences': coincidences[:100]  # Limit to first 100 for response size
                 })
-            except Exception as e:
-                return jsonify({'error': str(e)}), 500
+            except Exception:
+                return jsonify({'error': 'Failed to find coincidences'}), 500
         
         @app.route('/api/time_tagger/decode/<int:raw_tag>', methods=['GET'])
         def decode_time_tag(raw_tag):
@@ -235,5 +235,5 @@ class APIServer:
                     'raw_tag': raw_tag,
                     'time_ns': time_ns
                 })
-            except Exception as e:
-                return jsonify({'error': str(e)}), 500
+            except Exception:
+                return jsonify({'error': 'Failed to decode timestamp'}), 500
