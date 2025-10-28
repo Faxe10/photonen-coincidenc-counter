@@ -62,7 +62,7 @@ module tdc_top(
     wire new_stop_value_w;
     always @(posedge clk) oTapped_value <= tapped_stop_w;
     always @(posedge clk) tapped_1 <= tapped_state_w[31:0];
-    always @(posedge clk) tapped_end <= tapped_state_w[461:430];
+    always @(posedge clk) tapped_end <= tapped_state_w[399:368];
     always @(posedge clk) oCounts_tapps <= counts_tapp_w;
     always @(posedge clk) new_hit_r <= new_hit_w;
     always @(posedge clk) new_hit_r2 <= new_hit_r;
