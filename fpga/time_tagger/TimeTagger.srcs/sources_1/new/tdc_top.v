@@ -24,7 +24,7 @@ module tdc_top(
     input clk,
     input channel1,
     input irst,
-    input [$clog2(`NUM_TAPPS-1):0]counts_addr,
+    input wire [$clog2(`NUM_TAPPS-1):0]counts_addr,
     output reg [31:0] tapped_1,
     output reg [31:0] tapped_end,
     output reg [9:0] oTapped_value,
@@ -33,6 +33,7 @@ module tdc_top(
     output wire [31:0]total,
     output wire new_tapp,
     output wire oSmallEdgeDetected,
+    output reg [$clog2(`NUM_TAPPS-1):0] oCounts_addr,
     output reg new_stop_value_r
     
 //output reg [31:0]tapped_1,
@@ -69,6 +70,7 @@ module tdc_top(
     always @(posedge clk) new_hit_r3 <= new_hit_r2;
     always @(posedge clk) new_stop_value_r <= new_stop_value_w; 
     always @(posedge clk) EdgeDetected <= edgedetected_w;
+    always @(posedge clk) oCounts_addr <= counts_addr;
     assign new_tapp = new_hit_w;
     tapped_delay_line inst_tapped_delay_line(
         .iCLK(clk),
@@ -89,7 +91,7 @@ module tdc_top(
         .iCLK(clk),
         .iTapped_value(tapped_stop_w),
         .iNew_hit(new_stop_value_w),
-        .iRst(rst),
+        .iRst(irst),
         .iRd_addr(counts_addr),
         .oRd_data(counts_tapp_w),
         .oTotal(total)

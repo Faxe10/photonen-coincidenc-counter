@@ -196,6 +196,8 @@ module tapped_stop(
             else begin
                 new_value <= 1'b0;
             end
+        end else begin
+            new_value <= 1'b0;
         end
     end
 /*    always @(posedge iclk)begin

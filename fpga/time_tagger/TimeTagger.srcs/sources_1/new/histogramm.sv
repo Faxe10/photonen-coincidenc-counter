@@ -32,7 +32,7 @@ module histogramm(
     );
     logic [`WIDHT_HISTOGRAM-1:0] cnt [0:`NUM_TAPPS-1];
     reg [32:0]total;
-    reg tapped_delay_value_r;
+    reg [ $clog2(`NUM_TAPPS-1):0]tapped_delay_value_r;
     reg new_hit_r;
     logic [ $clog2(`NUM_TAPPS-1):0] iRd_addr_r;
     always @(posedge iCLK) iRd_addr_r <= iRd_addr;
