@@ -89,7 +89,7 @@ generate
     for (x=0; x <= `NUM_TAPPS -1 ;x = x+1)begin
         (* dont_touch = "True" *) FDCE fdceinst(
             .C(iCLK),
-            .CE(iChannel),
+            .CE(1'b1),
             .D(tapped_state_w[x]),
             .Q(tapped_state_fdce_w_0[x])
             );
