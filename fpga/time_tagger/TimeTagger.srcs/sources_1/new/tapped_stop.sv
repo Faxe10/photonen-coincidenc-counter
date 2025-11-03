@@ -41,8 +41,6 @@ module tapped_stop(
     //reg [9:0]i;
     reg new_value;
     logic [10:0]index_max_edge[7:0];
-    logic [9:0] val_max_edge[7:0];
-    logic [9:0] val_max_edge_2[1:0];
     logic [9:0] found;
     reg [9:0] i;
     reg [`NUM_TAPPS-1:0] next_low,next_low_r;
@@ -143,22 +141,7 @@ module tapped_stop(
             index_max_edge[7]  <= msb_index(valid_edge_w[(((`NUM_TAPPS-3)/8)*8):((`NUM_TAPPS-3)/8*7)]); 
         end
     end
-/*    always @(posedge iclk)begin
-        if (new_tapps_r2)begin
-            val_max_edge[0] <= index_max_edge[0];
-            val_max_edge[1] <= index_max_edge[1]+((`NUM_TAPPS-3)/8);
-            val_max_edge[2] <= index_max_edge[2]+(((`NUM_TAPPS-3)/8)*2);
-            val_max_edge[3] <= index_max_edge[3]+(((`NUM_TAPPS-3)/8)*3);
-        end
-    end
-    always @(posedge iclk)begin
-        if (new_tapps_r2)begin
-            val_max_edge[4] <= index_max_edge[4]+(((`NUM_TAPPS-3)/8)*4);
-            val_max_edge[5] <= index_max_edge[5]+(((`NUM_TAPPS-3)/8)*5);
-            val_max_edge[6] <= index_max_edge[6]+(((`NUM_TAPPS-3)/8)*6);
-            val_max_edge[7] <= index_max_edge[7]+(((`NUM_TAPPS-3)/8)*7);
-        end
-    end*/
+
     always @(posedge iclk)begin 
         if(new_tapps_r2)begin
             if(index_max_edge[7][10])begin
@@ -200,55 +183,7 @@ module tapped_stop(
             new_value <= 1'b0;
         end
     end
-/*    always @(posedge iclk)begin
-        if (new_tapps_r3)begin
-            if(val_max_edge[7] != 0)begin 
-                val_max_edge_2[1] <= val_max_edge[7]; 
-            end
-            else if(val_max_edge[6]!= 0)begin 
-             val_max_edge_2[1] <= val_max_edge[6]; 
-            end
-            else if(val_max_edge[5]!= 0)begin
-             val_max_edge_2[1] <= val_max_edge[5]; 
-            end
-            else if(val_max_edge[4]!= 0) begin
-                 val_max_edge_2[1] <= val_max_edge[4]; 
-            end
-        end
-    end         
-    always @(posedge iclk)begin
-        if (new_tapps_r3)begin
-            if(val_max_edge[3] != 0)begin 
-                val_max_edge_2[0] <= val_max_edge[3]; 
-            end
-            else if(val_max_edge[2]!= 0)begin 
-             val_max_edge_2[0] <= val_max_edge[2]; 
-            end
-            else if(val_max_edge[1]!= 0)begin
-             val_max_edge_2[0] <= val_max_edge[1]; 
-            end
-            else if(val_max_edge[0]!= 0) begin
-                 val_max_edge_2[0] <= val_max_edge[0]; 
-            end
-        end
-    end      */
-/*    always @(posedge iclk)begin
-        if (new_tapps_r4)begin
-            if (val_max_edge_2[1]!=0)begin
-                tapped_stop_val <= val_max_edge_2[1];
-                new_value <= 1'b1;
-            end
-            else if (val_max_edge_2[0] != 0) begin
-                tapped_stop_val <= val_max_edge_2[0];
-                new_value <= 1'b1;
-            end 
-            else begin
-                new_value <= 1'b0;
-            end
-        end else 
-            new_value <= 1'b0;
-    end
-*/
+
 
     
 
