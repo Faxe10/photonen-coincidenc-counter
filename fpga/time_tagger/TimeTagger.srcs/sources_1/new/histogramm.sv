@@ -28,7 +28,8 @@ module histogramm(
     input logic iRst,
     input logic [ $clog2(`NUM_TAPPS-1):0]iTapped_value,
     input logic [ $clog2(`NUM_TAPPS-1):0]iRd_addr,
-    output logic [`WIDHT_HISTOGRAM:0] oRd_data,
+    output logic [`WIDHT_HISTOGRAM-1:0] oRd_data,
+    //output logic [`WIDHT_HISTOGRAM-1:0] oRd_data_test,
     output logic oRd_data_ready,
     output logic [32:0] oTotal
     );
@@ -38,29 +39,39 @@ module histogramm(
     reg clearing;
     reg cnt_mem_write;
     reg cnt_mem_read;
-    reg [$clog2(`NUM_TAPPS-1):0]cnt_mem_read_add;
-    reg [$clog2(`NUM_TAPPS-1):0]cnt_mem_write_add;
+    reg [$clog2(`NUM_TAPPS)-1:0]cnt_mem_read_add;
+    reg [$clog2(`NUM_TAPPS)-1:0]cnt_mem_write_add;
     reg [`WIDHT_HISTOGRAM-1:0]cnt_mem_write_data;
     reg [`WIDHT_HISTOGRAM-1:0]cnt_mem_read_data,cnt_mem_read_data_r;
-    reg  [$clog2(`NUM_TAPPS-1):0] clear_index;
-    logic read_mem_sync,read_mem_old;
+    reg  [$clog2(`NUM_TAPPS)-1:0] clear_index;
+    logic read_mem_sync,read_mem_old, read_mem_later;
     logic read_mem_rise;
-    (* dont_touch = "True" *)  reg [ $clog2(`NUM_TAPPS-1):0]tapped_delay_value_r,tapped_delay_value_r2;
-     (* dont_touch = "True" *) reg new_hit_r,new_hit_r2,new_hit_r3,new_hit_r4;
-    logic [ $clog2(`NUM_TAPPS-1):0] iRd_addr_r;
+    reg [ $clog2(`NUM_TAPPS)-1:0]tapped_delay_value_r;
+    reg [ $clog2(`NUM_TAPPS)-1:0]tapped_delay_value_r2;
+    reg [ $clog2(`NUM_TAPPS)-1:0]tapped_delay_value_r3;
+    reg [ $clog2(`NUM_TAPPS)-1:0]tapped_delay_value_r4;
+    (* dont_touch = "True" *) reg new_hit_r,new_hit_r2,new_hit_r3,new_hit_r4;
+    logic [ $clog2(`NUM_TAPPS)-1:0] iRd_addr_r;
     always @(posedge iCLK) iRd_addr_r <= iRd_addr;
     always @(posedge iCLK) oTotal <= total;
-    assign  oRd_data = cnt_mem_read_data;
+    assign read_mem_rise = read_mem_sync & ~read_mem_old;
     always @(posedge iCLK) tapped_delay_value_r <=  iTapped_value;
-    always @(posedge iCLK) tapped_delay_value_r2 <= tapped_delay_value_r;
+    always @(posedge iCLK) begin
+        tapped_delay_value_r2 <= tapped_delay_value_r;
+        tapped_delay_value_r3 <= tapped_delay_value_r2;
+        tapped_delay_value_r4 <= tapped_delay_value_r3;
+    end
     always @(posedge iCLK) cnt_mem_read_data_r <= cnt_mem_read_data;
     always @(posedge iCLK) begin
         new_hit_r <= iNew_hit;
         new_hit_r2 <= new_hit_r;
         new_hit_r3 <= new_hit_r2;
+        new_hit_r4 <= new_hit_r3;
     end
-
-
+    always @(posedge iCLK) begin
+        read_mem_sync <= iRead_mem;
+        read_mem_old <= read_mem_sync;
+    end
     always @(posedge iCLK)begin
         if (iRst) begin
             clearing <= 1'b1;
@@ -84,6 +95,7 @@ module histogramm(
                 cnt_mem_read <= 1'b0;
             if (new_hit_r4)begin
                 cnt_mem_write_data <= cnt_mem_read_data_r + 1;
+                cnt_mem_write_add <= tapped_delay_value_r4;
                 cnt_mem_write <= 1'b1;
                 total <= total +1;
             end 
@@ -100,8 +112,23 @@ end
 always @(posedge iCLK)begin
     if(cnt_mem_read)begin
         cnt_mem_read_data <= cnt_mem[cnt_mem_read_add];
+        oRd_data_ready <= 1'b0;
+        if (read_mem_rise)begin
+            read_mem_later <= 1'b1;
+        end
+    end 
+    else if (read_mem_rise)begin
+        oRd_data <= cnt_mem[iRd_addr_r];
+        read_mem_later <= 1'b0;
+        oRd_data_ready <= 1'b1;
+    end else if (read_mem_later)begin
+        oRd_data <= cnt_mem[iRd_addr_r];
+        read_mem_later <= 1'b0;
+        oRd_data_ready <= 1'b1;
     end
-    
+    else 
+        oRd_data_ready <= 1'b0;
+
 end    
 
 endmodule

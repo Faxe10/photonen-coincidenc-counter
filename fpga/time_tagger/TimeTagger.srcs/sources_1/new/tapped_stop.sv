@@ -79,7 +79,7 @@ module tapped_stop(
         for (x=0; x<`NUM_TAPPS-3;x++)begin 
             always @(posedge iclk) begin
                 if (new_tapps_r0)begin
-                    valid_edge_w[x] <= tapped_state[x] & ~tapped_state[x+1] & ~tapped_state[x+2] &  ~tapped_state[x+3];
+                    valid_edge_w[x] <=  tapped_state[x-3] & tapped_state[x-2] & tapped_state[x-1] &  tapped_state[x] & ~tapped_state[x+1] & ~tapped_state[x+2] &  ~tapped_state[x+3];
                 end
             end
         end

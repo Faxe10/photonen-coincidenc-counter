@@ -25,6 +25,7 @@ module tdc_top(
     input channel1,
     input irst,
     input wire [$clog2(`NUM_TAPPS-1):0]counts_addr,
+    input wire read_counts,
     output reg [31:0] tapped_1,
     output reg [31:0] tapped_end,
     output reg [9:0] oTapped_value,
@@ -61,10 +62,11 @@ module tdc_top(
     reg new_hit_r2;
     reg new_hit_r3;
     wire new_stop_value_w;
+    wire Rd_data_ready;
     always @(posedge clk) oTapped_value <= tapped_stop_w;
     always @(posedge clk) tapped_1 <= tapped_state_w[31:0];
-    always @(posedge clk) tapped_end <= tapped_state_w[449:418];
-    always @(posedge clk) oCounts_tapps <= counts_tapp_w;
+    always @(posedge clk) tapped_end <= tapped_state_w[399:368];
+    //always @(posedge clk) oCounts_tapps <= counts_tapp_w;
     always @(posedge clk) new_hit_r <= new_hit_w;
     always @(posedge clk) new_hit_r2 <= new_hit_r;
     always @(posedge clk) new_hit_r3 <= new_hit_r2;
@@ -93,11 +95,15 @@ module tdc_top(
         .iNew_hit(new_stop_value_w),
         .iRst(irst),
         .iRd_addr(counts_addr),
+        .iRead_mem(read_counts),
+        .oRd_data_ready(Rd_data_ready),
         .oRd_data(counts_tapp_w),
         .oTotal(total)
         );
     //test inst_test(
     //    .hi(1'b1)
      //   );
-        
+    always @(posedge clk)begin  
+            oCounts_tapps <= counts_tapp_w; 
+    end
 endmodule
