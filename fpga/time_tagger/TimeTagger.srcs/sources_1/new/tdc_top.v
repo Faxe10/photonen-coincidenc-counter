@@ -37,6 +37,16 @@ module tdc_top(
     output reg [$clog2(`NUM_TAPPS-1):0] oCounts_addr,
     output reg new_stop_value_r
     
+    //debug ports
+    /*input wire         iRead_w[`Channel_num-1:0],
+    input wire  [$clog2(`NUM_TAPPS)-1:0]    iRead_Tapp_w,
+    input wire  [$clog2(`Channel_num)-1:0]  iRead_Channel_w,
+    output wire [$clog2(`MAX_FINE_VAL)-1:0] oTapp_Delay_w,
+    
+    input wire [$clog2(`Channel_num)-1:0]   iWrite_channel_w,
+    input wire [$clog2(`NUM_TAPPS)-1:0]     iWrite_Tapp_w,
+    input wire [$clog2(`MAX_FINE_VAL)-1:0]  iDelay_write_val_w,
+    input wire iWrite_w*/
 //output reg [31:0]tapped_1,
 //output reg[31:0]tapped_3,
 //output reg [31:0]tapped_4,
@@ -53,6 +63,14 @@ module tdc_top(
 //output reg[31:0]tapped_15,
 //output reg[31:0]tapped_16
     );
+    wire [`Channel_num-1:0]iRead_w;
+    wire  [`Channel_num*$clog2(`NUM_TAPPS)-1:0]iRead_Tapp_w;
+    wire  [$clog2(`Channel_num)-1:0]  iRead_Channel_w;
+    wire [$clog2(`MAX_FINE_VAL)-1:0] oTapp_Delay_w;
+    wire [$clog2(`Channel_num)-1:0]   iWrite_channel_w;
+    wire [`Channel_num*$clog2(`NUM_TAPPS)-1:0]     iWrite_Tapp_w;
+    wire [$clog2(`MAX_FINE_VAL)-1:0]  iDelay_write_val_w;
+    wire iWrite_w;
     wire  [`NUM_TAPPS-1:0] tapped_state_w; 
     wire [9:0]tapped_stop_w;
     wire [`WIDHT_HISTOGRAM-1:0] counts_tapp_w;
@@ -63,6 +81,9 @@ module tdc_top(
     reg new_hit_r3;
     wire new_stop_value_w;
     wire Rd_data_ready;
+    wire [$clog2(`MAX_FINE_VAL)-1:0] oTapp_Delay_w2 [`Channel_num:0];
+    wire [$clog2(`NUM_TAPPS)-1:0] iRead_Tapp_w2 [`Channel_num:0];
+
     always @(posedge clk) oTapped_value <= tapped_stop_w;
     always @(posedge clk) tapped_1 <= tapped_state_w[31:0];
     always @(posedge clk) tapped_end <= tapped_state_w[399:368];
@@ -99,6 +120,15 @@ module tdc_top(
         .oRd_data_ready(Rd_data_ready),
         .oRd_data(counts_tapp_w),
         .oTotal(total)
+        );  
+    tapped_delay_mem tapped_delay_mem_inst(
+        .iCLK(c),
+        .iRead(iRead_w), 
+        .iRead_Tapp(iRead_Tapp_w),
+        .oTapp_Delay(oTapp_Delay_w),
+        .iWrite_Tapp(iWrite_Tapp_w),
+        .iDelay_write_val(iDelay_write_val_w),
+        .iWrite(iWrite_w)
         );
     //test inst_test(
     //    .hi(1'b1)

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/04/2025 06:55:26 PM
+// Create Date: 11/06/2025 05:55:34 PM
 // Design Name: 
-// Module Name: raw_to_time
+// Module Name: test
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,8 +19,16 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`include "settings.vh"
-module raw_to_time(
 
+module test(
+ input clk,
+ input logic [7:0] num1,
+ input logic [7:0] num2,
+ output logic [8:0] add_result,
+ output logic [8:0] sub_result
     );
+ always @(posedge clk)begin
+    add_result <= num1+num2;
+    sub_result <= num1-num2;
+ end
 endmodule
