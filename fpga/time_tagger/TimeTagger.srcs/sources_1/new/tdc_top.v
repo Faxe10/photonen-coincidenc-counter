@@ -110,17 +110,11 @@ module tdc_top(
         //.oEdgeDetected(edgedetected_w),
         //.oSmallEdgeDetected(oSmallEdgeDetected)
     );
-    histogramm histogramm_inst(
+    cal_tapp_delay cal_tapp_delay_inst(
         .iCLK(clk),
-        .iTapped_value(tapped_stop_w),
-        .iNew_hit(new_stop_value_w),
-        .iRst(irst),
-        .iRd_addr(counts_addr),
-        .iRead_mem(read_counts),
-        .oRd_data_ready(Rd_data_ready),
-        .oRd_data(counts_tapp_w),
-        .oTotal(total)
-        );  
+        .iRST(irst),
+        .iNew_stop_value()
+
     tapped_delay_mem tapped_delay_mem_inst(
         .iCLK(c),
         .iRead(iRead_w), 
