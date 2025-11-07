@@ -47,21 +47,21 @@ module cal_tapp_delay(
     logic [$clog2(`MAX_FINE_VAL:0] fine_val;
     logic [$clog2(`MAX_FINE_VAL:0] fine_val_r;
     logic [`MAX_FINE_VAL:0] delay_to_tapp;
-    logic [`MAX_FINE_VAL:0] tapp_delay;
+    logic [`MAX_FINE_VAL:0] singel_tapp_delay;
     logic new_fine_val;
-    logic new_tapp_delay;
+    logic new_singel_tapp_delay;
     reg intern_rst_r;
     wire reset;
+    logic new_tapp_delay;
     logic read_counts_w;
     logic read_counts_r;
     assign read_counts_addr_w = read_counts_addr_r;
     assign read_counts_w <= read_counts_r;
     assign reset = intern_rst_r | iRST;
     assign oWrite_ch = write_ch;
-    assign oWrite_Tapp = current_tapps_response_r2;
-    assign oDelay_Tapp = delay_to_tapp;
-
-
+    assign oTapp_num = current_tapps_response-1;
+    assign oWrite_new_delay = new_tapp_delay;
+    assign  oTapp_delay = tapp_delay;
 
 
     always @(posedge iCLK)begin
@@ -97,8 +97,7 @@ module cal_tapp_delay(
     always @(posedge iCLK)begin
         if (reset)begin
             intern_rst_r <= 1'b0;
-            current_tapps_response <= 1'b0;
-            new_tapp_delay <= 1'b0;
+            new_singel_tapp_delay <= 1'b0;
         end
         else begin
             if(current_tapps_response == `NUM_TAPPS)begin
@@ -107,24 +106,29 @@ module cal_tapp_delay(
             if (cal)begin
                 if (Rd_data_ready)begin
                     tapp_delay <= read_tapp_val * `TIME_PER_CLK/`Counts_for_cal;
-                    current_tapps_response <= current_tapps_response + 1;
-                    new_tapp_delay <= 1'b1;
+                    new_singel_tapp_delay <= 1'b1;
                 end
                 else begin
-                    new_tapp_delay <= 1'b0;
+                    new_singel_tapp_delay <= 1'b0;
                 end
             end
             else begin
-                new_tapp_delay <= 1'b0;
+                new_singel_tapp_delay <= 1'b0;
             end
         end
     end
     always @(posedge iCLK)begin
         if (reset) begin
-            delay_to_tapp <= 0;
+            tapp_delay <= 0;
+            new_tapp_delay <= 1'b0;
+            current_tapps_response <= 1'b0;
         end
-        else if (new_tapp_delay) begin
-            delay_to_tapp <= delay_to_tapp + tapp_delay;
+        else if (new_singel_tapp_delay) begin
+            tapp_delay <= tapp_delay + singel_tapp_delay;
+            current_tapps_response <= current_tapps_response + 1;
+        end
+        else begin
+            new_tapp_delay <= 1'b1;
         end
     end
 
