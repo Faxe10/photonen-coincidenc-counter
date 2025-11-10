@@ -41,6 +41,8 @@ module cal_tapp_delay(
     //def com Delay Mem
     logic [$clog2(`NUM_TAPPS)-1:0] current_tapps;
     logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r;
+    logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r2;
+    logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r3;
     logic [$clog2(`MAX_FINE_VAL)-1:0] tapp_delay;
     logic [$clog2(`MAX_FINE_VAL)-1:0] singel_tapp_delay;
 
@@ -99,9 +101,11 @@ module cal_tapp_delay(
     end
     // cal delay until tapp; 
     always @(posedge iCLK)begin
+        current_tapps_r <= current_tapps;
+        current_tapps_r2 <= current_tapps_r;
+        current_tapps_r3 <= current_tapps_r2;
         read_counts_r2 <= read_counts_r;
         read_counts_r3 <= read_counts_r2;
-        current_tapps_r <= current_tapps;
         if (reset)begin
             tapp_delay <= 0;
             oWrite_new_delay <= 1'b0;
@@ -109,7 +113,7 @@ module cal_tapp_delay(
         else if (read_counts_r3)begin
             tapp_delay <= tapp_delay + singel_tapp_delay;
             oWrite_new_delay <= 1'b1;
-            oTapp_num <= current_tapps_r;
+            oTapp_num <= current_tapps_r3;
         end
         else begin
              oWrite_new_delay <= 1'b0;

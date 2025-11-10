@@ -103,7 +103,7 @@ module tb_cal_tapp_delay(
     initial begin
         reset_task;
         for (x = 0; x <= `COUNTS_FOR_CAL+1;x++)begin
-            random = $urandom_range(0, 400);
+            random = $urandom_range(400);
             hit(random);
             @(posedge clk);
             $display("test");        
