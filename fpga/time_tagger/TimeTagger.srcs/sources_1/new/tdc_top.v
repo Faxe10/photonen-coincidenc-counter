@@ -114,7 +114,7 @@ module tdc_top(
         .iCLK(clk),
         .iRST(irst),
         .iNew_stop_value()
-
+    );
     tapped_delay_mem tapped_delay_mem_inst(
         .iCLK(c),
         .iRead(iRead_w), 

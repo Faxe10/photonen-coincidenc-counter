@@ -31,7 +31,7 @@ output logic [`Channel_num*$clog2(`MAX_FINE_VAL)-1:0] oTapp_Delay,
 // ports for write new delay val
 input logic [`Channel_num-1:0] iWrite,
 //input logic [`Channel_num*$clog2(`NUM_TAPPS)-1:0] iWrite_Tapp,
-input logic [$clog2(`NUM_TAPPS)-1:0] iWrite_TAPP,
+input logic [$clog2(`NUM_TAPPS)-1:0] iWrite_Tapp,
 input logic [$clog2(`MAX_FINE_VAL)-1:0] iDelay_write_val
 
 );
@@ -49,11 +49,11 @@ logic [$clog2(`MAX_FINE_VAL)-1:0] delay_write_val_r;
 logic [$clog2(`NUM_TAPPS)-1:0] write_tapp;
 logic [$clog2(`MAX_FINE_VAL)-1:0] write_delay_val;
 logic [$clog2(`Channel_num):0]x;
-
+logic [$clog2(`NUM_TAPPS)-1:0] write_tapp;
 always @(posedge iCLK)  read_r <= iRead;
 always @(posedge iCLK)  write_r <= iWrite;
 always @(posedge iCLK)  write_delay_val <= iDelay_write_val;
-always @(posedge iCLK) write_tapp <= iWrite_Tapp,
+always @(posedge iCLK) write_tapp <= iWrite_Tapp;
 for (genvar ch = 0; ch < `Channel_num; ch++) begin
     always @(posedge iCLK)read_tapp[ch]  <= iRead_Tapp[ch*$clog2(`NUM_TAPPS) +: $clog2(`NUM_TAPPS)];
     //always @(posedge iCLK)write_tapp[ch] <= iWrite_Tapp[ch*$clog2(`NUM_TAPPS) +: $clog2(`NUM_TAPPS)];
