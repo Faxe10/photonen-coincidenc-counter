@@ -6,5 +6,6 @@
     `define Channel_num 8
     `define MAX_FINE_VAL 4000
     `define TIME_PER_CLK 4000 //set in ns
-    `define WIDTH_TIME_TAG 32
+    `define WIDTH_TIME_TAG 64
+    `define WIDTH_NS 42 // 1h
 `endif

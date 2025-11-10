@@ -34,7 +34,8 @@ module cal_tapp_delay(
     //save new Tapp Delay
     output logic [$clog2(`MAX_FINE_VAL)-1:0] oTapp_delay,
     output logic [$clog2(`NUM_TAPPS)-1:0] oTapp_num,
-    output logic oWrite_new_delay
+    output logic oWrite_new_delay,
+    output logic oDelay_ready
     );
     
 
@@ -124,6 +125,7 @@ module cal_tapp_delay(
         if(cal_finished)begin 
             if(read_counts_r3 == 0) begin
                 intern_rst_r <= 1'b1;
+                oDelay_ready <= 1'b1;
             end
             else begin
                 intern_rst_r <= 1'b0;

@@ -25,6 +25,7 @@ module channel_controller(
     input logic iCLK,
     input logic iCH,
     input logic iRST,
+    input logic [$clog2(`WIDTH_NS)-1:0] iNS,
     output logic [`WIDTH_TIME_TAG:0]oTime_Tag
     );
     logic reset;
@@ -42,8 +43,9 @@ module channel_controller(
     wire read_tapp_w;
     // wires for  cal tapp delay
     wire write_new_delay_w;
-    wire logic [$clog2(`MAX_FINE_VAL)-1:0] new_tapp_delay_w;
-    wire logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
+    logic [$clog2(`MAX_FINE_VAL)-1:0] new_tapp_delay_w;
+    logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
+    logic delay_ready_w;
     assign reset = iRST;
     tapped_delay_line inst_tapped_delay_line(
         .iCLK(iCLK),
@@ -83,14 +85,24 @@ module channel_controller(
         .oRead_Tapp(read_tapp_W),
         // output new delay val
         .oTapp_delay(new_tapp_delay_w),
-        .oTapp_num( write_tapp_add_w),
-        .oWrite_new_delay(write_new_delay_w)
+        .oTapp_num(write_tapp_add_w),
+        .oWrite_new_delay(write_new_delay_w),
+        .oDelay_ready(delay_ready_w)
     );
     gen_time_tag gen_time_tag_inst(
         .iCLK(iCLK),
         .iWrite_new_delay(write_new_delay_w),
         .iTapp_delay(new_tapp_delay_w),
-        .iWrite_tapp_addr(write_tapp_add_w)
+        .iWrite_tapp_addr(write_tapp_add_w),
+        .iDelay_ready(delay_ready_w),
+        
+        // gen Time Tag Stuff
+        .iTapp_val(tapp_stop_val_w),
+        .iNew_val(new_stop_val_w),
+        .iNS(iNS),
+        .oTime_Tag(oTime_Tag)
+        
+        
     );
 
 

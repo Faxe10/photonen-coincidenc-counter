@@ -27,18 +27,28 @@ module tdc_top(
     output wire [`WIDTH_TIME_TAG-1:0]oTime_Tag_ch1
 
     );
+    reg [`WIDTH_NS:0] ns;
     wire reset;
     wire ch_1;
     assign reste = iRST;
     assign ch_1 = iCH_1;
     
+    always @(posedge clk)begin
+        if (reset)begin
+            ns <= 0;
+        end
+        else begin
+            ns <=ns + 4;
+        end
+    end
     channel_controller channel_controller_ch1(
         .iCLK(clk),
         .iCH(ch_1),
         .iRST(reset),
+        .iNS(ns),
         .oTime_Tag(oTime_Tag_ch1)
     );
-
+    
     //test inst_test(
     //    .hi(1'b1)
      //   );
