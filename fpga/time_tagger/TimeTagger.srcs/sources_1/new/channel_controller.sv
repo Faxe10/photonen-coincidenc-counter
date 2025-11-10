@@ -25,7 +25,7 @@ module channel_controller(
     input logic iCLK,
     input logic iCH,
     input logic iRST,
-    output logic oTime_Tag
+    output logic [`WIDTH_TIME_TAG:0]oTime_Tag
     );
     logic reset;
     //wires for Tapp Delay Line
@@ -35,27 +35,27 @@ module channel_controller(
     wire new_stop_va;
     wire [$clog2(`NUM_TAPPS):0] tapp_stop_val_w;
     // wires for hits per Tapp
-    wire [$clog2(`Counts_for_cal)-1:0] counts_total_w;
+    wire [$clog2(`COUNTS_FOR_CAL)-1:0] counts_total_w;
     wire [`WIDTH_HISTOGRAM-1:0] tapp_counts_w;
     wire read_counts_ready_w;
-    wire [ $clog2(`NUM_TAPPS-):0] read_tapp_addr_w;
+    wire [ $clog2(`NUM_TAPPS)-1:0] read_tapp_addr_w;
     wire read_tapp_w;
     // wires for  cal tapp delay
     wire write_new_delay_w;
     wire logic [$clog2(`MAX_FINE_VAL)-1:0] new_tapp_delay_w;
-    wire logic logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
+    wire logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
     assign reset = iRST;
     tapped_delay_line inst_tapped_delay_line(
         .iCLK(iCLK),
-        .iChannel(iCH),
+        .iCH(iCH),
         .oNew_hit(new_hit_w),
         .oTAPPED_STATE(tapped_state_w)
     );
     tapped_stop tapped_stop_inst (
-        .iclk(iCLK),
+        .iCLK(iCLK),
         .iNewTapps(new_hit_w),
         .itapped_state(tapped_state_w),
-        .otapped_stop_w(tap_stop_val_w),
+        .otapped_stop_w(tapp_stop_val_w),
         .oNewValue(new_stop_val_w)
     );
 
@@ -65,12 +65,12 @@ module channel_controller(
         .iRST(reset),
         // add new hit
         .iNew_hit(new_stop_val_w),
-        .iTapped_value(new_stop_val_w),
-        //read hits
+        .iTapped_value(tapp_stop_val_w),
+        //read hits\
+        .iStop_Counting(),
         .iRead_Tapp(read_tapp_w),
         .iRead_Tapp_addr(read_tapp_addr_w),
         .oRd_data(tapp_counts_w),
-        .oRd_data_ready(read_counts_ready_w),
         .oTotal(counts_total_w)
     );
     cal_tapp_delay cal_tapp_delay_inst(
@@ -81,7 +81,7 @@ module channel_controller(
         .iTotal_counts(counts_total_w),
         .iRead_counts_ready(read_counts_ready_w),
         .oRead_Tapp_Addr(read_tapp_addr_w),
-        .oRead_Tapp(read_tapp_W)
+        .oRead_Tapp(read_tapp_W),
         // output new delay val
         .oTapp_delay(new_tapp_delay_w),
         .oTapp_num( write_tapp_add_w),

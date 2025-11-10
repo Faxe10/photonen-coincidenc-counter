@@ -22,7 +22,7 @@
 
 module tapped_delay_line(
     input iCLK,
-    input iChannel,
+    input iCH,
     output logic oNew_hit,
     output reg [`NUM_TAPPS-1:0] oTAPPED_STATE
     );
@@ -39,7 +39,7 @@ reg channel_old;
 reg channel_rise_r;
 wire channel_rise;
 
-always @(posedge iCLK) channel_sync <= iChannel;
+always @(posedge iCLK) channel_sync <= iCH;
 always @(posedge iCLK) channel_old <= channel_sync;
 
 always @(posedge iCLK) channel_rise_r <= channel_rise;
@@ -65,7 +65,7 @@ generate
                 .CO(tapped_state_w[3:0]),
                 .CI(1'b0),
                 .DI(4'b0000),
-                .CYINIT(iChannel),
+                .CYINIT(iCH),
                 .S(4'b1111),
                 .O()
                 );

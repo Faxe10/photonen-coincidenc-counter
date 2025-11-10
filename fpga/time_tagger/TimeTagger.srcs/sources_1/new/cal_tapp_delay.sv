@@ -24,7 +24,7 @@ module cal_tapp_delay(
     input iCLK,
     input iRST,
     // communication hits_per_Tapp
-    input logic [`WIDHT_HISTOGRAM-1:0] iTapp_counts,
+    input logic [`WIDTH_HISTOGRAM-1:0] iTapp_counts,
     input logic [$clog2(`COUNTS_FOR_CAL)-1:0] iTotal_counts,
     input logic iRead_counts_ready,
     output logic [ $clog2(`NUM_TAPPS)-1:0] oRead_Tapp_Addr,
@@ -43,7 +43,7 @@ module cal_tapp_delay(
     logic [$clog2(`NUM_TAPPS):0] current_tapps_response_r2;
     logic [ $clog2(`NUM_TAPPS)-1:0] read_counts_addr_w;
     logic [ $clog2(`NUM_TAPPS)-1:0] read_counts_addr_r;
-    logic [ `WIDHT_HISTOGRAM:0] read_tapp_val;
+    logic [ `WIDTH_HISTOGRAM:0] read_tapp_val;
     logic [$clog2(`MAX_FINE_VAL):0] fine_val;
     logic [$clog2(`MAX_FINE_VAL):0] fine_val_r;
     logic [`MAX_FINE_VAL:0] tapp_delay;
