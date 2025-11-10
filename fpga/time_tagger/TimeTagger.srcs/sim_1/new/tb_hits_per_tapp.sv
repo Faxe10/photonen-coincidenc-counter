@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: Light and Matter Group, Leibniz University Hannover
 // Engineer: Fabian Walther fabian@cryptix.de

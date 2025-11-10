@@ -22,19 +22,21 @@
 `include "settings.vh"
 module gen_time_tag(
     input logic iCLK,
+    
+    // com cal tapp delay
     input logic iWrite_new_delay,
-    input logic [$clog2(`MAX_FINE_VAL)-1:0] iNew_tapp_delay,
-    input logic [$clog2(`NUM_TAPPS)-1:0]    iWrite_tapp_add
-)
+    input logic [$clog2(`MAX_FINE_VAL)-1:0] iTapp_delay,
+    input logic [$clog2(`NUM_TAPPS)-1:0]    iWrite_tapp_addr,
+    output [`WIDTH_TIME_TAG:0] oTimeTag
+    // debug ports;
+   
+);
     (* ram_style = "block" *) logic [$clog2(`MAX_FINE_VAL)-1:0] mem[`NUM_TAPPS];
-    always @(posedge iCLK) begin
-        if (read_delay) begin
-            delay_to_tapp <= mem[read_tapp_addr];
-        end
-    end
+    assign oTimeTag = 5;
     always @(posedge iCLK)begin
         if (iWrite_new_delay)begin
-            mem[iWrite_tapp_add] <= iNew_tapp_delay;
+            mem[iWrite_tapp_addr] <= iTapp_delay;
         end
     end
-endmodule
+endmodule       
+ 

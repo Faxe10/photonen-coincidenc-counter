@@ -24,7 +24,7 @@ module tdc_top(
     input iCLK,
     input wire iCH_1,
     input wire iRST,
-    output wire [`WIDTH_TIME_TAG:0]oTime_Tag_ch1
+    output wire [`WIDTH_TIME_TAG-1:0]oTime_Tag_ch1
 
     );
     wire reset;
@@ -36,13 +36,11 @@ module tdc_top(
         .iCLK(clk),
         .iCH(ch_1),
         .iRST(reset),
-        .oTime_tag(oTime_Tag_ch1)
+        .oTime_Tag(oTime_Tag_ch1)
     );
 
     //test inst_test(
     //    .hi(1'b1)
      //   );
-    always @(posedge clk)begin  
-            oCounts_tapps <= counts_tapp_w; 
-    end
+
 endmodule

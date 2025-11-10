@@ -69,7 +69,7 @@ module channel_controller(
         //read hits\
         .iStop_Counting(),
         .iRead_Tapp(read_tapp_w),
-        .iRead_Tapp_addr(read_tapp_addr_w),
+        .iRead_Tapp_Addr(read_tapp_addr_w),
         .oRd_data(tapp_counts_w),
         .oTotal(counts_total_w)
     );
@@ -79,7 +79,6 @@ module channel_controller(
         // com hist per tapp
         .iTapp_counts(tapp_counts_w),
         .iTotal_counts(counts_total_w),
-        .iRead_counts_ready(read_counts_ready_w),
         .oRead_Tapp_Addr(read_tapp_addr_w),
         .oRead_Tapp(read_tapp_W),
         // output new delay val
@@ -87,11 +86,11 @@ module channel_controller(
         .oTapp_num( write_tapp_add_w),
         .oWrite_new_delay(write_new_delay_w)
     );
-    gen_time_tag_inst(
+    gen_time_tag gen_time_tag_inst(
         .iCLK(iCLK),
         .iWrite_new_delay(write_new_delay_w),
-        .iNew_tapp_delay(new_tapp_delay_w),
-        .iWrite_tapp_add(write_tapp_add_w)
+        .iTapp_delay(new_tapp_delay_w),
+        .iWrite_tapp_addr(write_tapp_add_w)
     );
 
 
