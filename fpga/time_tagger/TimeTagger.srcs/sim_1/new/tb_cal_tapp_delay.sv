@@ -42,45 +42,63 @@ module tb_cal_tapp_delay(
   //port cal tapp delay stuff
   logic write_new_delay_w;
   logic [$clog2(`MAX_FINE_VAL)-1:0]  new_tapp_delay_w;
-  logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_addr_w;
+  logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
   
   // test stuff
   logic[`WIDTH_HISTOGRAM-1:0] read_counts;
   logic [32:0]counts_total_r;
   logic [32:0]x; 
   logic [$clog2(`MAX_FINE_VAL)-1:0]  random;
-  hits_per_tapp hits_per_tapp_inst(
-        .iCLK(clk),
+  logic iCLK;
+  logic read_tapp_w;
+  assign iCLK = clk;
+  logic stop_counting;
+   // calibration
+    hits_per_tapp hits_per_tapp_inst(
+        .iCLK(iCLK),
         .iRST(reset),
         // add new hit
         .iNew_hit(new_stop_val_w),
         .iTapped_value(tapp_stop_val_w),
         //read hits\
-        .iStop_Counting(stop_counting_w),
+        .iStop_Counting(stop_counting),
         .iRead_Tapp(read_tapp_w),
         .iRead_Tapp_Addr(read_tapp_addr_w),
         .oRd_data(tapp_counts_w),
         .oTotal(counts_total_w)
     );
-     cal_tapp_delay cal_tapp_delay_inst(
-        .iCLK(clk),
+    cal_tapp_delay cal_tapp_delay_inst(
+        .iCLK(iCLK),
         .iRST(reset),
         // com hist per tapp
         .iTapp_counts(tapp_counts_w),
         .iTotal_counts(counts_total_w),
         .oRead_Tapp_Addr(read_tapp_addr_w),
         .oRead_Tapp(read_tapp_w),
-        .oStop_Counting(stop_counting_w),
         // output new delay val
+        .oStop_Counting(stop_counting),
         .oTapp_delay(new_tapp_delay_w),
-        .oTapp_num( write_tapp_addr_w),
+        .oTapp_num(write_tapp_add_w),
         .oWrite_new_delay(write_new_delay_w)
+      //  .oDelay_ready(delay_ready_w)
     );
     gen_time_tag gen_time_tag_inst(
-        .iCLK(clk),
+        .iCLK(iCLK),
         .iWrite_new_delay(write_new_delay_w),
         .iTapp_delay(new_tapp_delay_w),
-        .iWrite_tapp_addr(write_tapp_addr_w)
+        .iWrite_tapp_addr(write_tapp_add_w)
+        //.iDelay_ready(delay_ready_w)
+        
+        // gen Time Tag Stuff
+        //.iTapp_val(tapp_stop_val_w),
+        //.iNew_val(new_stop_val_w),
+       // .iNS(iNS),
+       // .oTime_Tag(oTime_Tag)
+        // debug stuff
+        //.iRead_tapp_addr(iRead_tapp_addr),
+        //.iRead_delay(iRead_delay),
+        //.oRd_delay(oRd_delay)
+        
     );
     task automatic hit( input int addr);
         begin
@@ -102,8 +120,8 @@ module tb_cal_tapp_delay(
     endtask
     initial begin
         reset_task;
-        for (x = 0; x <= `COUNTS_FOR_CAL+1;x++)begin
-            random = $urandom_range(400);
+        for (x = 0; x <= `COUNTS_FOR_CAL * 2;x++)begin
+            random = $urandom_range(350);
             hit(random);
             @(posedge clk);
             $display("test");        

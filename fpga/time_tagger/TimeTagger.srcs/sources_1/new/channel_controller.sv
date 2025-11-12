@@ -25,8 +25,15 @@ module channel_controller(
     input logic iCLK,
     input logic iCH,
     input logic iRST,
+    output logic oCH_ready,
     input logic [$clog2(`WIDTH_NS)-1:0] iNS,
-    output logic [`WIDTH_TIME_TAG:0]oTime_Tag
+    output logic [`WIDTH_TIME_TAG:0]oTime_Tag,
+    // debug ports;
+    input logic [$clog2(`NUM_TAPPS)-1:0] iRead_tapp_addr,
+    input logic iRead_delay,
+    output logic [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay,
+    output wire [$clog2(`COUNTS_FOR_CAL)-1:0]  oCal_counts,
+    output wire oNew_hit
     );
     logic reset;
     //wires for Tapp Delay Line
@@ -43,10 +50,14 @@ module channel_controller(
     wire read_tapp_w;
     // wires for  cal tapp delay
     wire write_new_delay_w;
+    wire stop_counting;
     logic [$clog2(`MAX_FINE_VAL)-1:0] new_tapp_delay_w;
     logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
     logic delay_ready_w;
     assign reset = iRST;
+    assign oCH_ready = delay_ready_w;
+    assign oCal_counts = counts_total_w;
+    assign oNew_hit = new_hit_w;
     tapped_delay_line inst_tapped_delay_line(
         .iCLK(iCLK),
         .iCH(iCH),
@@ -69,7 +80,7 @@ module channel_controller(
         .iNew_hit(new_stop_val_w),
         .iTapped_value(tapp_stop_val_w),
         //read hits\
-        .iStop_Counting(),
+        .iStop_Counting(stop_counting),
         .iRead_Tapp(read_tapp_w),
         .iRead_Tapp_Addr(read_tapp_addr_w),
         .oRd_data(tapp_counts_w),
@@ -82,8 +93,9 @@ module channel_controller(
         .iTapp_counts(tapp_counts_w),
         .iTotal_counts(counts_total_w),
         .oRead_Tapp_Addr(read_tapp_addr_w),
-        .oRead_Tapp(read_tapp_W),
+        .oRead_Tapp(read_tapp_w),
         // output new delay val
+        .oStop_Counting(stop_counting),
         .oTapp_delay(new_tapp_delay_w),
         .oTapp_num(write_tapp_add_w),
         .oWrite_new_delay(write_new_delay_w),
@@ -100,8 +112,11 @@ module channel_controller(
         .iTapp_val(tapp_stop_val_w),
         .iNew_val(new_stop_val_w),
         .iNS(iNS),
-        .oTime_Tag(oTime_Tag)
-        
+        .oTime_Tag(oTime_Tag),
+        // debug stuff
+        .iRead_tapp_addr(iRead_tapp_addr),
+        .iRead_delay(iRead_delay),
+        .oRd_delay(oRd_delay)
         
     );
 

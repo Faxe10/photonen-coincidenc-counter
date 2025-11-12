@@ -66,9 +66,7 @@ module hits_per_tapp(
     
 // logic for Counting the     
     always @(posedge iCLK)begin
-        if (reset)begin
-            total <= 0;
-        end
+
         new_hit_r <= iNew_hit;
         new_hit_r2 <= new_hit_r;
         new_hit_r3 <= new_hit_r2;
@@ -80,7 +78,8 @@ module hits_per_tapp(
         if (new_hit_r3)begin
             mem_write_data <= mem_read_data + 1;
             mem_write_add <= mem_read_add_r;
-            total <= total +1;
+            //total <= total + 1;
+
         end 
     end 
 
@@ -97,11 +96,13 @@ always @(posedge iCLK)begin
         clear_index <= clear_index +1;
         if(clear_index ==`NUM_TAPPS -1)begin
             clearing <= 1'b0;
+            total <= 0;
         end
     end
     // write new val in mem
     else if (~iStop_Counting & new_hit_r4 ) begin 
         mem[mem_write_add] <= mem_write_data;
+        total <= total +1;
     end
 end
 

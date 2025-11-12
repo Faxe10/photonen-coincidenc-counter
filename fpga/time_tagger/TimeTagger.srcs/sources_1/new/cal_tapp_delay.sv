@@ -44,9 +44,16 @@ module cal_tapp_delay(
     logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r;
     logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r2;
     logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r3;
+    logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r4;
+    logic [$clog2(`NUM_TAPPS)-1:0] current_tapps_r5;
+    //def delay cal
     logic [$clog2(`MAX_FINE_VAL)-1:0] tapp_delay;
     logic [$clog2(`MAX_FINE_VAL)-1:0] singel_tapp_delay;
-
+    logic [$clog2(`TIME_PER_CLK*`COUNTS_FOR_CAL/10)-1:0] tmp;
+    logic [$clog2(`TIME_PER_CLK*`COUNTS_FOR_CAL/10)-1:0] tmp2;
+    logic  tapp_counts_zero;
+    logic  tapp_counts_zero_r2;
+    logic  tapp_counts_zero_r3;
     logic cal;
     logic cal_finished;
     reg intern_rst_r;
@@ -55,7 +62,8 @@ module cal_tapp_delay(
     logic read_counts_r;
     logic read_counts_r2;
     logic read_counts_r3;
-
+    logic read_counts_r4;
+    logic read_counts_r5;
 
     assign reset = intern_rst_r | iRST;
     assign oReset = reset;
@@ -81,7 +89,7 @@ module cal_tapp_delay(
             read_counts_r <= 1'b0;
         end
         else if (cal)begin   
-            if (current_tapps < `NUM_TAPPS)begin
+            if (current_tapps < `NUM_TAPPS-1)begin
                 cal_finished <= 1'b0;
                 read_counts_r <= 1'b1;
                 oRead_Tapp_Addr <= current_tapps;
@@ -98,23 +106,44 @@ module cal_tapp_delay(
     end
     // cal delay from the Tapp
     always @(posedge iCLK)begin
-        singel_tapp_delay <=`TIME_PER_CLK* iTapp_counts /`COUNTS_FOR_CAL;
+        tmp <= `TIME_PER_CLK * iTapp_counts;
+        tmp2 <= tmp + (`COUNTS_FOR_CAL>>1);
+        singel_tapp_delay <= tmp2 / `COUNTS_FOR_CAL;
     end
+    always @(posedge iCLK)begin
+        if (iTapp_counts == 0)begin
+            tapp_counts_zero <= 1'b1;
+        end 
+        else begin        
+            tapp_counts_zero <= 1'b0;
+        end
+    end 
     // cal delay until tapp; 
     always @(posedge iCLK)begin
         current_tapps_r <= current_tapps;
         current_tapps_r2 <= current_tapps_r;
         current_tapps_r3 <= current_tapps_r2;
+        current_tapps_r4 <= current_tapps_r3;
+        current_tapps_r5 <= current_tapps_r4;
         read_counts_r2 <= read_counts_r;
         read_counts_r3 <= read_counts_r2;
+        read_counts_r4 <= read_counts_r3;
+        read_counts_r5 <= read_counts_r4;
+        tapp_counts_zero_r2 <= tapp_counts_zero;
+        tapp_counts_zero_r3 <= tapp_counts_zero_r2;
         if (reset)begin
             tapp_delay <= 0;
             oWrite_new_delay <= 1'b0;
         end
-        else if (read_counts_r3)begin
-            tapp_delay <= tapp_delay + singel_tapp_delay;
+        else if (read_counts_r5)begin
+            if(tapp_counts_zero_r3)begin
+                tapp_delay <= tapp_delay;
+            end
+            else begin
+                tapp_delay <= tapp_delay + singel_tapp_delay;
+            end
             oWrite_new_delay <= 1'b1;
-            oTapp_num <= current_tapps_r3;
+            oTapp_num <= current_tapps_r5;
         end
         else begin
              oWrite_new_delay <= 1'b0;
@@ -123,9 +152,10 @@ module cal_tapp_delay(
 
     always @(posedge iCLK)begin
         if(cal_finished)begin 
-            if(read_counts_r3 == 0) begin
+            oDelay_ready <= 1'b1;
+            if(read_counts_r5 == 0) begin
                 intern_rst_r <= 1'b1;
-                oDelay_ready <= 1'b1;
+
             end
             else begin
                 intern_rst_r <= 1'b0;
