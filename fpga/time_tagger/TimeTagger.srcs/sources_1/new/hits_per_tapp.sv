@@ -38,83 +38,80 @@ module hits_per_tapp(
     wire reset;
     assign reset = iRST;
 // mem def
-    (* ram_style = "block" *)logic [`WIDTH_HISTOGRAM-1:0] mem [0:`NUM_TAPPS-1];
+    (* ram_style = "block" *)logic [`WIDTH_HISTOGRAM-1:0] mem_hits [0:`NUM_TAPPS-1];
     
     // mem controll read
-    reg mem_read;
-    reg [$clog2(`NUM_TAPPS)-1:0]mem_read_add,mem_read_add_r;
-    reg [`WIDTH_HISTOGRAM-1:0]mem_read_data,mem_read_data_r;
+    reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr,mem_read_addr_r;
+    reg [$clog2(`NUM_TAPPS)-1:0] mem_write_addr;
     logic [`WIDTH_HISTOGRAM-1:0] read_data;
     assign oRd_data = read_data;
     // mem controll write  
-    reg mem_write;
-    reg [$clog2(`NUM_TAPPS)-1:0]mem_write_add;
     reg [`WIDTH_HISTOGRAM-1:0]mem_write_data;
     // mem reset
     reg  [$clog2(`NUM_TAPPS)-1:0] clear_index;
     reg clearing;
 //counting def
     reg [32:0]total;
-    reg [ $clog2(`NUM_TAPPS)-1:0]tapped_delay_value_r;
-    (* dont_touch = "True" *) reg new_hit_r,new_hit_r2,new_hit_r3,new_hit_r4;
+    (* dont_touch = "True" *) reg new_hit_r,new_hit_r2;
     assign  oTotal = total;
 
-
-
-    always @(posedge iCLK) mem_read_data_r <= mem_read_data;
-
-    
-// logic for Counting the     
-    always @(posedge iCLK)begin
-
-        new_hit_r <= iNew_hit;
-        new_hit_r2 <= new_hit_r;
-        new_hit_r3 <= new_hit_r2;
-        tapped_delay_value_r <=  iTapped_value;
-        mem_read_add_r <= mem_read_add;
-        if (new_hit_r)begin 
-            mem_read_add <= tapped_delay_value_r;
-        end
-        if (new_hit_r3)begin
-            mem_write_data <= mem_read_data + 1;
-            mem_write_add <= mem_read_add_r;
-            //total <= total + 1;
-
-        end 
-    end 
-
-// write and read counts in / from BRAM
+    // total counting and BRAM clearing 
 always @(posedge iCLK)begin
-    new_hit_r4 <= new_hit_r3;
+    new_hit_r2 <= new_hit_r;
     if (reset)begin
         clearing <= 1'b1;
         clear_index <= 1'b0;
     end 
     // clear mem Data
-    else if (clearing)begin
-        mem[clear_index] <= 0;
-        clear_index <= clear_index +1;
-        if(clear_index ==`NUM_TAPPS -1)begin
-            clearing <= 1'b0;
-            total <= 0;
+    else begin 
+        if (clearing)begin
+            clear_index <= clear_index +1;
+            if(clear_index ==`NUM_TAPPS -1)begin
+                clearing <= 1'b0;
+                total <= 0;
+            end
+        end
+        // write new val in mem
+        else if (~iStop_Counting & new_hit_r2 ) begin 
+            total <= total +1;
         end
     end
-    // write new val in mem
-    else if (~iStop_Counting & new_hit_r4 ) begin 
-        mem[mem_write_add] <= mem_write_data;
-        total <= total +1;
-    end
 end
+// logic for writing / reading BRAM     
+    always @(posedge iCLK)begin
+        new_hit_r <= iNew_hit;
+        if (iRead_Tapp) begin 
+            mem_read_addr <= iRead_Tapp_Addr;
+        end 
+        else begin 
+            mem_read_addr <= iTapped_value;
+        end
 
-always @(posedge iCLK)begin
-    if (iRead_Tapp)begin
-        read_data <= mem[iRead_Tapp_Addr];
-    end
-    else if(new_hit_r2)begin
-        mem_read_data <= mem[mem_read_add];
     end 
 
+    always @(posedge iCLK)begin 
+        mem_read_addr_r <= mem_read_addr;
+        if(clearing)begin
+            mem_write_data <= 0;
+            mem_write_addr <= clear_index;
+        end
+        else if (~iStop_Counting & new_hit_r2) begin
+            mem_write_data <= read_data + 1;
+            mem_write_addr <= mem_read_addr_r;
+        end
+    end
 
-end    
+// write and read counts in / from BRAM
+always @(posedge iCLK)begin
+    mem_hits[mem_write_addr] <= mem_write_data;
+end
+always @(posedge iCLK)begin 
+    read_data <= mem_hits[mem_read_addr];
+end
+
+
+
+
+
 
 endmodule

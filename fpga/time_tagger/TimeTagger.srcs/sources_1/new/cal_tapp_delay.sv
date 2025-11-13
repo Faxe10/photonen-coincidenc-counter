@@ -105,11 +105,28 @@ module cal_tapp_delay(
         end
     end
     // cal delay from the Tapp
-    always @(posedge iCLK)begin
-        tmp <= `TIME_PER_CLK * iTapp_counts;
-        tmp2 <= tmp + (`COUNTS_FOR_CAL>>1);
-        singel_tapp_delay <= tmp2 / `COUNTS_FOR_CAL;
-    end
+    // TIME_PER_CLK in ps, COUNTS_FOR_CAL = Summe der Kalibrierhits
+localparam int FRAC = 24; // 24..32 -> mehr Präzision = mehr Bits
+// K ≈ TIME_PER_CLK_ps / COUNTS_FOR_CAL * 2^FRAC  (zur Elaboration fix berechnet)
+localparam longint unsigned K =
+  ((`TIME_PER_CLK << FRAC) + (`COUNTS_FOR_CAL>>1)) / `COUNTS_FOR_CAL;
+
+localparam int W_CNT = $clog2(`COUNTS_FOR_CAL+1);
+
+logic [W_CNT-1:0] cnt_s0;
+(* use_dsp = "yes" *) logic [63:0] mul_s1;  // groß genug, damit nix überläuft
+        // Zielbreite anpassen (z. B. 12..16 Bit)
+
+always_ff @(posedge iCLK) begin
+  // Stufe 0: Eingang registrieren (entkoppelt Fanout, verbessert Fmax)
+  cnt_s0 <= iTapp_counts;
+
+  // Stufe 1: konstante Fixed-Point-Mul (1 DSP48)
+  mul_s1 <= cnt_s0 * K;
+
+  // Stufe 2: rundend shiften -> Ergebnis in ps
+  singel_tapp_delay <= (mul_s1 + (1<<(FRAC-1))) >> FRAC;
+end
     always @(posedge iCLK)begin
         if (iTapp_counts == 0)begin
             tapp_counts_zero <= 1'b1;
