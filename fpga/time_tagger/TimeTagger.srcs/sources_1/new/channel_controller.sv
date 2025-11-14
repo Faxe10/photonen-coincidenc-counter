@@ -29,6 +29,7 @@ module channel_controller(
     input logic [$clog2(`WIDTH_NS)-1:0] iNS,
     output logic [`WIDTH_TIME_TAG:0]oTime_Tag,
     // debug ports;
+    output logic  [`WIDTH_HISTOGRAM-1:0] oDebug_rd_data,
     input logic [$clog2(`NUM_TAPPS)-1:0] iRead_tapp_addr,
     input logic iRead_delay,
     output logic [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay,
@@ -84,7 +85,11 @@ module channel_controller(
         .iRead_Tapp(read_tapp_w),
         .iRead_Tapp_Addr(read_tapp_addr_w),
         .oRd_data(tapp_counts_w),
-        .oTotal(counts_total_w)
+        .oTotal(counts_total_w),
+        //debug stuff
+        .iDebug_Read_Tapp_Addr(iRead_tapp_addr),
+        .iDebug_Read_Tapp(iRead_delay),
+        .oDebug_rd_data(oDebug_rd_data)
     );
     cal_tapp_delay cal_tapp_delay_inst(
         .iCLK(iCLK),

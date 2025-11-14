@@ -33,15 +33,20 @@ module hits_per_tapp(
     input logic iRead_Tapp,
     input logic [ $clog2(`NUM_TAPPS)-1:0]iRead_Tapp_Addr,
     output logic [`WIDTH_HISTOGRAM-1:0] oRd_data,
-    output logic [32:0] oTotal
-    );    
+    output logic [32:0] oTotal,
+    
+    // debug stuff
+    input logic [ $clog2(`NUM_TAPPS)-1:0] iDebug_Read_Tapp_Addr,
+    input logic  iDebug_Read_Tapp,
+    output logic  [`WIDTH_HISTOGRAM-1:0] oDebug_rd_data
+    );   
     wire reset;
     assign reset = iRST;
 // mem def
     (* ram_style = "block" *)logic [`WIDTH_HISTOGRAM-1:0] mem_hits [0:`NUM_TAPPS-1];
     
     // mem controll read
-    reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr,mem_read_addr_r;
+    (* dont_touch = "TRUE" *)reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr,mem_read_addr_r;
     reg [$clog2(`NUM_TAPPS)-1:0] mem_write_addr;
     (* dont_touch = "True" *)logic [`WIDTH_HISTOGRAM-1:0] read_data;
     assign oRd_data = read_data;
@@ -54,7 +59,9 @@ module hits_per_tapp(
     reg [32:0]total;
     (* dont_touch = "True" *) reg new_hit_r,new_hit_r2;
     assign  oTotal = total;
-
+    //def debug stuf
+    logic debug_read_tapp_r;
+    logic debug_read_tapp_r2;
     // total counting and BRAM clearing 
 always @(posedge iCLK)begin
     new_hit_r2 <= new_hit_r;
@@ -83,12 +90,19 @@ end
         if (iRead_Tapp) begin 
             mem_read_addr <= iRead_Tapp_Addr;
         end 
-        else begin 
+        else if (iNew_hit) begin 
             mem_read_addr <= iTapped_value;
+        end else if (iDebug_Read_Tapp)begin 
+            mem_read_addr <= iDebug_Read_Tapp_Addr;
         end
-
     end 
-
+    always @(posedge iCLK)begin
+        debug_read_tapp_r <= iDebug_Read_Tapp;
+        debug_read_tapp_r2 <= debug_read_tapp_r;
+        if(debug_read_tapp_r2)begin
+            oDebug_rd_data <= read_data;
+        end
+    end
     always @(posedge iCLK)begin 
         mem_read_addr_r <= mem_read_addr;
         if(clearing)begin

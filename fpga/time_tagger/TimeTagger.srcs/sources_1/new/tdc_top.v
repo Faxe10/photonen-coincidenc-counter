@@ -33,7 +33,8 @@ module tdc_top(
     output wire [$clog2(`COUNTS_FOR_CAL)-1:0]  oCal_counts,
     output wire [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay,
     output wire  [$clog2(`COUNTS_FOR_CAL)-1:0] oCounts_per_s,
-    output wire oNew_hit
+    output wire oNew_hit,
+    output wire  [`WIDTH_HISTOGRAM-1:0] oDebug_rd_hits
     ); 
     reg [`WIDTH_NS:0] ns;
     reg [$clog2(`COUNTS_FOR_CAL)-1:0] counts_per_s;
@@ -75,7 +76,8 @@ module tdc_top(
         .iRead_delay(iRead_delay),
         .oRd_delay(oRd_delay),
         .oCal_counts(oCal_counts),
-        .oNew_hit(oNew_hit)
+        .oNew_hit(oNew_hit),
+        .oDebug_rd_data(oDebug_rd_hits)
 
     );
     

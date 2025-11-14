@@ -48,9 +48,11 @@ module gen_time_tag(
      (*  dont_touch = "True" *)logic [$clog2(`MAX_FINE_VAL)-1:0]fine_val;
      (* dont_touch = "True" *) reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr;
      (* dont_touch = "True" *)logic [$clog2(`MAX_FINE_VAL)-1:0] read_data;
+     (* dont_touch = "True" *)logic [$clog2(`MAX_FINE_VAL)-1:0] write_data;
+     (* dont_touch = "True" *)logic [$clog2(`NUM_TAPPS)-1:0]    write_addr;
      assign oRd_delay = read_data;
-    assign oTimeTag = 5;
-
+     assign oTimeTag = 5;
+    
     //5 clk = 18ns
     
     always @(posedge iCLK)begin
@@ -75,10 +77,16 @@ module gen_time_tag(
         else if (iRead_delay)begin
             mem_read_addr <= iRead_tapp_addr;
         end
-    end        
+    end 
+    always @(posedge iCLK)begin
+        if(iWrite_new_delay)begin
+            write_data <= iTapp_delay;
+            write_addr <= iWrite_tapp_addr;
+        end;
+    end       
     // BRAM read and write
     always @(posedge iCLK)begin
-        mem[iWrite_tapp_addr] <= iTapp_delay;
+        mem[write_addr] <= write_data;
     end 
     always @(posedge iCLK)begin
         read_data <= mem[mem_read_addr];
