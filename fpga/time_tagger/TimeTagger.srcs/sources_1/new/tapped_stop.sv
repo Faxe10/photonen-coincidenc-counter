@@ -25,7 +25,7 @@ module tapped_stop(
  input iCLK,
  input iNewTapps,
  input wire [`NUM_TAPPS-1:0] itapped_state,
- output wire [$clog2(`NUM_TAPPS):0] otapped_stop_w,
+ output wire [$clog2(`NUM_TAPPS)-1:0] otapped_stop_w,
  //output oEdgeDetected,
  //output oSmallEdgeDetected,
  output oNewValue

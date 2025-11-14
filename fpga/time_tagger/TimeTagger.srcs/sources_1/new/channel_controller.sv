@@ -41,7 +41,7 @@ module channel_controller(
     wire  [`NUM_TAPPS-1:0] tapped_state_w;
     //wires for Tapped_stop
     wire new_stop_va;
-    wire [$clog2(`NUM_TAPPS):0] tapp_stop_val_w;
+    wire [$clog2(`NUM_TAPPS)-1:0] tapp_stop_val_w;
     // wires for hits per Tapp
     wire [$clog2(`COUNTS_FOR_CAL)-1:0] counts_total_w;
     wire [`WIDTH_HISTOGRAM-1:0] tapp_counts_w;

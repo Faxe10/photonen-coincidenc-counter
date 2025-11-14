@@ -34,7 +34,7 @@ module tdc_top(
     output wire [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay,
     output wire  [$clog2(`COUNTS_FOR_CAL)-1:0] oCounts_per_s,
     output wire oNew_hit
-    );
+    ); 
     reg [`WIDTH_NS:0] ns;
     reg [$clog2(`COUNTS_FOR_CAL)-1:0] counts_per_s;
     reg [$clog2(`COUNTS_FOR_CAL)-1:0] counts_last_s;

@@ -46,8 +46,9 @@ module gen_time_tag(
     (* ram_style = "block" *) logic [$clog2(`MAX_FINE_VAL)-1:0] mem[`NUM_TAPPS];
     //def BRAM
      (*  dont_touch = "True" *)logic [$clog2(`MAX_FINE_VAL)-1:0]fine_val;
-     reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr;
-     logic [$clog2(`MAX_FINE_VAL)-1:0] read_data;
+     (* dont_touch = "True" *) reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr;
+     (* dont_touch = "True" *)logic [$clog2(`MAX_FINE_VAL)-1:0] read_data;
+     assign oRd_delay = read_data;
     assign oTimeTag = 5;
 
     //5 clk = 18ns

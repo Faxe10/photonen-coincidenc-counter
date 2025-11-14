@@ -43,7 +43,7 @@ module hits_per_tapp(
     // mem controll read
     reg [$clog2(`NUM_TAPPS)-1:0]mem_read_addr,mem_read_addr_r;
     reg [$clog2(`NUM_TAPPS)-1:0] mem_write_addr;
-    logic [`WIDTH_HISTOGRAM-1:0] read_data;
+    (* dont_touch = "True" *)logic [`WIDTH_HISTOGRAM-1:0] read_data;
     assign oRd_data = read_data;
     // mem controll write  
     reg [`WIDTH_HISTOGRAM-1:0]mem_write_data;
