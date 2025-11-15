@@ -32,6 +32,7 @@ module channel_controller(
     output logic  [`WIDTH_HISTOGRAM-1:0] oDebug_rd_data,
     input logic [$clog2(`NUM_TAPPS)-1:0] iRead_tapp_addr,
     input logic iRead_delay,
+    input logic iStop_delay_recal,
     output logic [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay,
     output wire [$clog2(`COUNTS_FOR_CAL)-1:0]  oCal_counts,
     output wire oNew_hit
@@ -49,12 +50,16 @@ module channel_controller(
     wire read_counts_ready_w;
     wire [ $clog2(`NUM_TAPPS)-1:0] read_tapp_addr_w;
     wire read_tapp_w;
+    logic reset_hits;
     // wires for  cal tapp delay
     wire write_new_delay_w;
     wire stop_counting;
     logic [$clog2(`MAX_FINE_VAL)-1:0] new_tapp_delay_w;
     logic [$clog2(`NUM_TAPPS)-1:0] write_tapp_add_w;
     logic delay_ready_w;
+    
+    // stuff for debug
+    logic Debug_stop_delay_recal;
     assign reset = iRST;
     assign oCH_ready = delay_ready_w;
     assign oCal_counts = counts_total_w;
@@ -76,7 +81,7 @@ module channel_controller(
     // calibration
     hits_per_tapp hits_per_tapp_inst(
         .iCLK(iCLK),
-        .iRST(reset),
+        .iRST(reset_hits),
         // add new hit
         .iNew_hit(new_stop_val_w),
         .iTapped_value(tapp_stop_val_w),
@@ -87,6 +92,7 @@ module channel_controller(
         .oRd_data(tapp_counts_w),
         .oTotal(counts_total_w),
         //debug stuff
+        .iDebug_stop_delay_recal(Debug_stop_delay_recal),
         .iDebug_Read_Tapp_Addr(iRead_tapp_addr),
         .iDebug_Read_Tapp(iRead_delay),
         .oDebug_rd_data(oDebug_rd_data)
@@ -99,6 +105,7 @@ module channel_controller(
         .iTotal_counts(counts_total_w),
         .oRead_Tapp_Addr(read_tapp_addr_w),
         .oRead_Tapp(read_tapp_w),
+        .oReset(reset_hits),
         // output new delay val
         .oStop_Counting(stop_counting),
         .oTapp_delay(new_tapp_delay_w),
@@ -125,7 +132,14 @@ module channel_controller(
         
     );
 
-
+    always @(posedge iCLK)begin
+        if (stop_counting & iStop_delay_recal)begin
+            Debug_stop_delay_recal <= 1'b1;
+        end
+        else if (~iStop_delay_recal)begin
+            Debug_stop_delay_recal <= 0'b0;
+        end
+    end
     // create time Tagg
 
 endmodule

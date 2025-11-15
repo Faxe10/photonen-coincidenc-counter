@@ -30,6 +30,7 @@ module tdc_top(
     // debug ports;
     input wire [$clog2(`NUM_TAPPS)-1:0] iRead_tapp_addr,
     input wire iRead_delay,
+    input wire iStop_delay_recal,
     output wire [$clog2(`COUNTS_FOR_CAL)-1:0]  oCal_counts,
     output wire [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay,
     output wire  [$clog2(`COUNTS_FOR_CAL)-1:0] oCounts_per_s,
@@ -39,10 +40,10 @@ module tdc_top(
     reg [`WIDTH_NS:0] ns;
     reg [$clog2(`COUNTS_FOR_CAL)-1:0] counts_per_s;
     reg [$clog2(`COUNTS_FOR_CAL)-1:0] counts_last_s;
-    reg [$clog2(299999999)-1:0]counter_clk;
+    reg [$clog2(249999999)-1:0]counter_clk;
     assign oCounts_per_s = counts_per_s; 
     always @(posedge iCLK)begin
-      if (counter_clk ==299999999 )begin
+        if (counter_clk ==249999999 )begin
             counter_clk <= 0;
             counts_per_s <= counts_last_s;
             counts_last_s <= 0;
@@ -74,6 +75,7 @@ module tdc_top(
          // debug ports;
         .iRead_tapp_addr(iRead_tapp_addr),
         .iRead_delay(iRead_delay),
+        .iStop_delay_recal(iStop_delay_recal),
         .oRd_delay(oRd_delay),
         .oCal_counts(oCal_counts),
         .oNew_hit(oNew_hit),

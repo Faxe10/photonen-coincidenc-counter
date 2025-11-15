@@ -49,20 +49,24 @@ module tb_cal_tapp_delay(
   logic iRead_delay;
   logic  [`WIDTH_HISTOGRAM-1:0] oDebug_rd_data;
   logic [$clog2(`MAX_FINE_VAL)-1:0] oRd_delay;
+  logic iStop_delay_recal;
+  logic Debug_stop_delay_recal;
   // test stuff
   logic[`WIDTH_HISTOGRAM-1:0] read_counts;
   logic [32:0]counts_total_r;
-  logic [32:0]x; 
+  logic [128:0]x; 
   logic [32:0]y;
   logic [$clog2(`MAX_FINE_VAL)-1:0]  random;
   logic iCLK;
   logic read_tapp_w;
+  logic reset_hits;
   assign iCLK = clk;
   logic stop_counting;
       // calibration
+    // calibration
     hits_per_tapp hits_per_tapp_inst(
         .iCLK(iCLK),
-        .iRST(reset),
+        .iRST(reset_hits),
         // add new hit
         .iNew_hit(new_stop_val_w),
         .iTapped_value(tapp_stop_val_w),
@@ -73,6 +77,7 @@ module tb_cal_tapp_delay(
         .oRd_data(tapp_counts_w),
         .oTotal(counts_total_w),
         //debug stuff
+        .iDebug_stop_delay_recal(Debug_stop_delay_recal),
         .iDebug_Read_Tapp_Addr(iRead_tapp_addr),
         .iDebug_Read_Tapp(iRead_delay),
         .oDebug_rd_data(oDebug_rd_data)
@@ -85,6 +90,7 @@ module tb_cal_tapp_delay(
         .iTotal_counts(counts_total_w),
         .oRead_Tapp_Addr(read_tapp_addr_w),
         .oRead_Tapp(read_tapp_w),
+        .oReset(reset_hits),
         // output new delay val
         .oStop_Counting(stop_counting),
         .oTapp_delay(new_tapp_delay_w),
@@ -110,7 +116,14 @@ module tb_cal_tapp_delay(
         .oRd_delay(oRd_delay)
         
     );
-
+    always @(posedge iCLK)begin
+        if (stop_counting & iStop_delay_recal)begin
+            Debug_stop_delay_recal <= 1'b1;
+        end
+        else if (~iStop_delay_recal)begin
+            Debug_stop_delay_recal <= 0'b0;
+        end
+    end
     task automatic hit( input int addr);
         begin
             @(posedge clk);
@@ -130,14 +143,23 @@ module tb_cal_tapp_delay(
         end
     endtask
     initial begin
+        iRead_delay <= 1'b0;
         reset_task;
+        iStop_delay_recal <= 1'b0;
         for (x = 0; x <= `COUNTS_FOR_CAL * 100;x++)begin
             random = $urandom_range(5,350);
             hit(random);
             @(posedge clk);
           //  $display("test");        
         end
-        repeat(10) @(posedge clk);
+        iStop_delay_recal <= 1'b1;
+        repeat(1000) @(posedge clk);
+        for (x = 0; x <= `COUNTS_FOR_CAL * 100;x++)begin
+            random = $urandom_range(5,350);
+            hit(random);
+            @(posedge clk);
+          //  $display("test");        
+        end
         iRead_delay <= 1'b1;
         $display("Start read");
         for(y = 0; y<= `NUM_TAPPS;y++)begin

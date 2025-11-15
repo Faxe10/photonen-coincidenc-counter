@@ -36,6 +36,7 @@ module hits_per_tapp(
     output logic [32:0] oTotal,
     
     // debug stuff
+    input logic iDebug_stop_delay_recal,
     input logic [ $clog2(`NUM_TAPPS)-1:0] iDebug_Read_Tapp_Addr,
     input logic  iDebug_Read_Tapp,
     output logic  [`WIDTH_HISTOGRAM-1:0] oDebug_rd_data
@@ -68,10 +69,11 @@ always @(posedge iCLK)begin
     if (reset)begin
         clearing <= 1'b1;
         clear_index <= 1'b0;
+        total <= 0;
     end 
     // clear mem Data
     else begin 
-        if (clearing)begin
+        if (clearing & ~iDebug_stop_delay_recal)begin
             clear_index <= clear_index +1;
             if(clear_index ==`NUM_TAPPS -1)begin
                 clearing <= 1'b0;
@@ -79,7 +81,7 @@ always @(posedge iCLK)begin
             end
         end
         // write new val in mem
-        else if (~iStop_Counting & new_hit_r2 ) begin 
+        else if (~iStop_Counting& ~iDebug_stop_delay_recal & new_hit_r2 ) begin 
             total <= total +1;
         end
     end
@@ -87,14 +89,15 @@ end
 // logic for writing / reading BRAM     
     always @(posedge iCLK)begin
         new_hit_r <= iNew_hit;
-        if (iRead_Tapp) begin 
+        if (iDebug_Read_Tapp)begin 
+            mem_read_addr <= iDebug_Read_Tapp_Addr;
+        end
+        else if (iRead_Tapp) begin 
             mem_read_addr <= iRead_Tapp_Addr;
         end 
         else if (iNew_hit) begin 
             mem_read_addr <= iTapped_value;
-        end else if (iDebug_Read_Tapp)begin 
-            mem_read_addr <= iDebug_Read_Tapp_Addr;
-        end
+        end 
     end 
     always @(posedge iCLK)begin
         debug_read_tapp_r <= iDebug_Read_Tapp;
@@ -109,7 +112,7 @@ end
             mem_write_data <= 0;
             mem_write_addr <= clear_index;
         end
-        else if (~iStop_Counting & new_hit_r2) begin
+        else if (~iStop_Counting & ~iDebug_stop_delay_recal & new_hit_r2) begin
             mem_write_data <= read_data + 1;
             mem_write_addr <= mem_read_addr_r;
         end
